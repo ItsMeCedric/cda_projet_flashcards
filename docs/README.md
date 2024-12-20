@@ -1,5 +1,5 @@
 # Docs
 
-`.loo` -> Looping UML
-`.jam` -> Figma
+`.loo` -> Looping UML  
+`.jam` -> Figma  
 `.puml` -> PlantUML
