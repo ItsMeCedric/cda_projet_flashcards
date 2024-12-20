@@ -1,0 +1,59 @@
+@startuml
+
+top to bottom direction
+
+title Diagramme de cas d'utilisations
+
+together {
+	:Visiteur: --> (S'inscrire)
+}
+Visiteur <|-- Utilisateur
+
+rectangle Deck {
+:Utilisateur: --> (Lister)
+"Lister ses decks" as (Lister)
+
+(Créer) .> (Lister) : extend
+"Créer ses decks" as (Créer)
+
+(Modifier) ..> (Lister) : extend
+"Modifier ses decks" as (Modifier)
+
+(Supprimer) ..> (Lister) : extend
+"Supprimer ses decks" as (Supprimer)
+
+(Jouer) ..> (Lister) : extend
+"Jouer ses decks" as (Jouer)
+
+(Importer) ...> (Lister) : extend
+"Importer des decks" as (Importer)
+
+:Utilisateur: -> (Rechercher)
+"Rechercher/Filter des decks" as (Rechercher)
+
+(Partager) ...> (Lister) : extend
+"Partager ses decks" as (Partager)
+}
+Utilisateur <|-- Modérateur
+
+"S'authentifier" as (Auth)
+(Lister) ..> (Auth) : include
+
+together {
+	:Modérateur: --> (Approuver)
+	"Approuver des decks sur la liste publique" as (Approuver)
+}
+Modérateur <|-- Administrateur
+
+"S'authentifier" as (Auth2)
+(Approuver) ..> (Auth2) : include
+
+together {
+	:Administrateur: --> (Administer)
+	"Administrer le site" as (Administer)
+}
+
+"S'authentifier" as (Auth3)
+(Administer) ..> (Auth3) : include
+
+@enduml

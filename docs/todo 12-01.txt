@@ -1,0 +1,12 @@
+A FAIRE POUR LE 12/01/2025 :
+
+Un dossier d'analyse contenant :
+- un diagramme de classe -- à faire
+- un schéma relationnel (entité/association) -- à revoir
+- un diagramme de flux -- à revoir
+- des uses-cases -- fait
+- un dictionnaire des données -- à revoir
+- un fichier .sql avec la création de la BDD -- à faire
+- une explication de notre projet (pour qui, pourquoi, comment) -- fait dans 1er rendu
+- devOps
+- passer à git
