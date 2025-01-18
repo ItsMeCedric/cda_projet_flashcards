@@ -1,0 +1,13 @@
+.hero {
+  width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero h1 {
+  margin-bottom: 4%;
+  font-size: 30px;
+  font-weight: bold;
+}
+.hero label {
+  margin-right: 5px;
+}
