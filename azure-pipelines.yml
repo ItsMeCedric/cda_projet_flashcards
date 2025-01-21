@@ -21,11 +21,12 @@ steps:
     npm install
     npm run build
     ls -al
+    pwd
   displayName: 'npm install and build'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: './build'
+    PathtoPublish: '${Build.ArtifactStagingDirectory}/frontend/dist'
     ArtifactName: 'frontend'
     publishLocation: 'Container'
     StoreAsTar: true
