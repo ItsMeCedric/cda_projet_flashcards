@@ -24,7 +24,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: 'frontend/build'
     ArtifactName: 'frontend'
     publishLocation: 'Container'
     StoreAsTar: true
