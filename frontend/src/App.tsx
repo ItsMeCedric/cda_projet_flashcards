@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import DeckList from './components/DeckList'
 import Login from './components/Login'
+import SignIn from './components/SignIn'
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Hero></Hero>
       <DeckList></DeckList> */}
 
-      <Login></Login>
+      <SignIn></SignIn>
     </>
   )
 }
