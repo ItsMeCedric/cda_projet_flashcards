@@ -1,0 +1,39 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  background-color: var(--element-background);
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+}
+.footer a {
+  background-color: var(--element-background);
+}
+.legals {
+  display: flex;
+  gap: 10px;
+}
+
+.theme {
+  /* div setup */
+  padding-right: 50px;
+  display: grid;
+
+  /* font setup */
+  color: var(--text-color);
+  text-align: right;
+}
+
+.theme-button {
+  /* icon + text */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 0.5rem;
+  border: none;
+  background-color: var(--element-background);
+  color: var(--text-color);
+}
