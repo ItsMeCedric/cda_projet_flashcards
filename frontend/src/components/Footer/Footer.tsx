@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
+
 // import CSS
 import classes from "./Footer.module.css";
 
@@ -5,6 +8,7 @@ import classes from "./Footer.module.css";
 import { FaMoon, FaSun } from "react-icons/fa";
 
 const Footer = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext) as ThemeContextType;
   // toggle function for light/dark
   const theme_icon =
     theme === "light" ? (
