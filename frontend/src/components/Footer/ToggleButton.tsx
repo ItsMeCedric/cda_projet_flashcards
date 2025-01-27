@@ -6,6 +6,7 @@ import classes from "./Footer.module.css";
 
 // import icons
 import { FaMoon, FaSun } from "react-icons/fa";
+import { ThemeContextType } from "../../@types/theme";
 
 function ToggleButton() {
   const { theme, toggleTheme } = useContext(ThemeContext) as ThemeContextType;

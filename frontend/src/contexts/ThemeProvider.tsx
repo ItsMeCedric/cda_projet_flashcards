@@ -21,9 +21,5 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
