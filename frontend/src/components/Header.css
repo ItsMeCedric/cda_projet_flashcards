@@ -15,3 +15,7 @@
   background-color: #eb793d;
   border-radius: 5px;
 }
+.auth-btn {
+  display: flex;
+  gap: 10px;
+}
