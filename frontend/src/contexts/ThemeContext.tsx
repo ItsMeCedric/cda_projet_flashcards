@@ -15,7 +15,7 @@ interface ThemeProviderProps {
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
-const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useLocalStorage<string>("theme", "light");
 
   // Fonction pour alterner entre "light" et "dark"
@@ -37,5 +37,3 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
-
-export default ThemeProvider;
