@@ -11,6 +11,7 @@ function App() {
     <>
       <Header></Header>
       <Hero></Hero>
+
       <DeckList></DeckList>
     </>
   )

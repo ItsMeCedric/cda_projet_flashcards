@@ -7,6 +7,15 @@ function DeckList() {
       <Deck></Deck>
       <Deck></Deck>
       <Deck></Deck>
+      <Deck></Deck>
+      <Deck></Deck>
+      <Deck></Deck>
+      <Deck></Deck>
+      <Deck></Deck>
+      <Deck></Deck>
+      <Deck></Deck>
+      <Deck></Deck>
+      <Deck></Deck>
     </div>
   )
 }

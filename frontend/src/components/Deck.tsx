@@ -3,7 +3,7 @@ function Deck() {
   return (
     <div className='card'>
       <h3>Deck Title</h3>
-      <img src='#' alt='vignette' />
+      <img src='https://i.pravatar.cc/300?img=10' alt='vignette' />
       <p className='description'>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae,
         rem. Esse tempore exercitationem nam reprehenderit minima quae magni,
