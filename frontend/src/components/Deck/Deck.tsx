@@ -6,12 +6,12 @@ const Deck = ({ deck }: { deck: Deck }) => {
       <h3>{deck.name}</h3>
       <img src="https://i.pravatar.cc/300?img=10" alt="vignette" />
       <p className={styles.description}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae,
-        rem. Esse tempore exercitationem nam reprehenderit minima quae magni,
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, rem. Esse tempore exercitationem nam
+        reprehenderit minima quae magni,
       </p>
       <div className={styles.icons}>
-        <span>flag</span>
-        <span>mark</span>
+        <span>{deck.downloads}</span>
+        <span>{deck.mark}</span>
       </div>
     </div>
   );
