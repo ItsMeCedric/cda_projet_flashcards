@@ -1,20 +1,26 @@
 import logo from "../../assets/FlashMcCard.png";
 import styles from "./Header.module.css";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className={styles.header}>
       <img src={logo} alt="logo" className={styles.logo} />
       <div className={styles.navbar}>
-        <a href="#">Home</a>
+        <NavLink to={"/"}>Home</NavLink>
         <span>|</span>
-        <a href="#">Explore</a>
+        <NavLink to={"/"}>Explore</NavLink>
         <span>|</span>
-        <a href="#">Contact Us</a>
+        <NavLink to={"/"}>Contact Us</NavLink>
       </div>
-      <a href="#" className={styles.login}>
-        Login
-      </a>
+      <div className={styles.auth_btn}>
+        <NavLink className={styles.login} to={"/login"}>
+          Login
+        </NavLink>
+        <NavLink className={styles.login} to={"/signin"}>
+          Sign In
+        </NavLink>
+      </div>
     </div>
   );
 };

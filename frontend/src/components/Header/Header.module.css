@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+}
+
+.navbar {
+  display: flex;
+  gap: 10px;
+}
+
+.login {
+  padding: 8px 30px;
+  background-color: #eb793d;
+  border-radius: 5px;
+}
+
+.auth_btn {
+  display: flex;
+  gap: 10px;
+}
