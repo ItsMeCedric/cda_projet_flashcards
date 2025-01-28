@@ -1,4 +1,4 @@
-import logo from "../assets/FlashMcCard.png";
+import logo from "../../assets/FlashMcCard.png";
 import styles from "./Header.module.css";
 
 const Header = () => {
