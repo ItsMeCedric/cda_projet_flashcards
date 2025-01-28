@@ -1,4 +1,4 @@
-.auth-container {
+.auth_container {
   display: flex;
   gap: 20px;
   background-color: #ffffff;
@@ -13,7 +13,7 @@
   transform: translateY(-50%);
 }
 
-.form-wrapper {
+.form_wrapper {
   flex: 1;
 }
 
@@ -23,7 +23,7 @@ h2 {
   margin-bottom: 10px;
 }
 
-.form-group {
+.form_group {
   margin-bottom: 15px;
 }
 
@@ -47,7 +47,7 @@ input:focus {
   outline: none;
 }
 
-.form-footer {
+.form_footer {
   margin-top: 15px;
   text-align: center;
 }

@@ -1,20 +1,20 @@
-import "./AuthForm.css";
+import styles from "./Login.module.css";
 
 function Login() {
   return (
-    <div className="auth-container">
-      <div className="form-wrapper">
+    <div className={styles.auth_container}>
+      <div className={styles.form_wrapper}>
         <h2>Connexion</h2>
         <form>
-          <div className="form-group">
-            <label htmlFor="login-email">Email</label>
+          <div className={styles.form_group}>
+            <label htmlFor={styles.login_email}>Email</label>
             <input type="email" id="login-email" placeholder="Entrez votre email" required />
           </div>
-          <div className="form-group">
+          <div className={styles.form_group}>
             <label htmlFor="login-password">Mot de passe</label>
             <input type="password" id="login-password" placeholder="Entrez votre mot de passe" required />
           </div>
-          <button type="submit" className="btn">
+          <button type="submit" className={styles.btn}>
             Se connecter
           </button>
         </form>
