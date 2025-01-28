@@ -1,20 +1,18 @@
-import './App.css'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import DeckList from './components/DeckList'
-import Login from './components/Login'
-import SignIn from './components/SignIn'
+import "./App.css";
+import { Routes, Route } from "react-router";
+
+import SignIn from "./pages/SignIn/SignIn";
+import Home from "./pages/Home";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
-    <>
-      {/* <Header></Header>
-      <Hero></Hero>
-      <DeckList></DeckList> */}
-
-      <SignIn></SignIn>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signin" element={<SignIn />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
