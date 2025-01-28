@@ -1,6 +1,6 @@
 import styles from "./Login.module.css";
 
-function Login() {
+const Login = () => {
   return (
     <div className={styles.auth_container}>
       <div className={styles.form_wrapper}>
@@ -21,6 +21,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;
