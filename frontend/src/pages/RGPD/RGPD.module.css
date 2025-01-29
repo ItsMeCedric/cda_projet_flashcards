@@ -1,0 +1,22 @@
+.wrap {
+  max-width: 1500px;
+  margin: 0 auto;
+  background-color: var(--bg-main);
+  color: var(--txt-main);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.text-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.text-wrap h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--txt-alt);
+}
