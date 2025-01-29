@@ -3,6 +3,7 @@ import DeckList from "../../components/DeckList/DeckList";
 import Header from "../../components/Header/Header";
 import Hero from "../../components/Hero/Hero";
 import decks from "../../../mock/decks.json";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Header />
       <Hero />
       <DeckList decks={decks} />
+      <Footer />
     </div>
   );
 };
