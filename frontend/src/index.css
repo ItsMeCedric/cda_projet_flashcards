@@ -1,0 +1,39 @@
+body {
+  /* reset */
+  margin: 0 3%;
+  padding: 0;
+  /* font */
+  font-family: "Noto Sans JP", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  background-color: var(--bg-main);
+}
+
+a {
+  color: var(--txt-main);
+  text-decoration: none;
+}
+
+/* theme color variables */
+[data-theme="light"] {
+  --bg-main: #ffffff;
+  --bg-alt: #f3f3f3;
+  --txt-main: #292929;
+  --txt-alt: #d93b3a;
+  --fld: #f8f8f8;
+  --brd: #797979;
+  --btn: #d93b3a;
+  --btn-txt: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg-main: #201f1e;
+  --bg-alt: #252423;
+  --txt-main: #f4f4f4;
+  --txt-alt: #f4b08b;
+  --fld: #3e3d3c;
+  --brd: #222222;
+  --btn: #f4b08b;
+  --btn-txt: #201f1e;
+}
