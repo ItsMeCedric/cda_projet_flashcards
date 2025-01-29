@@ -24,8 +24,29 @@
 }
 
 .card img {
-  margin-top: 20px;
-  margin-bottom: 60px;
+  margin-top: 6%;
+  margin-bottom: 10%;
+}
+
+.downloads {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.downloads svg {
+  width: 15px;
+  fill: #175197;
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.mark svg {
+  width: 15px;
+  fill: orange;
 }
 
 .icons {
