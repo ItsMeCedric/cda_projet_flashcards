@@ -1,50 +1,62 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Le site web (frontend) de FlashMcCards.
 
-Currently, two official plugins are available:
+# Lancer le frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prérequis
 
-## Expanding the ESLint configuration
+Avant de commencer, assurez-vous d'avoir installé :
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (version recommandée : LTS)
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Cloner le dépôt**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   ```sh
+   git clone https://CCICampus@dev.azure.com/CCICampus/CDA-TP2425-G3/_git/CDA-TP2425-G3
+   cd CDA-TP2425-G3/frontend
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. **Installer les dépendances**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+   ```sh
+   npm install
+   ```
+
+## Utilisation
+
+### Production
+
+1. **Compilez le projet**
+
+   ```sh
+   npm run build
+   ```
+
+2. **Ouvrir l'accès au public**
+
+   Les fichiers à héberger se trouveront dans le dossier `dist/`. Il suffit de mettre ces fichiers sur un serveur nginx par exemple.
+
+### Développement
+
+1. **Démarrer le serveur de développement**
+
+   ```sh
+   npm run dev
+   ```
+
+2. **Accéder à l'application**
+
+   Une fois le serveur lancé, ouvrez votre navigateur et accédez à `http://localhost:5173`
+
+## Remarque
+
+Si vous rencontrez des problèmes liés aux dépendances, essayez de supprimer le dossier `node_modules` et `package-lock.json`, puis réinstallez les dépendances :
+
+```sh
+rm -rf node_modules package-lock.json
+npm install
 ```

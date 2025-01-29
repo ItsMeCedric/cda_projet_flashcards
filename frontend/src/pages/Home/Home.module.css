@@ -1,0 +1,6 @@
+.wrap {
+  max-width: 1500px;
+  margin: 0 auto;
+  background-color: var(--bg-main);
+  color: var(--txt-main);
+}
