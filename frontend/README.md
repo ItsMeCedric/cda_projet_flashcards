@@ -17,7 +17,7 @@ Avant de commencer, assurez-vous d'avoir installé :
 
    ```sh
    git clone https://CCICampus@dev.azure.com/CCICampus/CDA-TP2425-G3/_git/CDA-TP2425-G3
-   cd CDA-TP2425-G3
+   cd CDA-TP2425-G3/frontend
    ```
 
 2. **Installer les dépendances**
