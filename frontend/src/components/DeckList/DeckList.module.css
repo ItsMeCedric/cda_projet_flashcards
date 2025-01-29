@@ -1,8 +1,0 @@
-.all_deck {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 3rem;
-  justify-content: center;
-  gap: 3rem;
-}
