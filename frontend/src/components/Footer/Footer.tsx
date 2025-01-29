@@ -3,13 +3,14 @@ import classes from "./Footer.module.css";
 
 // import constants
 import Copyright from "../../constants/Copyright";
-import FooterLinksMap from "./FooterLinksMap";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className={classes.footer}>
       <div className={classes.legals}>
-        <FooterLinksMap />
+        <NavLink to={"/RGPD"}>Legals/GDPR</NavLink>
+        <span>-</span>
         <Copyright />
       </div>
     </div>

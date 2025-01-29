@@ -7,8 +7,4 @@ export const FooterLinks = [
     title: "Cookies Policy",
     url: "#",
   },
-  {
-    title: "DRGP",
-    url: "#",
-  },
 ];
