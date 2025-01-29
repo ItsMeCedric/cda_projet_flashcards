@@ -7,11 +7,46 @@
   border: solid gray 1px;
   border-radius: 15px;
   padding: 10px 15px;
+  position: relative;
+}
+
+.flag {
+  width: 15px;
+  position: absolute;
+  right: 5%;
+  opacity: 0.5;
+  fill: red;
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
+}
+.flag:hover {
+  opacity: 1;
 }
 
 .card img {
-  margin-top: 20px;
-  margin-bottom: 60px;
+  margin-top: 6%;
+  margin-bottom: 10%;
+}
+
+.downloads {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.downloads svg {
+  width: 15px;
+  fill: #175197;
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.mark svg {
+  width: 15px;
+  fill: orange;
 }
 
 .icons {
