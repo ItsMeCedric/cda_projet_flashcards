@@ -1,3 +1,14 @@
+.wrap {
+  max-width: 1500px;
+  margin: 0 auto;
+  background-color: var(--bg-main);
+  color: var(--txt-main);
+  text-align: justify;
+  text-justify: inter-word;
+  display: flex;
+  flex-direction: column;
+}
+
 .auth_container {
   display: flex;
   gap: 20px;
@@ -10,8 +21,7 @@
   width: 700px;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 50vh;
-  transform: translateY(-50%);
+  margin: 10rem auto;
 }
 
 .form_wrapper {
