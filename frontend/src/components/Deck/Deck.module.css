@@ -7,6 +7,20 @@
   border: solid gray 1px;
   border-radius: 15px;
   padding: 10px 15px;
+  position: relative;
+}
+
+.flag {
+  width: 15px;
+  position: absolute;
+  right: 5%;
+  opacity: 0.5;
+  fill: red;
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
+}
+.flag:hover {
+  opacity: 1;
 }
 
 .card img {
