@@ -1,13 +1,13 @@
-import classes from "./RGPD.module.css";
+import styles from "./RGPD.module.css";
 
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
 const RGPD = () => {
   return (
-    <div className={classes.wrap}>
+    <div className={styles.wrap}>
       <Header />
-      <div className={classes["text-wrap"]}>
+      <div className={styles["text-wrap"]}>
         <h2>
           GDPR Privacy Policy for <span>FlashMcCard</span>
         </h2>
