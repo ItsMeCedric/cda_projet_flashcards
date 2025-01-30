@@ -11,8 +11,7 @@ export const register = createAsyncThunk(
   "auth/REGISTER",
   async (credentials: RegisterCredentials, { rejectWithValue }) => {
     try {
-      console.log(credentials);
-      // return await registerUser(credentials);
+      return await registerUser(credentials);
     } catch (error) {
       // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
       console.error(error);

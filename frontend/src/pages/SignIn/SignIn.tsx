@@ -19,7 +19,7 @@ const SignIn = () => {
   });
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLogged, user, isLoading, error } = useAppSelector((state) => state.auth);
+  const { isLogged, user, isLoading, success, error } = useAppSelector((state) => state.auth);
 
   const onSubmit: SubmitHandler<RegisterCredentialsForm> = (data) => {
     dispatch(registerAction(data));
@@ -50,18 +50,23 @@ const SignIn = () => {
           </div>
           <div className={styles.form_group}>
             <label htmlFor="register-password">Mot de passe</label>
-            <input {...register("password", { required: true })} placeholder="Créez un mot de passe" />
+            <input {...register("password", { required: true })} placeholder="Créez un mot de passe" type="password" />
             {errors.password && <p className={styles.error}>{errors.password.message}</p>}
           </div>
           <div className={styles.form_group}>
             <label htmlFor="confirm-password">Confirmation du mot de passe</label>
-            <input {...register("confirmPassword", { required: true })} placeholder="Confirmer votre mot de passe" />
+            <input
+              {...register("confirmPassword", { required: true })}
+              placeholder="Confirmer votre mot de passe"
+              type="password"
+            />
             {errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword.message}</p>}
           </div>
           {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
           {error && <div className={styles.error}>{error}</div>}
-          <button type="submit" className={styles.btn}>
-            {/* // todo : LS/ Afficher un loader ? */}
+          {success && <div className={styles.success}>{success}</div>}
+          {/* // todo : LS/ Afficher un loader ? */}
+          <button type="submit" className={styles.btn} disabled={isLoading}>
             {isLoading ? "Inscription..." : "S'inscrire"}
           </button>
         </form>

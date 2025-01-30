@@ -5,8 +5,8 @@ import { UserMock } from "../@types/user";
 import axiosInstance from "../utils/axios";
 
 export const registerUser = async (credentials: RegisterCredentials) => {
-  console.log("authService/RegisterUser");
-  console.log(credentials);
+  // todo : LS/ Appel à l'API json-server à effacer + verifier si mail ou username deja existant (côté server)
+  await axiosInstance.post("/users", credentials);
 };
 
 export const loginUser = async (credentials: LoginCredentials): Promise<UserMock> => {

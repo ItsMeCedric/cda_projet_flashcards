@@ -31,7 +31,7 @@ const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(register.fulfilled, (state) => {
       state.isLoading = false;
-      state.success = "Registration successful, please log in.";
+      state.success = "Inscription réussie, vous pouvez vous connecter.";
     })
     .addCase(register.rejected, (state, action) => {
       state.isLoading = false;
