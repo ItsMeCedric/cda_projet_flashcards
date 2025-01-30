@@ -1,0 +1,16 @@
+import { z } from "zod";
+
+export const registerSchema = z
+  .object({
+    username: z
+      .string()
+      .min(3, "Le nom doit contenir au moins 3 caractères")
+      .max(50, "Le nom doit contenir au maximum 50 caractères"),
+    email: z.string().email("Veuillez entrer une adresse email valide"),
+    password: z.string().min(12, "Le mot de passe doit contenir au moins 12 caractères").max(100),
+    confirmPassword: z.string().min(12, "Veuillez confirmer votre mot de passe").max(100),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Les mots de passe ne correspondent pas",
+    path: ["confirmPassword"],
+  });
