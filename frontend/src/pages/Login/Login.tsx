@@ -1,21 +1,46 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { login } from "../../store/actions/authActions";
+import { LoginCredentials } from "../../@types/auth";
+
 import styles from "./Login.module.css";
 
 const Login = () => {
+  const { register, handleSubmit } = useForm<LoginCredentials>();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { isLogged, user, isLoading, error } = useAppSelector((state) => state.auth);
+
+  const onSubmit: SubmitHandler<LoginCredentials> = (data) => dispatch(login(data));
+
+  // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
+  useEffect(() => {
+    console.log(user);
+    if (isLogged) {
+      navigate("/", { replace: true }); // todo : LS/ à remplacer par la redirection vers le dashboard
+    }
+  }, [isLogged, navigate, user]);
+
   return (
     <div className={styles.auth_container}>
       <div className={styles.form_wrapper}>
         <h2>Connexion</h2>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.form_group}>
             <label htmlFor={styles.login_email}>Email</label>
-            <input type="email" id="login-email" placeholder="Entrez votre email" required />
+            <input {...register("email", { required: true })} placeholder="Entrez votre email" />
           </div>
           <div className={styles.form_group}>
             <label htmlFor="login-password">Mot de passe</label>
-            <input type="password" id="login-password" placeholder="Entrez votre mot de passe" required />
+            <input {...register("password", { required: true })} placeholder="Entrez votre mot de passe" />
           </div>
-          <button type="submit" className={styles.btn}>
-            Se connecter
+          {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
+          {error && <div className={styles.error}>{error}</div>}
+          {/* // todo : LS/ Afficher un loader ? */}
+          <button type="submit" className={styles.btn} disabled={isLoading}>
+            {isLoading ? "Connexion" : "Se connecter"}
           </button>
         </form>
       </div>
