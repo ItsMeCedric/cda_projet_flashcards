@@ -11,6 +11,10 @@ export interface RegisterCredentials {
   password: string;
 }
 
+export interface RegisterCredentialsForm extends RegisterCredentials {
+  confirmPassword: string;
+}
+
 export interface AuthState {
   isLogged: boolean;
   user: User | null;

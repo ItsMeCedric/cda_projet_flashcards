@@ -3,27 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { login } from "../../store/actions/authActions";
+import { LoginCredentials } from "../../@types/auth";
 
 import styles from "./Login.module.css";
 
-type LoginFormInput = {
-  email: string;
-  password: string;
-};
-
 const Login = () => {
-  const { register, handleSubmit } = useForm<LoginFormInput>();
+  const { register, handleSubmit } = useForm<LoginCredentials>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isLogged, user, isLoading, error } = useAppSelector((state) => state.auth);
 
-  const onSubmit: SubmitHandler<LoginFormInput> = (data) => dispatch(login(data));
+  const onSubmit: SubmitHandler<LoginCredentials> = (data) => dispatch(login(data));
 
-  // todo : useEffect à supprimer (remplacer par des protectedRoute)
+  // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
     console.log(user);
     if (isLogged) {
-      navigate("/", { replace: true }); // todo : à remplacer par la redirection vers le dashboard
+      navigate("/", { replace: true }); // todo : LS/ à remplacer par la redirection vers le dashboard
     }
   }, [isLogged, navigate, user]);
 
@@ -40,9 +36,9 @@ const Login = () => {
             <label htmlFor="login-password">Mot de passe</label>
             <input {...register("password", { required: true })} placeholder="Entrez votre mot de passe" />
           </div>
-          {/* // todo : Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
+          {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
           {error && <div className={styles.error}>{error}</div>}
-          {/* // todo : Afficher un loader ? */}
+          {/* // todo : LS/ Afficher un loader ? */}
           <button type="submit" className={styles.btn} disabled={isLoading}>
             {isLoading ? "Connexion" : "Se connecter"}
           </button>
