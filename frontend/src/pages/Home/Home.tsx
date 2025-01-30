@@ -1,4 +1,4 @@
-import classes from "./Home.module.css";
+import styles from "./Home.module.css";
 import DeckList from "../../components/DeckList/DeckList";
 import Header from "../../components/Header/Header";
 import Hero from "../../components/Hero/Hero";
@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   return (
-    <div className={classes.wrap}>
+    <div className={styles.wrap}>
       <Header />
       <Hero />
       <DeckList decks={decks} />
