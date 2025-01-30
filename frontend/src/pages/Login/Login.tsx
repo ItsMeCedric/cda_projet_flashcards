@@ -6,6 +6,9 @@ import { login } from "../../store/actions/authActions";
 import { LoginCredentials } from "../../@types/auth";
 
 import styles from "./Login.module.css";
+import FormInput from "../../components/Common/Form/FormInput";
+
+// interface LoginFormFields extends LoginCredentials, FieldValues {}
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
@@ -28,10 +31,18 @@ const Login = () => {
       <div className={styles.form_wrapper}>
         <h2>Connexion</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.form_group}>
+          {/* <div className={styles.form_group}>
             <label htmlFor={styles.login_email}>Email</label>
             <input {...register("email", { required: true })} placeholder="Entrez votre email" />
-          </div>
+          </div> */}
+          <FormInput
+            label="Email"
+            name="email"
+            type="email"
+            required={true}
+            placeholder="Entrez votre email"
+            register={register}
+          />
           <div className={styles.form_group}>
             <label htmlFor="login-password">Mot de passe</label>
             <input {...register("password", { required: true })} placeholder="Entrez votre mot de passe" />
