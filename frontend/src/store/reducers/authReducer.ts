@@ -1,20 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { resetAuthState, register, login, validateUserToken, logout } from "../actions/authActions";
-
-interface AuthState {
-  // todo : Ajouter les propriétés du state
-  // isLogged: boolean;
-  // user: User | null;
-  isLoading: boolean;
-  error: string | null;
-}
+import { resetAuthState, register, login, validateToken, logout } from "../actions/authActions";
+import { AuthState } from "../../@types/auth";
 
 const initialState: AuthState = {
-  // todo : Initialiser le state
-  // isLogged: false,
-  // user: null,
+  isLogged: false,
+  user: null,
   isLoading: false,
+  success: null,
   error: null,
 };
 
@@ -25,7 +18,10 @@ const authReducer = createReducer(initialState, (builder) => {
   builder
     // ----- RESET_AUTH_STATE
     .addCase(resetAuthState, (state) => {
+      state.isLogged = false;
+      state.user = null;
       state.isLoading = false;
+      state.success = null;
       state.error = null;
     })
     // ----- REGISTER
@@ -35,6 +31,7 @@ const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(register.fulfilled, (state) => {
       state.isLoading = false;
+      state.success = "Inscription réussie, vous pouvez vous connecter.";
     })
     .addCase(register.rejected, (state, action) => {
       state.isLoading = false;
@@ -45,30 +42,48 @@ const authReducer = createReducer(initialState, (builder) => {
       state.isLoading = true;
       state.error = null;
     })
-    .addCase(login.fulfilled, (state) => {
+    .addCase(login.fulfilled, (state, action) => {
       state.isLoading = false;
-      // todo : stocker token / utilisateur
+      state.isLogged = true;
+      state.user = action.payload;
     })
     .addCase(login.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
     })
     // ----- VALIDATE_USER_TOKEN
-    .addCase(validateUserToken.pending, (state) => {
+    .addCase(validateToken.pending, (state) => {
       state.isLoading = true;
       state.error = null;
     })
-    .addCase(validateUserToken.fulfilled, (state) => {
+    .addCase(validateToken.fulfilled, (state) => {
       state.isLoading = false;
+      state.isLogged = true;
     })
-    .addCase(validateUserToken.rejected, (state, action) => {
+    .addCase(validateToken.rejected, (state, action) => {
       state.isLoading = false;
+      state.isLogged = false;
+      state.user = null;
       state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
     })
     // ----- LOGOUT
-    .addCase(logout, (state) => {
-      state.isLoading = false;
+    .addCase(logout.pending, (state) => {
+      state.isLoading = true;
       state.error = null;
+    })
+    .addCase(logout.fulfilled, (state) => {
+      state.isLoading = false;
+      state.isLogged = false;
+      state.user = null;
+      state.success = "Logout successful.";
+      // todo : supprimer token / utilisateur
+    })
+    .addCase(logout.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isLogged = false;
+      state.user = null;
+      state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
+      // todo : supprimer quand même token / utilisateur ?
     });
 });
 
