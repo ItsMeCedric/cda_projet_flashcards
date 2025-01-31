@@ -8,8 +8,6 @@ import { LoginCredentials } from "../../@types/auth";
 import styles from "./Login.module.css";
 import FormInput from "../../components/Common/Form/FormInput";
 
-// interface LoginFormFields extends LoginCredentials, FieldValues {}
-
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
   const navigate = useNavigate();
