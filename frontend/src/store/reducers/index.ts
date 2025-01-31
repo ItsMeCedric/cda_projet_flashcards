@@ -1,4 +1,4 @@
-import authReducer from "./authReducer";
+import authReducer from './authReducer';
 
 const reducer = {
   auth: authReducer,

@@ -1,6 +1,6 @@
-import { UseFormRegister } from "react-hook-form";
-import styles from "./FormInput.module.css";
-import { FormFieldNames, FormFieldTypes } from "../../../@types/form";
+import { UseFormRegister } from 'react-hook-form';
+import styles from './FormInput.module.css';
+import { FormFieldNames, FormFieldTypes } from '../../../@types/form';
 
 interface FormInputProps {
   label: string;
@@ -17,18 +17,29 @@ interface FormInputProps {
   register: UseFormRegister<FormFieldTypes>;
 }
 
-function FormInput({ label, name, type, required, placeholder, classNames, error, register }: FormInputProps) {
+function FormInput({
+  label,
+  name,
+  type,
+  required,
+  placeholder,
+  classNames,
+  error,
+  register,
+}: FormInputProps) {
   return (
     <div className={`${styles.form_group} ${classNames?.wrapper}`}>
       <label htmlFor={String(name)}>{label}</label>
       <input
         id={String(name)}
         className={`${styles.input} ${classNames?.input}`}
-        {...register(name as FormFieldNames, { required: required })}
+        {...register(name, { required: required })}
         type={type}
         placeholder={placeholder}
       />
-      {error && <p className={`${styles.error} ${classNames?.error}`}>{error}</p>}
+      {error && (
+        <p className={`${styles.error} ${classNames?.error}`}>{error}</p>
+      )}
     </div>
   );
 }

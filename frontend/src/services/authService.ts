@@ -1,15 +1,17 @@
 // todo : LS/ Appel à l'API (verif endpoint) + return des données
 
-import { LoginCredentials, RegisterCredentials } from "../@types/auth";
-import { UserMock } from "../@types/user";
-import axiosInstance from "../utils/axios";
+import { LoginCredentials, RegisterCredentials } from '../@types/auth';
+import { UserMock } from '../@types/user';
+import axiosInstance from '../utils/axios';
 
 export const registerUser = async (credentials: RegisterCredentials) => {
   // todo : LS/ Appel à l'API json-server à effacer + verifier si mail ou username deja existant (côté server)
-  await axiosInstance.post("/users", credentials);
+  await axiosInstance.post('/users', credentials);
 };
 
-export const loginUser = async (credentials: LoginCredentials): Promise<UserMock> => {
+export const loginUser = async (
+  credentials: LoginCredentials
+): Promise<UserMock> => {
   // todo : LS/ changer le type de retour + changer le endpoint
   // const response = await axiosInstance.post<UserMock>("/", credentials);
   // return response.data;
@@ -19,15 +21,17 @@ export const loginUser = async (credentials: LoginCredentials): Promise<UserMock
     `/users?email=${credentials.email}&hash=${credentials.password}`
   );
   if (response.data.length === 0) {
-    throw new Error("User not found");
+    throw new Error('User not found');
   }
   return response.data[0];
 };
 
-export const validateUserToken = async () => {
-  console.log("authService/validateUserToken");
+export const validateUserToken = () => {
+  // export const validateUserToken = async () => {
+  console.log('authService/validateUserToken');
 };
 
-export const logoutUser = async () => {
-  console.log("authService/logoutUser");
+export const logoutUser = () => {
+  // export const logoutUser = async () => {
+  console.log('authService/logoutUser');
 };

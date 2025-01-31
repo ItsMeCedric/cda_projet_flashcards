@@ -1,7 +1,13 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 
-import { resetAuthState, register, login, validateToken, logout } from "../actions/authActions";
-import { AuthState } from "../../@types/auth";
+import {
+  resetAuthState,
+  register,
+  login,
+  validateToken,
+  logout,
+} from '../actions/authActions';
+import { AuthState } from '../../@types/auth';
 
 const initialState: AuthState = {
   isLogged: false,
@@ -11,7 +17,7 @@ const initialState: AuthState = {
   error: null,
 };
 
-const UNKNOWN_ERROR = "Unknown error";
+const UNKNOWN_ERROR = 'Unknown error';
 
 const authReducer = createReducer(initialState, (builder) => {
   // todo : A compléter
@@ -31,11 +37,16 @@ const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(register.fulfilled, (state) => {
       state.isLoading = false;
-      state.success = "Inscription réussie, vous pouvez vous connecter.";
+      state.success = 'Inscription réussie, vous pouvez vous connecter.';
     })
     .addCase(register.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
+      if (typeof action.payload === 'string') {
+        // todo : LS/ à modifier si le backend renvoie des erreurs structurées
+        state.error = action.payload;
+      } else {
+        state.error = UNKNOWN_ERROR;
+      }
     })
     // ----- LOGIN
     .addCase(login.pending, (state) => {
@@ -49,7 +60,12 @@ const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
+      if (typeof action.payload === 'string') {
+        // todo : LS/ à modifier si le backend renvoie des erreurs structurées
+        state.error = action.payload;
+      } else {
+        state.error = UNKNOWN_ERROR;
+      }
     })
     // ----- VALIDATE_USER_TOKEN
     .addCase(validateToken.pending, (state) => {
@@ -64,7 +80,12 @@ const authReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
       state.isLogged = false;
       state.user = null;
-      state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
+      if (typeof action.payload === 'string') {
+        // todo : LS/ à modifier si le backend renvoie des erreurs structurées
+        state.error = action.payload;
+      } else {
+        state.error = UNKNOWN_ERROR;
+      }
     })
     // ----- LOGOUT
     .addCase(logout.pending, (state) => {
@@ -75,15 +96,20 @@ const authReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
       state.isLogged = false;
       state.user = null;
-      state.success = "Logout successful.";
-      // todo : supprimer token / utilisateur
+      state.success = 'Logout successful.';
+      // todo : LS/ supprimer token / utilisateur
     })
     .addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
       state.isLogged = false;
       state.user = null;
-      state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
-      // todo : supprimer quand même token / utilisateur ?
+      if (typeof action.payload === 'string') {
+        // todo : LS/ à modifier si le backend renvoie des erreurs structurées
+        state.error = action.payload;
+      } else {
+        state.error = UNKNOWN_ERROR;
+      }
+      // todo : LS/ supprimer quand même token / utilisateur ?
     });
 });
 
