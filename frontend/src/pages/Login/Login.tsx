@@ -4,9 +4,10 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { login } from '../../store/actions/authActions';
 import { LoginCredentials } from '../../@types/auth';
+import { loginFormFields } from '../../constants/forms/authFormFields/loginFormFields';
+import FormInput from '../../components/Common/Form/FormInput';
 
 import styles from './Login.module.css';
-import FormInput from '../../components/Common/Form/FormInput';
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
@@ -33,22 +34,19 @@ const Login = () => {
       <div className={styles.form_wrapper}>
         <h2>Connexion</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput<LoginCredentials>
-            label="Email"
-            name="email"
-            type="email"
-            required={true}
-            placeholder="Entrez votre email"
-            register={register}
-          />
-          <FormInput<LoginCredentials>
-            label="Mot de passe"
-            name="password"
-            type="password"
-            required={true}
-            placeholder="Entrez votre mot de passe"
-            register={register}
-          />
+          {loginFormFields.map(
+            ({ label, name, type, required, placeholder }) => (
+              <FormInput<LoginCredentials>
+                key={name}
+                label={label}
+                name={name}
+                type={type}
+                required={required}
+                placeholder={placeholder}
+                register={register}
+              />
+            )
+          )}
           {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
           {error && <div className={styles.error}>{error}</div>}
           {/* // todo : LS/ Afficher un loader ? */}

@@ -26,18 +26,18 @@ h2 {
   margin-bottom: 10px;
 }
 
-.form_group {
+/* .form_group {
   margin-bottom: 15px;
-}
+} */
 
-label {
+/* label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
   color: var(--txt-main);
-}
+} */
 
-input {
+/* input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -48,7 +48,7 @@ input {
 input:focus {
   border: 1px solid var(--brd);
   outline: none;
-}
+} */
 
 .form_footer {
   margin-top: 15px;

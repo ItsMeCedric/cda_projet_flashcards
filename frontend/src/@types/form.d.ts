@@ -8,3 +8,11 @@ export type FormFieldNames = Extract<
   keyof LoginCredentials | keyof RegisterCredentialsForm,
   string
 >;
+
+export interface FormFieldBase {
+  label: string;
+  name: FormFieldNames;
+  type: string;
+  required: boolean;
+  placeholder?: string;
+}
