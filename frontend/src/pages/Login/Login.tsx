@@ -5,11 +5,12 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { login } from '../../store/actions/authActions';
 import { LoginCredentials } from '../../@types/auth';
 import { loginFormFields } from '../../constants/forms/authFormFields/loginFormFields';
-import FormInput from '../../components/Common/Form/FormInput';
+import FormInput from '../../components/Common/Form/FormInput/FormInput';
 
 import styles from './Login.module.css';
-import FormSubmitButton from '../../components/Common/Form/FormSubmitButton';
-import FormTitle from '../../components/Common/Form/FormTitle';
+import FormSubmitButton from '../../components/Common/Form/FormSubmitButton/FormSubmitButton';
+import FormTitle from '../../components/Common/Form/FormTitle/FormTitle';
+import FormMessages from '../../components/Common/Form/FormMessages/FormMessages';
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
@@ -50,7 +51,8 @@ const Login = () => {
             )
           )}
           {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
-          {error && <div className={styles.error}>{error}</div>}
+          <FormMessages error={error} success={null} />
+          {/* {error && <div className={styles.error}>{error}</div>} */}
           {/* // todo : LS/ Afficher un loader ? */}
           <FormSubmitButton
             isLoading={isLoading}

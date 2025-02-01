@@ -1,5 +1,5 @@
 import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-import { FormFieldBase } from '../../../@types/form';
+import { FormFieldBase } from '../../../../@types/form';
 
 import styles from './FormInput.module.css';
 

@@ -7,11 +7,12 @@ import { register as registerAction } from '../../store/actions/authActions';
 import { RegisterCredentialsForm } from '../../@types/auth';
 import { registerSchema } from '../../validators/authSchema';
 import { signInFormFields } from '../../constants/forms/authFormFields/signInFormFields';
-import FormInput from '../../components/Common/Form/FormInput';
-import FormSubmitButton from '../../components/Common/Form/FormSubmitButton';
+import FormInput from '../../components/Common/Form/FormInput/FormInput';
+import FormSubmitButton from '../../components/Common/Form/FormSubmitButton/FormSubmitButton';
 
 import styles from './SignIn.module.css';
-import FormTitle from '../../components/Common/Form/FormTitle';
+import FormTitle from '../../components/Common/Form/FormTitle/FormTitle';
+import FormMessages from '../../components/Common/Form/FormMessages/FormMessages';
 
 const SignIn = () => {
   const {
@@ -52,14 +53,13 @@ const SignIn = () => {
                 type={type}
                 required={required}
                 placeholder={placeholder}
-                error={errors[name]?.message}
+                error={errors[name]?.message} // todo : LS/ corriger message d'erreur qui s'affiche tous
                 register={register}
               />
             )
           )}
           {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
-          {error && <div className={styles.error}>{error}</div>}
-          {success && <div className={styles.success}>{success}</div>}
+          <FormMessages error={error} success={success} />
           {/* // todo : LS/ Afficher un loader ? */}
           <FormSubmitButton
             isLoading={isLoading}

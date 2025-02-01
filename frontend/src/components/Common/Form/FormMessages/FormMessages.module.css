@@ -1,0 +1,12 @@
+.messages_container {
+  height: 1.5rem;
+  border: 1px solid var(--brd);
+}
+
+.success_message {
+  color: green;
+}
+
+.error_message {
+  color: red;
+}
