@@ -9,6 +9,7 @@ import FormInput from '../../components/Common/Form/FormInput';
 
 import styles from './Login.module.css';
 import FormSubmitButton from '../../components/Common/Form/FormSubmitButton';
+import FormTitle from '../../components/Common/Form/FormTitle';
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
@@ -33,7 +34,7 @@ const Login = () => {
   return (
     <div className={styles.auth_container}>
       <div className={styles.form_wrapper}>
-        <h2>Connexion</h2>
+        <FormTitle title="Connexion" />
         <form onSubmit={handleSubmit(onSubmit)}>
           {loginFormFields.map(
             ({ label, name, type, required, placeholder }) => (

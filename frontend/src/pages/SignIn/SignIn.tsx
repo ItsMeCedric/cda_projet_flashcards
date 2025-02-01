@@ -11,6 +11,7 @@ import FormInput from '../../components/Common/Form/FormInput';
 import FormSubmitButton from '../../components/Common/Form/FormSubmitButton';
 
 import styles from './SignIn.module.css';
+import FormTitle from '../../components/Common/Form/FormTitle';
 
 const SignIn = () => {
   const {
@@ -40,7 +41,7 @@ const SignIn = () => {
   return (
     <div className={styles.auth_container}>
       <div className={styles.form_wrapper}>
-        <h2>Inscription</h2>
+        <FormTitle title="Inscription" />
         <form onSubmit={handleSubmit(onSubmit)}>
           {signInFormFields.map(
             ({ label, name, type, required, placeholder }) => (
