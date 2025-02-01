@@ -40,9 +40,11 @@ function FormInput<T extends FieldValues>({
         type={type}
         placeholder={placeholder}
       />
-      {error && (
-        <p className={`${styles.error} ${classNames?.error}`}>{error}</p>
-      )}
+      <div className={styles.error_message_container}>
+        {error && (
+          <p className={`${styles.error} ${classNames?.error}`}>{error}</p>
+        )}
+      </div>
     </div>
   );
 }

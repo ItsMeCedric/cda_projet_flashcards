@@ -1,7 +1,7 @@
-.auth_container {
+/* .auth_container {
   display: flex;
   gap: 20px;
-  background-color: var(--bg-alt); /*bg alt*/
+  background-color: var(--bg-alt);
   padding: 20px;
   border-radius: 10px;
   box-shadow:
@@ -17,7 +17,7 @@
 
 .form_wrapper {
   flex: 1;
-}
+} */
 
 /* h2 {
   color: var(--txt-alt);

@@ -21,3 +21,16 @@ input:focus {
   border-color: var(--btn); /* btn */
   outline: none;
 }
+
+.error_message_container {
+  height: 20px;
+  margin-top: 05px;
+  /* border: 1px solid red; */
+}
+
+.error {
+  /* height: 0.8rem; */
+  color: red;
+  font-size: 14px;
+  margin: 0;
+}

@@ -1,4 +1,4 @@
-.auth_container {
+/* .auth_container {
   display: flex;
   gap: 20px;
   background-color: var(--bg-alt);
@@ -18,7 +18,7 @@
 
 .form_wrapper {
   flex: 1;
-}
+} */
 
 /* h2 {
   color: var(--txt-alt);

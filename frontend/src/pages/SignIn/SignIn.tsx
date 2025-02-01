@@ -10,9 +10,9 @@ import { signInFormFields } from '../../constants/forms/authFormFields/signInFor
 import FormInput from '../../components/Common/Form/FormInput/FormInput';
 import FormSubmitButton from '../../components/Common/Form/FormSubmitButton/FormSubmitButton';
 
-import styles from './SignIn.module.css';
 import FormTitle from '../../components/Common/Form/FormTitle/FormTitle';
 import FormMessages from '../../components/Common/Form/FormMessages/FormMessages';
+import FormContainer from '../../components/Common/Form/FormContainer/FormContainer';
 
 const SignIn = () => {
   const {
@@ -40,37 +40,35 @@ const SignIn = () => {
   }, [isLogged, navigate, user]);
 
   return (
-    <div className={styles.auth_container}>
-      <div className={styles.form_wrapper}>
-        <FormTitle title="Inscription" />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {signInFormFields.map(
-            ({ label, name, type, required, placeholder }) => (
-              <FormInput<RegisterCredentialsForm>
-                key={name}
-                label={label}
-                name={name}
-                type={type}
-                required={required}
-                placeholder={placeholder}
-                error={errors[name]?.message} // todo : LS/ corriger message d'erreur qui s'affiche tous
-                register={register}
-              />
-            )
-          )}
-          {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
-          <FormMessages error={error} success={success} />
-          {/* // todo : LS/ Afficher un loader ? */}
-          <FormSubmitButton
-            isLoading={isLoading}
-            buttonText={{
-              loading: 'Inscription...',
-              default: "S'inscrire",
-            }}
-          />
-        </form>
-      </div>
-    </div>
+    <FormContainer>
+      <FormTitle title="Inscription" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {signInFormFields.map(
+          ({ label, name, type, required, placeholder }) => (
+            <FormInput<RegisterCredentialsForm>
+              key={name}
+              label={label}
+              name={name}
+              type={type}
+              required={required}
+              placeholder={placeholder}
+              error={errors[name]?.message} // todo : LS/ corriger message d'erreur qui s'affiche tous
+              register={register}
+            />
+          )
+        )}
+        {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
+        <FormMessages error={error} success={success} />
+        {/* // todo : LS/ Afficher un loader ? */}
+        <FormSubmitButton
+          isLoading={isLoading}
+          buttonText={{
+            loading: 'Inscription...',
+            default: "S'inscrire",
+          }}
+        />
+      </form>
+    </FormContainer>
   );
 };
 export default SignIn;

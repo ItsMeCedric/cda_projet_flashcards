@@ -7,10 +7,10 @@ import { LoginCredentials } from '../../@types/auth';
 import { loginFormFields } from '../../constants/forms/authFormFields/loginFormFields';
 import FormInput from '../../components/Common/Form/FormInput/FormInput';
 
-import styles from './Login.module.css';
 import FormSubmitButton from '../../components/Common/Form/FormSubmitButton/FormSubmitButton';
 import FormTitle from '../../components/Common/Form/FormTitle/FormTitle';
 import FormMessages from '../../components/Common/Form/FormMessages/FormMessages';
+import FormContainer from '../../components/Common/Form/FormContainer/FormContainer';
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
@@ -33,37 +33,33 @@ const Login = () => {
   }, [isLogged, navigate, user]);
 
   return (
-    <div className={styles.auth_container}>
-      <div className={styles.form_wrapper}>
-        <FormTitle title="Connexion" />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {loginFormFields.map(
-            ({ label, name, type, required, placeholder }) => (
-              <FormInput<LoginCredentials>
-                key={name}
-                label={label}
-                name={name}
-                type={type}
-                required={required}
-                placeholder={placeholder}
-                register={register}
-              />
-            )
-          )}
-          {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
-          <FormMessages error={error} success={null} />
-          {/* {error && <div className={styles.error}>{error}</div>} */}
-          {/* // todo : LS/ Afficher un loader ? */}
-          <FormSubmitButton
-            isLoading={isLoading}
-            buttonText={{
-              loading: 'Connexion',
-              default: 'Se connecter',
-            }}
+    <FormContainer>
+      <FormTitle title="Connexion" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {loginFormFields.map(({ label, name, type, required, placeholder }) => (
+          <FormInput<LoginCredentials>
+            key={name}
+            label={label}
+            name={name}
+            type={type}
+            required={required}
+            placeholder={placeholder}
+            register={register}
           />
-        </form>
-      </div>
-    </div>
+        ))}
+        {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
+        <FormMessages error={error} success={null} />
+        {/* {error && <div className={styles.error}>{error}</div>} */}
+        {/* // todo : LS/ Afficher un loader ? */}
+        <FormSubmitButton
+          isLoading={isLoading}
+          buttonText={{
+            loading: 'Connexion',
+            default: 'Se connecter',
+          }}
+        />
+      </form>
+    </FormContainer>
   );
 };
 
