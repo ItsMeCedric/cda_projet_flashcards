@@ -44,8 +44,9 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'warn',
       // mettre en error strict-boolean-expressions est mieux mais implique de changer les conditions de type "{error && " pour afficher un message d'erreur par exemple
       '@typescript-eslint/strict-boolean-expressions': 'off',
-      // no-misused-promises est issue des règles avancées recommended-type-checked et impliquerait d'ignorer les promesses (void) lors de dispatch d'actions redux (avec appel api). Or on utilise déjà try/catch et état pending/fulfilled/rejected
+      // no-misused-promises est issue des règles avancées recommended-type-checked
       '@typescript-eslint/no-misused-promises': 'off',
+      // désactiver no-floating-promises (issue des règles avancées recommended-type-checked) si besoin car on utilise déjà try/catch et gère déjà les états pending/fulfilled/rejected
       'react/self-closing-comp': 'error',
       'jsx-a11y/alt-text': 'warn',
       'jsx-a11y/anchor-is-valid': 'warn',

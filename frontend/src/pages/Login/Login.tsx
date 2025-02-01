@@ -33,7 +33,7 @@ const Login = () => {
       <div className={styles.form_wrapper}>
         <h2>Connexion</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput
+          <FormInput<LoginCredentials>
             label="Email"
             name="email"
             type="email"
@@ -41,10 +41,10 @@ const Login = () => {
             placeholder="Entrez votre email"
             register={register}
           />
-          <FormInput
+          <FormInput<LoginCredentials>
             label="Mot de passe"
             name="password"
-            type="email"
+            type="password"
             required={true}
             placeholder="Entrez votre mot de passe"
             register={register}

@@ -8,6 +8,7 @@ import { RegisterCredentialsForm } from '../../@types/auth';
 import { registerSchema } from '../../validators/authSchema';
 
 import styles from './SignIn.module.css';
+import FormInput from '../../components/Common/Form/FormInput';
 
 const SignIn = () => {
   const {
@@ -23,15 +24,14 @@ const SignIn = () => {
     (state) => state.auth
   );
 
-  const onSubmit: SubmitHandler<RegisterCredentialsForm> = (data) => {
+  const onSubmit: SubmitHandler<RegisterCredentialsForm> = (data) =>
     dispatch(registerAction(data));
-  };
 
   // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
     console.log(user);
     if (isLogged) {
-      navigate('/', { replace: true }); // todo : LS/à remplacer par la redirection vers le dashboard
+      void navigate('/', { replace: true }); // todo : LS/à remplacer par la redirection vers le dashboard
     }
   }, [isLogged, navigate, user]);
 
@@ -40,53 +40,42 @@ const SignIn = () => {
       <div className={styles.form_wrapper}>
         <h2>Inscription</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.form_group}>
-            <label htmlFor={styles.register_name}>Nom d'utilisateur</label>
-            <input
-              {...register('username')}
-              type="text"
-              id="register-name"
-              placeholder="Entrez votre nom"
-              required
-            />
-            {errors.username && (
-              <p className={styles.error}>{errors.username.message}</p>
-            )}
-          </div>
-          <div className={styles.form_group}>
-            <label htmlFor={styles.register_email}>Email</label>
-            <input
-              {...register('email', { required: true })}
-              placeholder="Entrez votre email"
-            />
-            {errors.email && (
-              <p className={styles.error}>{errors.email.message}</p>
-            )}
-          </div>
-          <div className={styles.form_group}>
-            <label htmlFor="register-password">Mot de passe</label>
-            <input
-              {...register('password', { required: true })}
-              placeholder="Créez un mot de passe"
-              type="password"
-            />
-            {errors.password && (
-              <p className={styles.error}>{errors.password.message}</p>
-            )}
-          </div>
-          <div className={styles.form_group}>
-            <label htmlFor="confirm-password">
-              Confirmation du mot de passe
-            </label>
-            <input
-              {...register('confirmPassword', { required: true })}
-              placeholder="Confirmer votre mot de passe"
-              type="password"
-            />
-            {errors.confirmPassword && (
-              <p className={styles.error}>{errors.confirmPassword.message}</p>
-            )}
-          </div>
+          <FormInput<RegisterCredentialsForm>
+            label="Nom d'utilisateur"
+            name="username"
+            type="text"
+            required={true}
+            placeholder="Entrez votre nom"
+            error={errors.username?.message}
+            register={register}
+          />
+          <FormInput<RegisterCredentialsForm>
+            label="Email"
+            name="email"
+            type="email"
+            required={true}
+            placeholder="Entrez votre email"
+            error={errors.email?.message}
+            register={register}
+          />
+          <FormInput<RegisterCredentialsForm>
+            label="Mot de passe"
+            name="password"
+            type="password"
+            required={true}
+            placeholder="Créez un mot de passe"
+            error={errors.password?.message}
+            register={register}
+          />
+          <FormInput<RegisterCredentialsForm>
+            label="Confirmation du mot de passe"
+            name="confirmPassword"
+            type="password"
+            required={true}
+            placeholder="Confirmez votre mot de passe"
+            error={errors.confirmPassword?.message}
+            register={register}
+          />
           {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
           {error && <div className={styles.error}>{error}</div>}
           {success && <div className={styles.success}>{success}</div>}
