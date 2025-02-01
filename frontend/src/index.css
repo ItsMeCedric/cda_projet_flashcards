@@ -8,7 +8,6 @@ body {
   font-weight: 300;
   font-style: normal;
   background-color: var(--bg-main);
-  overflow: hidden;
 }
 
 a {
