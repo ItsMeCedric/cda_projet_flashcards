@@ -8,6 +8,7 @@ body {
   font-weight: 300;
   font-style: normal;
   background-color: var(--bg-main);
+  overflow: hidden;
 }
 
 a {
@@ -36,4 +37,11 @@ a {
   --brd: #222222;
   --btn: #f4b08b;
   --btn-txt: #201f1e;
+}
+
+.no-scrollbars::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbars {
+  scrollbar-width: none;
 }
