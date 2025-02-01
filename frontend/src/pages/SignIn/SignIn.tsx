@@ -13,6 +13,7 @@ import FormSubmitButton from '../../components/Common/Form/FormSubmitButton/Form
 import FormTitle from '../../components/Common/Form/FormTitle/FormTitle';
 import FormMessages from '../../components/Common/Form/FormMessages/FormMessages';
 import FormContainer from '../../components/Common/Form/FormContainer/FormContainer';
+import FormBase from '../../components/Common/Form/FormBase/FormBase';
 
 const SignIn = () => {
   const {
@@ -42,7 +43,7 @@ const SignIn = () => {
   return (
     <FormContainer>
       <FormTitle title="Inscription" />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <FormBase onSubmit={handleSubmit(onSubmit)}>
         {signInFormFields.map(
           ({ label, name, type, required, placeholder }) => (
             <FormInput<RegisterCredentialsForm>
@@ -67,7 +68,7 @@ const SignIn = () => {
             default: "S'inscrire",
           }}
         />
-      </form>
+      </FormBase>
     </FormContainer>
   );
 };

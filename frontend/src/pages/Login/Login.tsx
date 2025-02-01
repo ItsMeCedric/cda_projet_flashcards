@@ -5,12 +5,13 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { login } from '../../store/actions/authActions';
 import { LoginCredentials } from '../../@types/auth';
 import { loginFormFields } from '../../constants/forms/authFormFields/loginFormFields';
-import FormInput from '../../components/Common/Form/FormInput/FormInput';
 
-import FormSubmitButton from '../../components/Common/Form/FormSubmitButton/FormSubmitButton';
-import FormTitle from '../../components/Common/Form/FormTitle/FormTitle';
-import FormMessages from '../../components/Common/Form/FormMessages/FormMessages';
 import FormContainer from '../../components/Common/Form/FormContainer/FormContainer';
+import FormTitle from '../../components/Common/Form/FormTitle/FormTitle';
+import FormBase from '../../components/Common/Form/FormBase/FormBase';
+import FormInput from '../../components/Common/Form/FormInput/FormInput';
+import FormMessages from '../../components/Common/Form/FormMessages/FormMessages';
+import FormSubmitButton from '../../components/Common/Form/FormSubmitButton/FormSubmitButton';
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
@@ -35,7 +36,8 @@ const Login = () => {
   return (
     <FormContainer>
       <FormTitle title="Connexion" />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+      <FormBase onSubmit={handleSubmit(onSubmit)}>
         {loginFormFields.map(({ label, name, type, required, placeholder }) => (
           <FormInput<LoginCredentials>
             key={name}
@@ -58,7 +60,8 @@ const Login = () => {
             default: 'Se connecter',
           }}
         />
-      </form>
+        {/* </form> */}
+      </FormBase>
     </FormContainer>
   );
 };
