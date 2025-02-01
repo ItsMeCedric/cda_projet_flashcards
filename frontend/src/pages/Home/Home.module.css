@@ -3,4 +3,10 @@
   margin: 0 auto;
   background-color: var(--bg-main);
   color: var(--txt-main);
+  scrollbar-width: none; /*firefox*/
+}
+
+/*chrome...*/
+body::-webkit-scrollbar {
+  display: none;
 }

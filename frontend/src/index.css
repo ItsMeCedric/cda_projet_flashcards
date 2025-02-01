@@ -37,10 +37,3 @@ a {
   --btn: #f4b08b;
   --btn-txt: #201f1e;
 }
-
-.no-scrollbars::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbars {
-  scrollbar-width: none;
-}
