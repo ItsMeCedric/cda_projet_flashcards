@@ -33,10 +33,6 @@ const Login = () => {
       <div className={styles.form_wrapper}>
         <h2>Connexion</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* <div className={styles.form_group}>
-            <label htmlFor={styles.login_email}>Email</label>
-            <input {...register("email", { required: true })} placeholder="Entrez votre email" />
-          </div> */}
           <FormInput
             label="Email"
             name="email"
@@ -45,13 +41,14 @@ const Login = () => {
             placeholder="Entrez votre email"
             register={register}
           />
-          <div className={styles.form_group}>
-            <label htmlFor="login-password">Mot de passe</label>
-            <input
-              {...register('password', { required: true })}
-              placeholder="Entrez votre mot de passe"
-            />
-          </div>
+          <FormInput
+            label="Mot de passe"
+            name="password"
+            type="email"
+            required={true}
+            placeholder="Entrez votre mot de passe"
+            register={register}
+          />
           {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
           {error && <div className={styles.error}>{error}</div>}
           {/* // todo : LS/ Afficher un loader ? */}
