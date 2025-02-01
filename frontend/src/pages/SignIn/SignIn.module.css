@@ -55,7 +55,7 @@ input:focus {
   text-align: center;
 }
 
-.btn {
+/* .btn {
   background-color: var(--btn);
   color: var(--btn-txt);
   border: none;
@@ -65,4 +65,4 @@ input:focus {
   font-size: 14px;
   transition: background-color 0.3s ease;
   width: 100%;
-}
+} */

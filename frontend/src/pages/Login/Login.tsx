@@ -8,6 +8,7 @@ import { loginFormFields } from '../../constants/forms/authFormFields/loginFormF
 import FormInput from '../../components/Common/Form/FormInput';
 
 import styles from './Login.module.css';
+import FormSubmitButton from '../../components/Common/Form/FormSubmitButton';
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
@@ -50,9 +51,13 @@ const Login = () => {
           {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
           {error && <div className={styles.error}>{error}</div>}
           {/* // todo : LS/ Afficher un loader ? */}
-          <button type="submit" className={styles.btn} disabled={isLoading}>
-            {isLoading ? 'Connexion' : 'Se connecter'}
-          </button>
+          <FormSubmitButton
+            isLoading={isLoading}
+            buttonText={{
+              loading: 'Connexion',
+              default: 'Se connecter',
+            }}
+          />
         </form>
       </div>
     </div>

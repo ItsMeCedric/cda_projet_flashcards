@@ -8,6 +8,7 @@ import { RegisterCredentialsForm } from '../../@types/auth';
 import { registerSchema } from '../../validators/authSchema';
 import { signInFormFields } from '../../constants/forms/authFormFields/signInFormFields';
 import FormInput from '../../components/Common/Form/FormInput';
+import FormSubmitButton from '../../components/Common/Form/FormSubmitButton';
 
 import styles from './SignIn.module.css';
 
@@ -59,9 +60,13 @@ const SignIn = () => {
           {error && <div className={styles.error}>{error}</div>}
           {success && <div className={styles.success}>{success}</div>}
           {/* // todo : LS/ Afficher un loader ? */}
-          <button type="submit" className={styles.btn} disabled={isLoading}>
-            {isLoading ? 'Inscription...' : "S'inscrire"}
-          </button>
+          <FormSubmitButton
+            isLoading={isLoading}
+            buttonText={{
+              loading: 'Inscription...',
+              default: "S'inscrire",
+            }}
+          />
         </form>
       </div>
     </div>

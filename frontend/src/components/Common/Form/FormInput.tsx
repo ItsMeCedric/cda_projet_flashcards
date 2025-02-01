@@ -1,6 +1,7 @@
 import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-import styles from './FormInput.module.css';
 import { FormFieldBase } from '../../../@types/form';
+
+import styles from './FormInput.module.css';
 
 // T peut être n'importe quelle interface (qui étend FieldValues). T représente la structure des champs du formulaire. T ne sert qu'à register.
 // On utilise T pour que le composant soit générique et puisse être utilisé avec n'importe quelle interface
