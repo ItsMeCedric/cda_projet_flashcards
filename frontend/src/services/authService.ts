@@ -6,7 +6,9 @@ import axiosInstance from '../utils/axios';
 
 export const registerUser = async (credentials: RegisterCredentials) => {
   // todo : LS/ Appel à l'API json-server à effacer + verifier si mail ou username deja existant (côté server)
-  await axiosInstance.post('/users', credentials);
+  console.log(credentials);
+  const { username, email, password } = credentials;
+  await axiosInstance.post('/users', { username, email, password });
 };
 
 export const loginUser = async (

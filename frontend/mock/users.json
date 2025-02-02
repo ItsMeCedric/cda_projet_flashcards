@@ -1006,6 +1006,12 @@
       "email": "mailtest@test.com",
       "password": "12345678912345",
       "confirmPassword": "12345678912345"
+    },
+    {
+      "id": "300b",
+      "username": "nom test 2",
+      "email": "mailtest2@test.com",
+      "password": "12345678912345Dd$"
     }
   ]
 }

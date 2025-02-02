@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 
 import { register as registerAction } from '../../store/actions/authActions';
-import { RegisterCredentialsForm } from '../../@types/auth';
+import { RegisterCredentials } from '../../@types/auth';
 import { registerSchema } from '../../validators/authSchema';
 import { signInFormFields } from '../../constants/forms/authFormFields/signInFormFields';
 
@@ -25,7 +25,7 @@ const SignIn = () => {
   }, [isLogged, navigate, user]);
 
   return (
-    <ReusableForm<RegisterCredentialsForm, void>
+    <ReusableForm<RegisterCredentials, void>
       title="Inscription"
       formFields={signInFormFields}
       schemaValidation={registerSchema}
@@ -35,9 +35,7 @@ const SignIn = () => {
       }}
       isLoading={isLoading}
       message={{ error: error, success: success }}
-      reduxAction={
-        registerAction as AsyncThunk<void, RegisterCredentialsForm, any>
-      }
+      reduxAction={registerAction as AsyncThunk<void, RegisterCredentials, any>}
     />
   );
 };
