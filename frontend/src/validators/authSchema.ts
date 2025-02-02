@@ -27,3 +27,8 @@ export const registerSchema = z
     message: 'Les mots de passe ne correspondent pas',
     path: ['confirmPassword'],
   });
+
+export const loginSchema = z.object({
+  email: z.string().email('Veuillez entrer une adresse email valide'),
+  password: z.string(),
+});

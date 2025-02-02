@@ -1,11 +1,12 @@
 import './FormTitle.module.css';
 
 interface FormTitleProps {
+  className?: string;
   title: string;
 }
 
-function FormTitle({ title }: FormTitleProps) {
-  return <h2>{title}</h2>;
+function FormTitle({ className, title }: FormTitleProps) {
+  return <h2 className={className}>{title}</h2>;
 }
 
 export default FormTitle;

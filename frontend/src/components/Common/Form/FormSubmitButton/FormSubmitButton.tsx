@@ -1,6 +1,7 @@
 import styles from './FormSubmitButton.module.css';
 
 interface FormSubmitButtonProps {
+  className?: string;
   isLoading: boolean;
   buttonText: {
     loading: string;
@@ -8,9 +9,16 @@ interface FormSubmitButtonProps {
   };
 }
 
-function FormSubmitButton({ isLoading, buttonText }: FormSubmitButtonProps) {
+function FormSubmitButton({
+  className,
+  isLoading,
+  buttonText,
+}: FormSubmitButtonProps) {
   return (
-    <button type="submit" className={styles.btn} disabled={isLoading}>
+    <button
+      type="submit"
+      className={`${styles.btn} ${className}`}
+      disabled={isLoading}>
       {isLoading ? buttonText.loading : buttonText.default}
     </button>
   );

@@ -1,28 +1,20 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useAppSelector } from '../../hooks/redux';
 import { login } from '../../store/actions/authActions';
 import { LoginCredentials } from '../../@types/auth';
 import { loginFormFields } from '../../constants/forms/authFormFields/loginFormFields';
 
-import FormContainer from '../../components/Common/Form/FormContainer/FormContainer';
-import FormTitle from '../../components/Common/Form/FormTitle/FormTitle';
-import FormBase from '../../components/Common/Form/FormBase/FormBase';
-import FormInput from '../../components/Common/Form/FormInput/FormInput';
-import FormMessages from '../../components/Common/Form/FormMessages/FormMessages';
-import FormSubmitButton from '../../components/Common/Form/FormSubmitButton/FormSubmitButton';
+import ReusableForm from '../../components/Common/Form/ReusableForm';
+import { loginSchema } from '../../validators/authSchema';
+import { AsyncThunk } from '@reduxjs/toolkit';
+import { UserMock } from '../../@types/user';
 
 const Login = () => {
-  const { register, handleSubmit } = useForm<LoginCredentials>();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const { isLogged, user, isLoading, error } = useAppSelector(
     (state) => state.auth
   );
-
-  const onSubmit: SubmitHandler<LoginCredentials> = (data) =>
-    dispatch(login(data));
 
   // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
@@ -34,35 +26,18 @@ const Login = () => {
   }, [isLogged, navigate, user]);
 
   return (
-    <FormContainer>
-      <FormTitle title="Connexion" />
-      {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-      <FormBase onSubmit={handleSubmit(onSubmit)}>
-        {loginFormFields.map(({ label, name, type, required, placeholder }) => (
-          <FormInput<LoginCredentials>
-            key={name}
-            label={label}
-            name={name}
-            type={type}
-            required={required}
-            placeholder={placeholder}
-            register={register}
-          />
-        ))}
-        {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
-        <FormMessages error={error} success={null} />
-        {/* {error && <div className={styles.error}>{error}</div>} */}
-        {/* // todo : LS/ Afficher un loader ? */}
-        <FormSubmitButton
-          isLoading={isLoading}
-          buttonText={{
-            loading: 'Connexion',
-            default: 'Se connecter',
-          }}
-        />
-        {/* </form> */}
-      </FormBase>
-    </FormContainer>
+    <ReusableForm<LoginCredentials, UserMock>
+      title="Connexion"
+      formFields={loginFormFields}
+      schemaValidation={loginSchema}
+      submitButtonText={{
+        loading: 'Connexion',
+        default: 'Se connecter',
+      }}
+      isLoading={isLoading}
+      message={{ error: error, success: null }}
+      reduxAction={login as AsyncThunk<UserMock, LoginCredentials, any>}
+    />
   );
 };
 
