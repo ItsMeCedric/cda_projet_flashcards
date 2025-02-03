@@ -7,7 +7,7 @@ import FormMessages from './FormMessages/FormMessages';
 import FormSubmitButton from './FormSubmitButton/FormSubmitButton';
 import FormInput from './FormInput/FormInput';
 import { FormFieldBase } from '../../../@types/form';
-import { AsyncThunk } from '@reduxjs/toolkit';
+import { AsyncThunk, Dispatch } from '@reduxjs/toolkit';
 import { useAppDispatch } from '../../../hooks/redux';
 import { ZodSchema } from 'zod';
 
@@ -25,9 +25,7 @@ interface FormClassNames {
   submitButton?: string;
 }
 
-// Evite l'erreur sur le type de FormFields
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface FormInputProps<T extends FieldValues> extends FormFieldBase {
+interface FormInputProps extends FormFieldBase {
   classNames?: {
     wrapper?: string;
     input?: string;
@@ -35,10 +33,29 @@ interface FormInputProps<T extends FieldValues> extends FormFieldBase {
   };
 }
 
+type AsyncThunkConfig = {
+  /** return type for `thunkApi.getState` */
+  state?: unknown;
+  /** type for `thunkApi.dispatch` */
+  dispatch?: Dispatch;
+  /** type of the `extra` argument for the thunk middleware, which will be passed in as `thunkApi.extra` */
+  extra?: unknown;
+  /** type to be passed into `rejectWithValue`'s first argument that will end up on `rejectedAction.payload` */
+  rejectValue?: unknown;
+  /** return type of the `serializeError` option callback */
+  serializedErrorType?: unknown;
+  /** type to be returned from the `getPendingMeta` option callback & merged into `pendingAction.meta` */
+  pendingMeta?: unknown;
+  /** type to be passed into the second argument of `fulfillWithValue` to finally be merged into `fulfilledAction.meta` */
+  fulfilledMeta?: unknown;
+  /** type to be passed into the second argument of `rejectWithValue` to finally be merged into `rejectedAction.meta` */
+  rejectedMeta?: unknown;
+};
+
 interface ReusableFormProps<T extends FieldValues, R> {
   classNames?: FormClassNames;
   title: string;
-  formFields: FormInputProps<T>[];
+  formFields: FormInputProps[];
   schemaValidation: ZodSchema<T>;
   submitButtonText: {
     loading: string;
@@ -49,7 +66,7 @@ interface ReusableFormProps<T extends FieldValues, R> {
     error?: string | null;
     success?: string | null;
   };
-  reduxAction: AsyncThunk<R, T, any>;
+  reduxAction: AsyncThunk<R, T, AsyncThunkConfig>;
 }
 
 function ReusableForm<T extends FieldValues, R>({
@@ -71,7 +88,8 @@ function ReusableForm<T extends FieldValues, R>({
     resolver: zodResolver(schemaValidation),
   });
 
-  const onSubmit: SubmitHandler<T> = (data) => dispatch(reduxAction(data));
+  const onSubmit: SubmitHandler<T> = (data) =>
+    void dispatch(reduxAction(data) as ReturnType<typeof reduxAction>);
   return (
     <FormContainer
       classNames={{
