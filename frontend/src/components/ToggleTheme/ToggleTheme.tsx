@@ -1,5 +1,5 @@
 // import locals
-import classes from "./ToggleTheme.module.css";
+import styles from "./ToggleTheme.module.css";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
@@ -14,10 +14,10 @@ const ToogleTheme = () => {
   const { toggleTheme } = useContext(ThemeContext) as ThemeContextType;
 
   return (
-    <span className={classes.theme} onClick={toggleTheme}>
-      <span className={classes["theme-button"]}>
+    <span className={styles.theme} onClick={toggleTheme}>
+      <span className={styles["theme-button"]}>
         <span>{theme === "light" ? "Light Mode" : "Dark Mode"}</span>
-        <span className={classes.icon}> {theme === "light" ? <FaSun /> : <FaMoon />}</span>
+        <span className={styles.icon}> {theme === "light" ? <FaSun /> : <FaMoon />}</span>
       </span>
     </span>
   );
