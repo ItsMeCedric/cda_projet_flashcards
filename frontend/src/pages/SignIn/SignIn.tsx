@@ -35,7 +35,7 @@ const SignIn = () => {
       }}
       isLoading={isLoading}
       message={{ error: error, success: success }}
-      reduxAction={registerAction as AsyncThunk<void, RegisterCredentials, any>}
+      reduxAction={registerAction as AsyncThunk<void, RegisterCredentials, {}>}
     />
   );
 };
