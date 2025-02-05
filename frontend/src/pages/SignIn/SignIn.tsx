@@ -10,6 +10,16 @@ import { signInFormFields } from '../../constants/forms/authFormFields/signInFor
 import ReusableForm from '../../components/Common/Form/ReusableForm';
 import { AsyncThunk } from '@reduxjs/toolkit';
 
+/**
+ *   Formulaire d'inscription utilisant `ReusableForm`
+ *
+ * - Prend en charge le typage des champs de formulaire et des données de retour : `RegisterCredentials`
+ * - Prend en charge les champs de formulaire : `signInFormFields` (username, email, password, passwordConfirm)
+ * - Valide les entrées avec `registerSchema` (Zod)
+ * - Exécute `register` en tant qu'action Redux lorsqu'on soumet le formulaire
+ * - Prend en charge le statut de chargement `isLoading` et affiche l'eventuel message d'erreur `error` ou de succès `success`
+ */
+
 const SignIn = () => {
   const navigate = useNavigate();
   const { isLogged, user, isLoading, success, error } = useAppSelector(
