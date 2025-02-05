@@ -13,11 +13,11 @@ import { AsyncThunk } from '@reduxjs/toolkit';
 /**
  *   Formulaire d'inscription utilisant `ReusableForm`
  *
- * - Prend en charge le typage des champs de formulaire et des données de retour : `RegisterCredentials`
- * - Prend en charge les champs de formulaire : `signInFormFields` (username, email, password, passwordConfirm)
+ * - Prend en charge le typage des champs de formulaire : `RegisterCredentials`, et des données de retour : `void`
+ * - Prend en charge les champs de formulaire : `signInFormFields` (username, email, password, confirmPassword)
  * - Valide les entrées avec `registerSchema` (Zod)
  * - Exécute `register` en tant qu'action Redux lorsqu'on soumet le formulaire
- * - Prend en charge le statut de chargement `isLoading` et affiche l'eventuel message d'erreur `error` ou de succès `success`
+ * - Prend en charge le statut de chargement `isLoading` et affiche l'eventuel message d'erreur `error` ou de succès `success` (state auth)
  */
 
 const SignIn = () => {
