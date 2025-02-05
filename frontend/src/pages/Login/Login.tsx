@@ -36,7 +36,7 @@ const Login = () => {
       }}
       isLoading={isLoading}
       message={{ error: error, success: null }}
-      reduxAction={login as AsyncThunk<UserMock, LoginCredentials, {}>}
+      reduxAction={login as AsyncThunk<UserMock, LoginCredentials, object>}
     />
   );
 };
