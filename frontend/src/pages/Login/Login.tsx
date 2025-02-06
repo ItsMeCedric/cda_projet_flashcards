@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { isLogged, user } = useAppSelector((state) => state.auth);
 
-  // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
+  // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute.)
   useEffect(() => {
     console.log(user);
     if (isLogged) {
