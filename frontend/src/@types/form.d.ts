@@ -27,7 +27,9 @@ export interface FormFieldBase {
 export interface FormInputProps<T extends FieldValues> extends FormFieldBase {
   classNames?: {
     wrapper?: string;
+    label?: string;
     input?: string;
+    inputErrorContainer?: string;
     error?: string;
   };
   error?: string;
@@ -77,7 +79,9 @@ export interface FormClassNames {
   formTitle?: string;
   formBase?: string;
   inputWrapper?: string;
+  inputLabel?: string;
   input?: string;
+  inputErrorContainer?: string;
   inputError?: string;
   messagesContainer?: string;
   messageError?: string;

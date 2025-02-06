@@ -112,7 +112,9 @@ function ReusableForm<T extends FieldValues, R>({
             key={name}
             classNames={{
               wrapper: classNames?.inputWrapper,
+              label: classNames?.inputLabel,
               input: classNames?.input,
+              inputErrorContainer: classNames?.inputErrorContainer,
               error: classNames?.inputError,
             }}
             label={label}

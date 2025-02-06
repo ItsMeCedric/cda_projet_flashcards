@@ -1,5 +1,3 @@
-import styles from './FormContainer.module.css';
-
 interface FormContainerProps {
   children: React.ReactNode;
   classNames?: {
@@ -10,10 +8,8 @@ interface FormContainerProps {
 
 function FormContainer({ children, classNames }: FormContainerProps) {
   return (
-    <div className={`${styles.auth_container} ${classNames?.container}`}>
-      <div className={`${styles.form_wrapper} ${classNames?.formWrapper}`}>
-        {children}
-      </div>
+    <div className={classNames?.container}>
+      <div className={classNames?.formWrapper}>{children}</div>
     </div>
   );
 }

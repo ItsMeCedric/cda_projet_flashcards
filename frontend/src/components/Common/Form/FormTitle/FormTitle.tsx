@@ -1,5 +1,3 @@
-import './FormTitle.module.css';
-
 interface FormTitleProps {
   className?: string;
   title: string;
