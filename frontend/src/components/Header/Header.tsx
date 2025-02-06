@@ -1,30 +1,30 @@
-import logo from "../../assets/FlashMcCard.png";
-import classes from "./Header.module.css";
+import logo from '../../assets/FlashMcCard.png';
+import styles from './Header.module.css';
 //import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 //import { ThemeContext } from "../../contexts/ThemeContext";
-import ToggleTheme from "../ToggleTheme/ToggleTheme";
+import ToggleTheme from '../ToggleTheme/ToggleTheme';
 // import types
 // import { ThemeContextType } from "../../@types/theme";
 
 const Header = () => {
   return (
-    <div className={classes.header}>
-      <img src={logo} alt="logo" className={classes.logo} />
-      <div className={classes.navbar}>
-        <NavLink to={"/"}>Home</NavLink>
+    <div className={styles.header}>
+      <img src={logo} alt="logo" className={styles.logo} />
+      <div className={styles.navbar}>
+        <NavLink to={'/'}>Home</NavLink>
         <span>|</span>
-        <NavLink to={"/"}>Explore</NavLink>
+        <NavLink to={'/'}>Explore</NavLink>
         <span>|</span>
-        <NavLink to={"/"}>Contact Us</NavLink>
+        <NavLink to={'/'}>Contact Us</NavLink>
         <span>|</span>
         <ToggleTheme />
       </div>
-      <div className={classes.auth_btn}>
-        <NavLink className={classes.login} to={"/login"}>
+      <div className={styles.auth_btn}>
+        <NavLink className={styles.login} to={'/login'}>
           Login
         </NavLink>
-        <NavLink className={classes.login} to={"/signin"}>
+        <NavLink className={styles.login} to={'/signin'}>
           Sign In
         </NavLink>
       </div>

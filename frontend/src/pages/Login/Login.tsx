@@ -4,6 +4,8 @@ import { useAppSelector } from '../../hooks/redux';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
 import styles from './Login.module.css';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,7 +22,9 @@ const Login = () => {
 
   return (
     <div className={styles.wrap}>
+      <Header />
       <LoginForm />
+      <Footer />
     </div>
   );
 };
