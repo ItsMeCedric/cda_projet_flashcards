@@ -1,30 +1,13 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
-import { login } from '../../store/actions/authActions';
-import { LoginCredentials } from '../../@types/auth';
-import { loginFormFields } from '../../constants/forms/authFormFields/loginFormFields';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
-import ReusableForm from '../../components/Common/Form/ReusableForm';
-import { loginSchema } from '../../validators/authSchema';
-import { AsyncThunk } from '@reduxjs/toolkit';
-import { UserMock } from '../../@types/user';
-
-/**
- *   Formulaire de connexion utilisant `ReusableForm`
- *
- * - Prend en charge le typage des champs de formulaire : `LoginCredentials`, et des données de retour : `UserMock`
- * - Prend en charge les champs de formulaire : `loginFormFields` (email, password)
- * - Valide les entrées avec `loginSchema` (Zod)
- * - Exécute `login` en tant qu'action Redux lorsqu'on soumet le formulaire
- * - Prend en charge le statut de chargement `isLoading` et affiche l'eventuel message d'erreur `error`(state auth)
- */
+import styles from './Login.module.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { isLogged, user, isLoading, error } = useAppSelector(
-    (state) => state.auth
-  );
+  const { isLogged, user } = useAppSelector((state) => state.auth);
 
   // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
@@ -36,18 +19,9 @@ const Login = () => {
   }, [isLogged, navigate, user]);
 
   return (
-    <ReusableForm<LoginCredentials, UserMock>
-      title="Connexion"
-      formFields={loginFormFields}
-      schemaValidation={loginSchema}
-      submitButtonText={{
-        loading: 'Connexion',
-        default: 'Se connecter',
-      }}
-      isLoading={isLoading}
-      message={{ error: error, success: null }}
-      reduxAction={login as AsyncThunk<UserMock, LoginCredentials, object>}
-    />
+    <div className={styles.wrap}>
+      <LoginForm />
+    </div>
   );
 };
 
