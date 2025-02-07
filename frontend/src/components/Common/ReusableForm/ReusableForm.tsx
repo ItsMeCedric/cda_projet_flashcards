@@ -1,11 +1,11 @@
 import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import FormBase from './FormBase/FormBase';
-import FormContainer from './FormContainer/FormContainer';
-import FormTitle from './FormTitle/FormTitle';
-import FormMessages from './FormMessages/FormMessages';
-import FormSubmitButton from './FormSubmitButton/FormSubmitButton';
-import FormInput from './FormInput/FormInput';
+import FormBase from './SubComponents/FormBase';
+import FormContainer from './SubComponents/FormContainer';
+import FormTitle from './SubComponents/FormTitle';
+import FormMessages from './SubComponents/FormMessages';
+import FormSubmitButton from './SubComponents/FormSubmitButton';
+import FormInput from './SubComponents/FormInput';
 import {
   AsyncThunkConfig,
   FormClassNames,

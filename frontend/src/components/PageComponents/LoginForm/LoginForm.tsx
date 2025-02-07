@@ -1,11 +1,11 @@
 import { AsyncThunk } from '@reduxjs/toolkit';
-import { LoginCredentials } from '../../@types/auth';
-import { UserMock } from '../../@types/user';
-import { loginFormFields } from '../../constants/forms/authFormFields/loginFormFields';
-import { login } from '../../store/actions/authActions';
-import { loginSchema } from '../../validators/authSchema';
-import ReusableForm from '../Common/Form/ReusableForm';
-import { useAppSelector } from '../../hooks/redux';
+import { LoginCredentials } from '../../../@types/auth';
+import { UserMock } from '../../../@types/user';
+import { loginFormFields } from '../../../constants/forms/authFormFields/loginFormFields';
+import { login } from '../../../store/actions/authActions';
+import { loginSchema } from '../../../validators/authSchema';
+import ReusableForm from '../../Common/ReusableForm/ReusableForm';
+import { useAppSelector } from '../../../hooks/redux';
 
 import './LoginForm.css';
 

@@ -7,7 +7,7 @@ import { RegisterCredentials } from '../../@types/auth';
 import { registerSchema } from '../../validators/authSchema';
 import { signInFormFields } from '../../constants/forms/authFormFields/signInFormFields';
 
-import ReusableForm from '../../components/Common/Form/ReusableForm';
+import ReusableForm from '../../components/Common/ReusableForm/ReusableForm';
 import { AsyncThunk } from '@reduxjs/toolkit';
 
 /**
