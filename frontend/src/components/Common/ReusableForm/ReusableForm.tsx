@@ -6,11 +6,7 @@ import FormTitle from './SubComponents/FormTitle';
 import FormMessages from './SubComponents/FormMessages';
 import FormSubmitButton from './SubComponents/FormSubmitButton';
 import FormInput from './SubComponents/FormInput';
-import {
-  AsyncThunkConfig,
-  FormClassNames,
-  FormFieldBase,
-} from '../../../@types/form';
+import { AsyncThunkConfig, FormFieldBase } from '../../../@types/form';
 import { AsyncThunk } from '@reduxjs/toolkit';
 import { useAppDispatch } from '../../../hooks/redux';
 import { ZodSchema } from 'zod';
@@ -60,7 +56,6 @@ import { ZodSchema } from 'zod';
  */
 
 interface ReusableFormProps<T extends FieldValues, R> {
-  classNames?: FormClassNames;
   title: string;
   formFields: FormFieldBase[];
   schemaValidation: ZodSchema<T>;
@@ -77,7 +72,6 @@ interface ReusableFormProps<T extends FieldValues, R> {
 }
 
 function ReusableForm<T extends FieldValues, R>({
-  classNames,
   title,
   formFields,
   schemaValidation,
@@ -94,28 +88,35 @@ function ReusableForm<T extends FieldValues, R>({
   } = useForm<T>({
     resolver: zodResolver(schemaValidation),
   });
+  const formattedTitle = title
+    .toLowerCase()
+    .trim() // supprime les espaces au début et à la fin
+    .normalize('NFD') // normalise les caractères accentués
+    .replace(/[\u0300-\u036f]/g, '') // supprime les accents
+    .replace(/\s+/g, '-') // remplace les espaces par des tirets
+    .replace(/[^a-z0-9-]/g, ''); // supprime les caractères spéciaux
 
   const onSubmit: SubmitHandler<T> = (data) =>
     void dispatch(reduxAction(data) as ReturnType<typeof reduxAction>);
   return (
     <FormContainer
       classNames={{
-        container: classNames?.formContainer,
-        formWrapper: classNames?.formWrapper,
+        container: `form-${formattedTitle}-container`,
+        formWrapper: `form-${formattedTitle}-wrapper`,
       }}>
-      <FormTitle className={classNames?.formTitle} title={title} />
+      <FormTitle className={`form-${formattedTitle}-title`} title={title} />
       <FormBase
-        className={classNames?.formBase}
+        className={`form-${formattedTitle}-base`}
         onSubmit={handleSubmit(onSubmit)}>
         {formFields.map(({ label, name, type, required, placeholder }) => (
           <FormInput<T>
             key={name}
             classNames={{
-              wrapper: classNames?.inputWrapper,
-              label: classNames?.inputLabel,
-              input: classNames?.input,
-              inputErrorContainer: classNames?.inputErrorContainer,
-              error: classNames?.inputError,
+              wrapper: `form-${formattedTitle}-input-wrapper`,
+              label: `form-${formattedTitle}-input-label`,
+              input: `form-${formattedTitle}-input`,
+              errorContainer: `form-${formattedTitle}-input-error-container`,
+              error: `form-${formattedTitle}-input-error`,
             }}
             label={label}
             name={name}
@@ -129,16 +130,16 @@ function ReusableForm<T extends FieldValues, R>({
         {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
         <FormMessages
           classNames={{
-            container: classNames?.messagesContainer,
-            error: classNames?.messageError,
-            success: classNames?.messageSuccess,
+            container: `form-${formattedTitle}-messages-container`,
+            error: `form-${formattedTitle}-message-error`,
+            success: `form-${formattedTitle}-message-success`,
           }}
           error={message.error ? message.error : null}
           success={message.success ? message.success : null}
         />
         {/* // todo : LS/ Afficher un loader ? */}
         <FormSubmitButton
-          className={classNames?.submitButton}
+          className={`form-${formattedTitle}-submit-button`}
           isLoading={isLoading}
           buttonText={submitButtonText}
         />

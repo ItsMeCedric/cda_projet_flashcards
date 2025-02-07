@@ -33,20 +33,6 @@ function LoginForm() {
       isLoading={isLoading}
       message={{ error: error, success: null }}
       reduxAction={login as AsyncThunk<UserMock, LoginCredentials, object>}
-      classNames={{
-        formContainer: 'login-form-container',
-        formWrapper: 'login-form-wrapper',
-        formTitle: 'login-form-title',
-        inputWrapper: 'login-form-input-wrapper',
-        inputLabel: 'login-form-input-label',
-        input: 'login-form-input',
-        inputErrorContainer: 'login-form-input-error-container',
-        inputError: 'login-form-input-error',
-        messagesContainer: 'login-form-messages-container',
-        messageError: 'login-form-message-error',
-        messageSuccess: 'login-form-message-success',
-        submitButton: 'login-form-submit-button',
-      }}
     />
   );
 }

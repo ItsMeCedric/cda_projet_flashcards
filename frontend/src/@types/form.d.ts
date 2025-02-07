@@ -73,18 +73,18 @@ export type AsyncThunkConfig = {
  *  Définition des classes CSS optionnelles pour chaque partie du formulaire
  */
 
-export interface FormClassNames {
-  formContainer?: string;
-  formWrapper?: string;
-  formTitle?: string;
-  formBase?: string;
-  inputWrapper?: string;
-  inputLabel?: string;
-  input?: string;
-  inputErrorContainer?: string;
-  inputError?: string;
-  messagesContainer?: string;
-  messageError?: string;
-  messageSuccess?: string;
-  submitButton?: string;
-}
+// export interface FormClassNames {
+//   formContainer?: string;
+//   formWrapper?: string;
+//   formTitle?: string;
+//   formBase?: string;
+//   inputWrapper?: string;
+//   inputLabel?: string;
+//   input?: string;
+//   inputErrorContainer?: string;
+//   inputError?: string;
+//   messagesContainer?: string;
+//   messageError?: string;
+//   messageSuccess?: string;
+//   submitButton?: string;
+// }

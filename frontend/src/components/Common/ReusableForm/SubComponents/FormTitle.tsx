@@ -1,5 +1,5 @@
 interface FormTitleProps {
-  className?: string;
+  className: string;
   title: string;
 }
 

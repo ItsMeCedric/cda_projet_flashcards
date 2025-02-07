@@ -1,5 +1,5 @@
 interface FormSubmitButtonProps {
-  className?: string;
+  className: string;
   isLoading: boolean;
   buttonText: {
     loading: string;
@@ -13,7 +13,7 @@ function FormSubmitButton({
   buttonText,
 }: FormSubmitButtonProps) {
   return (
-    <button type="submit" className={`${className}`} disabled={isLoading}>
+    <button type="submit" className={className} disabled={isLoading}>
       {isLoading ? buttonText.loading : buttonText.default}
     </button>
   );

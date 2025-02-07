@@ -1,4 +1,4 @@
-.login-form-container {
+.form-connexion-container {
   display: flex;
   gap: 20px;
   background-color: var(--bg-alt); /*bg alt*/
@@ -13,28 +13,28 @@
   margin: 5rem auto;
 }
 
-.login-form-wrapper {
+.form-connexion-wrapper {
   flex: 1;
 }
 
-.login-form-title {
+.form-connexion-title {
   color: var(--txt-alt); /* txt alt */
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-.login-form-input-wrapper {
+.form-connexion-input-wrapper {
   margin-bottom: 15px;
 }
 
-.login-form-input-label {
+.form-connexion-input-label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
   color: var(--txt-main); /*txt main*/
 }
 
-.login-form-input {
+.form-connexion-input {
   width: 97%;
   padding: 10px;
   border: 1px solid var(--brd); /* brd */
@@ -42,37 +42,37 @@
   font-size: 14px;
 }
 
-.login-form-input:focus {
+.form-connexion-input:focus {
   border-color: var(--btn); /* btn */
   outline: none;
 }
 
-.login-form-input-error-container {
+.form-connexion-input-error-container {
   height: 20px;
   margin-top: 05px;
 }
 
-.login-form-input-error {
+.form-connexion-input-error {
   color: red;
   font-size: 14px;
   margin: 0;
 }
 
-.login-form-messages-container {
+.form-connexion-messages-container {
   height: 1.5rem;
   border: 1px solid rgb(212, 212, 212);
   margin-bottom: 15px;
 }
 
-.login-form-message-success {
+.form-connexion-message-success {
   color: green;
 }
 
-.login-form-message-error {
+.form-connexion-message-error {
   color: red;
 }
 
-.login-form-submit-button {
+.form-connexion-submit-button {
   background-color: var(--btn); /* btn */
   color: var(--btn-txt); /* txt main */
   border: none;

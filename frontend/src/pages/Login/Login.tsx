@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
-import LoginForm from '../../components/LoginForm/LoginForm';
+import LoginForm from '../../components/PageComponents/LoginForm/LoginForm';
 
 import styles from './Login.module.css';
 import Header from '../../components/Header/Header';
