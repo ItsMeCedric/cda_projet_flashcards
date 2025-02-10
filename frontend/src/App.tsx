@@ -1,10 +1,11 @@
-import './App.css';
 import { Routes, Route, Navigate, Outlet } from 'react-router';
-
+import { useAppSelector } from './hooks/redux';
 import SignIn from './pages/SignIn/SignIn';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import { useAppSelector } from './hooks/redux';
+import RGPD from './pages/RGPD/RGPD';
+
+import './App.css';
 
 function PublicOnlyRoute() {
   const { isLogged } = useAppSelector((state) => state.auth);
@@ -22,6 +23,7 @@ const App = () => {
     <Routes>
       {/* Routes accessibles par tous */}
       <Route index path="/" element={<Home />} />
+      <Route path="/RGPD" element={<RGPD />} />
 
       {/* Routes accessibles uniquement aux utilisateurs non connecté */}
       <Route element={<PublicOnlyRoute />}>
