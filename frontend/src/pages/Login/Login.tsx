@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 import LoginForm from '../../components/PageComponents/LoginForm/LoginForm';
-
-import styles from './Login.module.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+
+import styles from './Login.module.css';
 
 const Login = () => {
   const navigate = useNavigate();

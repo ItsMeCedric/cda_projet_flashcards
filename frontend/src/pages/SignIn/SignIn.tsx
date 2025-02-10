@@ -1,30 +1,15 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
+import SignInForm from '../../components/PageComponents/SignInForm/SignInForm';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
-import { register as registerAction } from '../../store/actions/authActions';
-import { RegisterCredentials } from '../../@types/auth';
-import { registerSchema } from '../../validators/authSchema';
-import { signInFormFields } from '../../constants/forms/authFormFields/signInFormFields';
-
-import ReusableForm from '../../components/Common/ReusableForm/ReusableForm';
-import { AsyncThunk } from '@reduxjs/toolkit';
-
-/**
- *   Formulaire d'inscription utilisant `ReusableForm`
- *
- * - Prend en charge le typage des champs de formulaire : `RegisterCredentials`, et des données de retour : `void`
- * - Prend en charge les champs de formulaire : `signInFormFields` (username, email, password, confirmPassword)
- * - Valide les entrées avec `registerSchema` (Zod)
- * - Exécute `register` en tant qu'action Redux lorsqu'on soumet le formulaire
- * - Prend en charge le statut de chargement `isLoading` et affiche l'eventuel message d'erreur `error` ou de succès `success` (state auth)
- */
+import styles from './SignIn.module.css';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { isLogged, user, isLoading, success, error } = useAppSelector(
-    (state) => state.auth
-  );
+  const { isLogged, user } = useAppSelector((state) => state.auth);
 
   // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
@@ -35,20 +20,11 @@ const SignIn = () => {
   }, [isLogged, navigate, user]);
 
   return (
-    <ReusableForm<RegisterCredentials, void>
-      title="Inscription"
-      formFields={signInFormFields}
-      schemaValidation={registerSchema}
-      submitButtonText={{
-        loading: 'Inscription...',
-        default: "S'inscrire",
-      }}
-      isLoading={isLoading}
-      message={{ error: error, success: success }}
-      reduxAction={
-        registerAction as AsyncThunk<void, RegisterCredentials, object>
-      }
-    />
+    <div className={styles.wrap}>
+      <Header />
+      <SignInForm />
+      <Footer />
+    </div>
   );
 };
 export default SignIn;
