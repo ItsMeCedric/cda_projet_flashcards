@@ -30,14 +30,14 @@ Avant de commencer, assurez-vous d'avoir installé :
 3. **Créer un utilisateur pour la base de données**
 
 ```sh
-sudo useradd -s /bin/false flashmccards
+    sudo useradd -s /bin/false flashmccards
 
 ```
 
 3. **Créer une base de données**
 
 ```sh
-createdb flashmccards -O <USER SQL>
+    createdb flashmccards -O <USER SQL>
 ```
 
 ## Utilisation
@@ -63,6 +63,6 @@ createdb flashmccards -O <USER SQL>
 Si vous rencontrez des problèmes liés aux dépendances, essayez de supprimer le dossier `node_modules` et `package-lock.json`, puis réinstallez les dépendances :
 
 ```sh
-rm -rf node_modules package-lock.json
-npm install
+    rm -rf node_modules package-lock.json
+    npm install
 ```

@@ -1,10 +1,17 @@
-import express from "express";
+import express, { json, Request, Response } from "express";
+import authRouter from "./routers/authRouter";
+import db from "../models/index";
 
 const PORT = process.env.PORT || 4000;
 
-const app = express();
+db.sequelize.sync();
 
-app.get("/", (req, res) => {
+const app = express();
+app.use(json());
+
+app.use("/auth", authRouter);
+
+app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ status: "success", message: "backend is working!" });
 });
 

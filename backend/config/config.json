@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "12345",
+    "database": "flashmccards_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgresql"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "12345",
+    "database": "flashmccards_test",
+    "host": "127.0.0.1",
+    "dialect": "postgresql"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "12345",
+    "database": "flashmccards_prod",
+    "host": "127.0.0.1",
+    "dialect": "postgresql"
+  }
+}
