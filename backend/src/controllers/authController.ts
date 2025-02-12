@@ -3,12 +3,14 @@ import authService from "../services/authService";
 
 const register = (req: Request, res: Response) => {
   const data = req.body;
-  return authService.register(data);
+  const user = authService.register(data);
+  res.status(201).json(user);
 };
 
 const login = (req: Request, res: Response) => {
   const data = req.body;
-  return authService.login(data);
+  const response = authService.login(data);
+  res.status(200).json(response);
 };
 
 export default { register, login };
