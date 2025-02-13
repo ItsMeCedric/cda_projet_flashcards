@@ -4,7 +4,7 @@ import db from "../models/index";
 
 const PORT = process.env.PORT || 4000;
 
-db.sequelize.sync();
+db.sync();
 
 const app = express();
 app.use(json());

@@ -1,7 +1,7 @@
-import db from "../../models/index";
+import User from "../../models/user";
 
 const findAll = async () => {
-  return await db.User.findAll();
+  return await User.findAll();
 };
 
 export default { findAll };
