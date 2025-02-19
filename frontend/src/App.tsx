@@ -6,6 +6,7 @@ import Login from './pages/Login/Login';
 import RGPD from './pages/RGPD/RGPD';
 
 import './App.css';
+import NewDeck from './pages/NewDeck/NewDeck';
 
 function PublicOnlyRoute() {
   const { isLogged } = useAppSelector((state) => state.auth);
@@ -29,6 +30,8 @@ const App = () => {
       <Route element={<PublicOnlyRoute />}>
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<SignIn />} />
+        // todo : LS/ repersonnaliser
+        <Route path="/new-deck" element={<NewDeck />} />
       </Route>
 
       {/* Routes accessibles uniquement aux utilisateurs commectés */}
