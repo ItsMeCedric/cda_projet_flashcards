@@ -29,13 +29,25 @@ const register = async (data: RegisterData) => {
     hash: hash,
   };
   const newUser = await userRepository.addUser(newData);
-  // return userRepository.findAll();
-  //TODO: do register logic
-  // hash password using argon2
-  // create new user with `data`
+  // return newUser
+  // return pas nécessaire ?
 };
 
-const login = (data: LoginData) => {
+const login = async (data: LoginData) => {
+  // log avec le username ou l'email
+  const user = await userRepository.findByUsername(data.username);
+  if (user) {
+    const isPasswordValid = await argon2.verify(user.hash, data.password);
+    if (!isPasswordValid) {
+      throw new Error("Identifiant ou mot de passe invalide");
+    }
+  } else {
+    throw new Error("Identifiant ou mot de passe invalide");
+  }
+  const token = jwt.sign({ id: user.id, username: user.username }, "le_secret", {
+    expiresIn: "1h",
+  });
+  // return token;
   //TODO: do login logic
 };
 
