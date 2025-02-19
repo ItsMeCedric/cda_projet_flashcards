@@ -11,7 +11,7 @@ interface UserAttributes {
   hash: string;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
+export interface UserCreationAttributes extends Optional<UserAttributes, "id" | "profilePicture"> {}
 
 interface UserInstance extends Model<UserAttributes, UserCreationAttributes>, UserAttributes {
   createdAt?: Date;
@@ -26,8 +26,8 @@ const User = db.define<UserInstance>("User", {
     type: DataTypes.INTEGER,
     unique: true,
   },
-  username: DataTypes.STRING,
-  email: DataTypes.STRING,
+  username: { allowNull: false, unique: true, type: DataTypes.STRING },
+  email: { allowNull: false, unique: true, type: DataTypes.STRING },
   profilePicture: DataTypes.STRING,
   hash: DataTypes.STRING,
 });
