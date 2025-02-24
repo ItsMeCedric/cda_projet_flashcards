@@ -1,5 +1,7 @@
+import { AsyncThunk } from '@reduxjs/toolkit';
 import { DeckMock, NewDeckCredentials } from '../../../@types/deck';
 import { newDeckFormFields } from '../../../constants/forms/authFormFields/newDeckFormFields';
+import { createDeck } from '../../../store/actions/deckActions';
 import { newDeckSchema } from '../../../validators/deckSchema';
 import ReusableForm from '../../Common/ReusableForm/ReusableForm';
 
@@ -19,7 +21,9 @@ const NewDeckForm = () => {
       }}
       isLoading={isLoading}
       message={{ error: error, success: null }}
-      reduxAction={login as AsyncThunk<UserMock, LoginCredentials, object>}
+      reduxAction={
+        createDeck as AsyncThunk<DeckMock, NewDeckCredentials, object>
+      }
     />
   );
 };
