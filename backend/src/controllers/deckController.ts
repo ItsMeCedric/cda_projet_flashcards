@@ -12,18 +12,21 @@ const findById = async (req: Request, res: Response) => {
   res.status(200).json(deck);
 };
 
+//TODO: ajouter le middleware de vérification d'authentification
 const create = async (req: Request, res: Response) => {
   const data = req.body;
   const deck = await deckService.create(data);
   res.status(201).json(deck);
 };
 
+//TODO: ajouter le middleware de vérification d'authentification
 const update = async (req: Request, res: Response) => {
   const data = req.body;
   const deck = await deckService.update(data);
   res.status(200).json(deck);
 };
 
+//TODO: ajouter le middleware de vérification d'authentification
 const destroy = async (req: Request, res: Response) => {
   const id = parseInt(req.body.id);
   await deckService.destroy(id);
