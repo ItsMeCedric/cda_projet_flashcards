@@ -1,5 +1,6 @@
-import { CardCreationAttributes } from "../@types/card";
+import { InferAttributes, InferCreationAttributes } from "sequelize";
 import cardRepository from "../repositories/cardRepository";
+import Card from "../../models/card";
 
 const getAllCards = () => {
   return cardRepository.findAll();
@@ -9,11 +10,11 @@ const findById = (id: number) => {
   return cardRepository.findById(id);
 };
 
-const create = (data: CardCreationAttributes) => {
+const create = (data: InferCreationAttributes<Card>) => {
   return cardRepository.create(data);
 };
 
-const update = (data: CardCreationAttributes) => {
+const update = (data: InferAttributes<Card>) => {
   return cardRepository.update(data);
 };
 

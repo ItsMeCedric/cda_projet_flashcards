@@ -1,24 +1,16 @@
 "use strict";
 
-import { DataTypes } from "sequelize";
-import db from ".";
-import { CardInstance } from "../src/@types/card";
+import { CreationOptional, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 
-const Card = db.define<CardInstance>("Card", {
-  id: {
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
-    type: DataTypes.INTEGER,
-    unique: true,
-  },
-  question: DataTypes.STRING,
-  answer: DataTypes.STRING,
-  questionImg: DataTypes.STRING,
-  answerImg: DataTypes.STRING,
-  playedDate: DataTypes.DATE,
-  boxNumber: DataTypes.NUMBER,
-});
+class Card extends Model<InferAttributes<Card>, InferCreationAttributes<Card>> {
+  declare id: CreationOptional<number>;
+  declare question: string;
+  declare questionImg: CreationOptional<string>;
+  declare answer: string;
+  declare answerImg: CreationOptional<string>;
+  declare playedDate: CreationOptional<Date>;
+  declare boxNumber: CreationOptional<number>;
+  declare deckId: number;
+}
 
 export default Card;
-
