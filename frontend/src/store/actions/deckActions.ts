@@ -1,5 +1,14 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { DeckMock, NewDeckCredentials } from '../../@types/deck';
+import {
+  createDeckService,
+  deleteDeckService,
+  getAllDecksService,
+  getDeckByIdService,
+  getDecksByCriteriaService,
+  getUserDecksService,
+  updateDeckService,
+} from '../../services/deckService';
 
 // Action pour reset le state
 export const resetDeckState = createAction('deck/RESET_DECK_STATE');
@@ -78,10 +87,10 @@ export const createDeck = createAsyncThunk<DeckMock, NewDeckCredentials>( // tod
 // Action pour modifier un deck (asynchrone)
 export const updateDeck = createAsyncThunk<
   DeckMock, // todo : changer le type de retour + typer rejectWithValue
-  { id: number; data: Partial<NewDeckCredentials> }
+  { deckId: number; data: Partial<NewDeckCredentials> }
 >('deck/UPDATE_DECK', async ({ id, data }, { rejectWithValue }) => {
   try {
-    return await updateDeckService(id, data);
+    return await updateDeckService(deckId, data);
   } catch (error) {
     // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
     console.error(error);

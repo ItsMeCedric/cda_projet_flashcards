@@ -2,14 +2,14 @@ import { FormFieldBase } from '../../../@types/form';
 
 export const newDeckFormFields: FormFieldBase[] = [
   {
-    label: 'Name',
+    label: 'Nom',
     name: 'name',
     type: 'text',
     required: true,
     placeholder: 'Entrez le nom de votre deck',
   },
   {
-    label: 'Subject',
+    label: 'Sujet',
     name: 'subject',
     type: 'text',
     required: true,

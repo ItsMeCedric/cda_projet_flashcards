@@ -5,7 +5,7 @@ import { createDeck } from '../../../store/actions/deckActions';
 import { newDeckSchema } from '../../../validators/deckSchema';
 import ReusableForm from '../../Common/ReusableForm/ReusableForm';
 
-import './NewDeckForm.scss';
+import './NewDeckForm.css';
 
 const NewDeckForm = () => {
   const isLoading = false;

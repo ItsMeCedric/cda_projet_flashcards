@@ -1018,6 +1018,12 @@
       "username": "test",
       "email": "test@test.fr",
       "password": "123456789123456789Tt$"
+    },
+    {
+      "id": "c3bb",
+      "username": "zou",
+      "email": "zou@zou.fr",
+      "password": "zou12345678910M!"
     }
   ]
 }
