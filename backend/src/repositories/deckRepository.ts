@@ -1,25 +1,29 @@
-import deck from "../../models/deck";
-import { DeckCreationAttributes } from "../@types/deck";
+import { InferAttributes, InferCreationAttributes } from "sequelize";
+import Deck from "../../models/deck";
 
 const findAll = async () => {
-  return await deck.findAll();
+  return await Deck.findAll();
 };
 
 const findById = async (id: number) => {
-  return await deck.findByPk(id);
+  return await Deck.findByPk(id);
 };
 
-const create = async (data: DeckCreationAttributes) => {
-  return await deck.create(data);
+const findByUserId = async (id: number) => {
+  return await Deck.findAll({ where: { userId: id } });
 };
 
-const update = async (data: DeckCreationAttributes) => {
+const create = async (data: InferCreationAttributes<Deck>) => {
+  return await Deck.create(data);
+};
+
+const update = async (data: InferAttributes<Deck>) => {
   const id = data.id;
-  return await deck.update(data, { where: { id } });
+  return await Deck.update(data, { where: { id } });
 };
 
 const destroy = async (id: number) => {
-  return await deck.destroy({ where: { id } });
+  return await Deck.destroy({ where: { id } });
 };
 
-export default { findAll, findById, create, update, destroy };
+export default { findAll, findById, findByUserId, create, update, destroy };

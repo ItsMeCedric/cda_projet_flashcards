@@ -1,5 +1,6 @@
-import { DeckCreationAttributes } from "../@types/deck";
+import { InferAttributes, InferCreationAttributes } from "sequelize";
 import deckRepository from "../repositories/deckRepository";
+import Deck from "../../models/deck";
 
 const getAllDecks = () => {
   return deckRepository.findAll();
@@ -9,11 +10,11 @@ const findById = (id: number) => {
   return deckRepository.findById(id);
 };
 
-const create = (data: DeckCreationAttributes) => {
+const create = (data: InferCreationAttributes<Deck>) => {
   return deckRepository.create(data);
 };
 
-const update = (data: DeckCreationAttributes) => {
+const update = (data: InferAttributes<Deck>) => {
   return deckRepository.update(data);
 };
 
