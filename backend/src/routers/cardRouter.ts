@@ -7,6 +7,6 @@ router.get("/", cardController.getAllCards);
 router.get("/:cardId", cardController.findById);
 router.post("/", cardController.create);
 router.patch("/:cardId", cardController.update);
-router.delete("/:cardId", cardController.delete);
+router.delete("/:cardId", cardController.destroy);
 
 export default router;
