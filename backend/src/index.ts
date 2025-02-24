@@ -12,11 +12,8 @@ db.sync();
 const app = express();
 app.use(json());
 
-<<<<<<< HEAD
 deckRouter.use("/:postId/cards", cardRouter);
-=======
 userRouter.use("/:userId/decks", deckRouter);
->>>>>>> f8ab5e4 (added basic CRUD for deck)
 app.use("/auth", authRouter);
 
 app.get("/", (req: Request, res: Response) => {

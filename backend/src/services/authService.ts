@@ -22,25 +22,14 @@ const register = async (data: RegisterData) => {
 
   const hash = await argon2.hash(data.password, {
     type: argon2.argon2id,
-<<<<<<< HEAD
     secret: Buffer.from(process.env.ARGON2SECRET as string),
-=======
->>>>>>> ac0228e (ajout logique du register et certaines fonctions dans le userRepository needed)
   });
   const newData = {
     username: data.username,
     email: data.email,
     hash: hash,
   };
-<<<<<<< HEAD
   await userRepository.addUser(newData);
-=======
-  const newUser = await userRepository.addUser(newData);
-  // return userRepository.findAll();
-  //TODO: do register logic
-  // hash password using argon2
-  // create new user with `data`
->>>>>>> ac0228e (ajout logique du register et certaines fonctions dans le userRepository needed)
 };
 
 const login = async (data: LoginData) => {
