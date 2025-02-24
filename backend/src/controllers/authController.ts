@@ -10,6 +10,7 @@ const register = (req: Request, res: Response) => {
 const login = (req: Request, res: Response) => {
   const data = req.body;
   const response = authService.login(data);
+  res.setHeader("Set-Cookie", `token=${response}; HttpOnly;`);
   res.status(200).json(response);
 };
 
