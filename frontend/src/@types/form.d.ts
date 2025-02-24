@@ -1,7 +1,10 @@
 import { LoginCredentials, RegisterCredentials } from './auth';
 import { NewDeckCredentials } from './deck';
 
-export type FormFieldTypes = LoginCredentials | RegisterCredentials;
+export type FormFieldTypes =
+  | LoginCredentials
+  | RegisterCredentials
+  | NewDeckCredentials;
 
 // FormFieldNames est l'union des clés de LoginCredentials et RegisterCredentials
 // On utilise Extract pour extraire les clés de chaque interface, ici, de type string

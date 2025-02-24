@@ -88,7 +88,7 @@ export const createDeck = createAsyncThunk<DeckMock, NewDeckCredentials>( // tod
 export const updateDeck = createAsyncThunk<
   DeckMock, // todo : changer le type de retour + typer rejectWithValue
   { deckId: number; data: Partial<NewDeckCredentials> }
->('deck/UPDATE_DECK', async ({ id, data }, { rejectWithValue }) => {
+>('deck/UPDATE_DECK', async ({ deckId, data }, { rejectWithValue }) => {
   try {
     return await updateDeckService(deckId, data);
   } catch (error) {

@@ -20,3 +20,13 @@ export interface DeckMock {
   downloads: number;
   mark: number;
 }
+
+export interface DeckState {
+  isLoading: boolean;
+  allDecks: Deck[];
+  userDecks: Deck[];
+  searchedDecks: Deck[];
+  selectedDeck: Deck | null;
+  success: string | null;
+  error: string | null;
+}

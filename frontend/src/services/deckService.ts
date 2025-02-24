@@ -62,4 +62,5 @@ export const deleteDeckService = async (deckId: number) => {
   // todo : LS/ Appel à l'API (verif endpoint) + return des données
   console.log('deckService/deleteDeckService');
   await axiosInstance.delete(`/decks/${deckId}`);
+  return deckId;
 };
