@@ -7,10 +7,11 @@ import RGPD from './pages/RGPD/RGPD';
 
 import './App.css';
 import NewDeck from './pages/NewDeck/NewDeck';
+import NewCard from './pages/NewCard/NewCard';
 
 function PublicOnlyRoute() {
   const { isLogged } = useAppSelector((state) => state.auth);
-  // todo : LS/ redirigé vers Dashboard si connecté
+  // todo : LS/ rediriger vers Dashboard si connecté
   return isLogged ? <Navigate to="/" replace /> : <Outlet />;
 }
 
@@ -30,8 +31,9 @@ const App = () => {
       <Route element={<PublicOnlyRoute />}>
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<SignIn />} />
-        // todo : LS/ repersonnaliser
+        // todo: LS/ /!\ déplacer vers ProtectedRoute
         <Route path="/new-deck" element={<NewDeck />} />
+        <Route path="/new-card" element={<NewCard />} />
       </Route>
 
       {/* Routes accessibles uniquement aux utilisateurs commectés */}

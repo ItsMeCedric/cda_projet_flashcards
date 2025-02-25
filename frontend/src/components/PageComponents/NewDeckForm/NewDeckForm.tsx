@@ -2,7 +2,7 @@ import { AsyncThunk } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DeckMock, NewDeckCredentials } from '../../../@types/deck';
-import { newDeckFormFields } from '../../../constants/forms/authFormFields/newDeckFormFields';
+import { newDeckFormFields } from '../../../constants/forms/deckFormFields/newDeckFormFields';
 import { createDeck } from '../../../store/actions/deckActions';
 import { newDeckSchema } from '../../../validators/deckSchema';
 import { useAppSelector } from '../../../hooks/redux';
