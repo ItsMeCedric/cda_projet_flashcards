@@ -13,4 +13,13 @@ const login = (req: Request, res: Response) => {
   res.status(200).json(response);
 };
 
-export default { register, login };
+const getUserDecks = async (req: Request, res: Response) => {
+  const userId = req.user?.id;
+  if (!userId) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  const decks = authService.getDecksByUserId(userId);
+  res.status(200).json(decks);
+};
+
+export default { register, login, getUserDecks };

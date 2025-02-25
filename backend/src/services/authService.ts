@@ -1,4 +1,5 @@
 import userRepository from "../repositories/userRepository";
+import deckRepository from "../repositories/deckRepository";
 
 interface RegisterData {
   username: string;
@@ -22,4 +23,8 @@ const login = (data: LoginData) => {
   //TODO: do login logic
 };
 
-export default { register, login };
+const getDecksByUserId = async (userId: string) => {
+  return await deckRepository.findByUserId(userId);
+};
+
+export default { register, login, getDecksByUserId };
