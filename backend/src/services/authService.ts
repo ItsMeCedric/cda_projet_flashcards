@@ -49,10 +49,6 @@ const login = async (data: LoginData) => {
     expiresIn: "1d",
   });
   return token;
-<<<<<<< HEAD
-=======
-  //TODO: do login logic
->>>>>>> d5831ec (ajout du cookie)
 };
 
 export default { register, login };
