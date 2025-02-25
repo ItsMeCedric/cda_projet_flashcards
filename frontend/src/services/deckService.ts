@@ -1,6 +1,8 @@
 import { DeckMock, NewDeckCredentials } from '../@types/deck';
 import axiosInstance from '../utils/axios';
 
+// todo : LS/ Typage des fonctions + des instances axios (=> enlever les cast "as...")
+
 export const getAllDecksService = async () => {
   // todo : LS/ Appel à l'API (verif endpoint) + return des données
   console.log('deckService/getAllDecksService');

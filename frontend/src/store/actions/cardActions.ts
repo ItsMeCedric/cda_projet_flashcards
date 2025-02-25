@@ -1,5 +1,12 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { CardMock, NewCardCredentials } from '../../@types/card';
+import {
+  createCardService,
+  deleteCardService,
+  getCardByIdService,
+  getCardsByDeckService,
+  updateCardService,
+} from '../../services/cardService';
 
 // Action pour reset le state
 export const resetCardState = createAction('card/RESET_CARD_STATE');
@@ -57,7 +64,7 @@ export const updateCard = createAsyncThunk<
   }
 });
 // Action pour supprimer une card (asynchrone)
-export const deleteCard = createAsyncThunk(
+export const deleteCard = createAsyncThunk<number, number>(
   // todo: typage
   'card/DELETE_CARD',
   async (cardId: number, { rejectWithValue }) => {

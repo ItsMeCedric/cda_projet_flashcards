@@ -8,6 +8,7 @@ import { useAppSelector } from '../../../hooks/redux';
 import ReusableForm from '../../Common/ReusableForm/ReusableForm';
 
 import './NewDeckForm.css';
+import { createCard } from '../../../store/actions/cardActions';
 
 /**
  *   Formulaire de création de card utilisant `ReusableForm`
