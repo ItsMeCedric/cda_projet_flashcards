@@ -5,10 +5,10 @@ import { newCardFormFields } from '../../../constants/forms/cardFormFields/newCa
 import { CardMock, NewCardCredentials } from '../../../@types/card';
 import { newCardSchema } from '../../../validators/cardSchema';
 import { useAppSelector } from '../../../hooks/redux';
+import { createCard } from '../../../store/actions/cardActions';
 import ReusableForm from '../../Common/ReusableForm/ReusableForm';
 
-import './NewDeckForm.css';
-import { createCard } from '../../../store/actions/cardActions';
+import './NewCardForm.css';
 
 /**
  *   Formulaire de création de card utilisant `ReusableForm`

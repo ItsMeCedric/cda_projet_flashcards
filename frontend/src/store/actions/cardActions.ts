@@ -42,6 +42,8 @@ export const createCard = createAsyncThunk<CardMock, NewCardCredentials>(
   'card/CREATE_CARD',
   async (newCard: NewCardCredentials, { rejectWithValue }) => {
     try {
+      //todo: LS/ console log à enlever ; sert pour le validator
+      console.log(newCard);
       return await createCardService(newCard);
     } catch (error) {
       // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)

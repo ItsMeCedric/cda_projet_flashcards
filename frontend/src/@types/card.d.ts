@@ -1,16 +1,16 @@
 export interface NewCardCredentials {
   question: string;
   answer: string;
-  questionImg: File | null;
-  answerImg: File | null;
+  questionImg: string | FileList | null | undefined; // todo: LS/ ajuster typage et validator - voir console.log(newCard); dans l'action
+  answerImg: string | FileList | null | undefined;
 }
 
 export interface CardMock {
   id: number;
   question: string;
   answer: string;
-  questionImg: File | null;
-  answerImg: File | null;
+  questionImg: string | FileList | null | undefined;
+  answerImg: string | FileList | null | undefined;
   playedDate: string | null;
   box: number;
 }
