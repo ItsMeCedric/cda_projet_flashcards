@@ -22,33 +22,33 @@ const register = async (data: RegisterData) => {
 
   const hash = await argon2.hash(data.password, {
     type: argon2.argon2id,
+    secret: Buffer.from(process.env.ARGON2SECRET as string),
   });
   const newData = {
     username: data.username,
     email: data.email,
     hash: hash,
   };
-  const newUser = await userRepository.addUser(newData);
-  // return newUser
-  // return pas nécessaire ?
+  await userRepository.addUser(newData);
 };
 
 const login = async (data: LoginData) => {
   // log avec le username ou l'email
   const user = await userRepository.findByUsername(data.username);
   if (user) {
-    const isPasswordValid = await argon2.verify(user.hash, data.password);
+    const isPasswordValid = await argon2.verify(user.hash, data.password, {
+      secret: Buffer.from(process.env.ARGON2SECRET as string),
+    });
     if (!isPasswordValid) {
       throw new Error("Identifiant ou mot de passe invalide");
     }
   } else {
     throw new Error("Identifiant ou mot de passe invalide");
   }
-  const token = jwt.sign({ id: user.id, username: user.username }, "le_secret", {
-    expiresIn: "1h",
+  const token = jwt.sign({ id: user.id }, process.env.JWTSECRET as string, {
+    expiresIn: "1d",
   });
   return token;
-  //TODO: do login logic
 };
 
 export default { register, login };
