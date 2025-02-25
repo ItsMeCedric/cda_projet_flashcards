@@ -14,3 +14,14 @@ export interface CardMock {
   playedDate: string | null;
   box: number;
 }
+
+export interface CardState {
+  isLoading: boolean;
+  isCreated: boolean;
+  allCards: CardMock[];
+  deckCards: CardMock[];
+  searchedCards: CardMock[];
+  selectedCard: CardMock | null;
+  success: string | null;
+  error: string | null;
+}
