@@ -23,6 +23,7 @@ export interface DeckMock {
 
 export interface DeckState {
   isLoading: boolean;
+  isCreated: boolean;
   allDecks: Deck[];
   userDecks: Deck[];
   searchedDecks: Deck[];

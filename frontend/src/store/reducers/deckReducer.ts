@@ -14,6 +14,7 @@ import { DeckState } from '../../@types/deck';
 
 const initialState: DeckState = {
   isLoading: false,
+  isCreated: false,
   allDecks: [],
   userDecks: [],
   searchedDecks: [],
@@ -29,6 +30,7 @@ const deckReducer = createReducer(initialState, (builder) => {
     // ----- RESET_DECK_STATE
     .addCase(resetDeckState, (state) => {
       state.isLoading = false;
+      state.isCreated = false;
       state.allDecks = [];
       state.userDecks = [];
       state.searchedDecks = [];
@@ -115,12 +117,14 @@ const deckReducer = createReducer(initialState, (builder) => {
     })
     .addCase(createDeck.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.isCreated = true;
       state.userDecks.push(action.payload);
       state.selectedDeck = action.payload;
       state.success = 'Deck créé avec succès.';
     })
     .addCase(createDeck.rejected, (state, action) => {
       state.isLoading = false;
+      state.isCreated = false;
       if (typeof action.payload === 'string') {
         state.error = action.payload;
       } else {
