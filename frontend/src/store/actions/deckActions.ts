@@ -73,9 +73,9 @@ export const fetchDeckById = createAsyncThunk<DeckMock, number>( // todo : chang
 // Action pour créer un nouveau deck (asynchrone)
 export const createDeck = createAsyncThunk<DeckMock, NewDeckCredentials>( // todo : changer le type de retour + typer rejectWithValue
   'deck/CREATE_NEW_DECK',
-  async (deck: NewDeckCredentials, { rejectWithValue }) => {
+  async (newDeck: NewDeckCredentials, { rejectWithValue }) => {
     try {
-      return await createDeckService(deck);
+      return await createDeckService(newDeck);
     } catch (error) {
       // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
       console.error(error);

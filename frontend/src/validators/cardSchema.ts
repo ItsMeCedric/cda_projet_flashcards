@@ -13,7 +13,6 @@ export const newCardSchema = z.object({
       message: "Le fichier doit être une image, d'autres formats à venir !",
     })
     .nullable(),
-  // .optional(),
   answer: z.string().min(3, 'La réponse doit contenir au moins 3 caractères'),
   answerImg: z
     .instanceof(File)
@@ -24,5 +23,4 @@ export const newCardSchema = z.object({
       message: "Le fichier doit être une image, d'autres formats à venir !",
     })
     .nullable(),
-  // .optional(),
 });

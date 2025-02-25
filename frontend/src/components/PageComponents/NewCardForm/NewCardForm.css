@@ -1,4 +1,4 @@
-.form-nouveau-deck-container {
+.form-nouveau-card-container {
   display: flex;
   gap: 20px;
   background-color: var(--bg-alt); /*bg alt*/
@@ -13,28 +13,28 @@
   margin: 5rem auto;
 }
 
-.form-nouveau-deck-wrapper {
+.form-nouveau-card-wrapper {
   flex: 1;
 }
 
-.form-nouveau-deck-title {
+.form-nouveau-card-title {
   color: var(--txt-alt); /* txt alt */
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-.form-nouveau-deck-input-wrapper {
+.form-nouveau-card-input-wrapper {
   margin-bottom: 15px;
 }
 
-.form-nouveau-deck-input-label {
+.form-nouveau-card-input-label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
   color: var(--txt-main); /*txt main*/
 }
 
-.form-nouveau-deck-input {
+.form-nouveau-card-input {
   width: 97%;
   padding: 10px;
   border: 1px solid var(--brd); /* brd */
@@ -42,37 +42,37 @@
   font-size: 14px;
 }
 
-.form-nouveau-deck-input:focus {
+.form-nouveau-card-input:focus {
   border-color: var(--btn); /* btn */
   outline: none;
 }
 
-.form-nouveau-deck-input-error-container {
+.form-nouveau-card-input-error-container {
   height: 20px;
   margin-top: 05px;
 }
 
-.form-nouveau-deck-input-error {
+.form-nouveau-card-input-error {
   color: red;
   font-size: 14px;
   margin: 0;
 }
 
-.form-nouveau-deck-messages-container {
+.form-nouveau-card-messages-container {
   height: 1.5rem;
   border: 1px solid rgb(212, 212, 212);
   margin-bottom: 15px;
 }
 
-.form-nouveau-deck-message-success {
+.form-nouveau-card-message-success {
   color: green;
 }
 
-.form-nouveau-deck-message-error {
+.form-nouveau-card-message-error {
   color: red;
 }
 
-.form-nouveau-deck-submit-button {
+.form-nouveau-card-submit-button {
   background-color: var(--btn); /* btn */
   color: var(--btn-txt); /* txt main */
   border: none;
