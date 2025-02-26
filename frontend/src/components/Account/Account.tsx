@@ -7,7 +7,7 @@ import { FaUserEdit, FaRegSave } from "react-icons/fa";
 
 const Account: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth);
-  const { register, handleSubmit, setValue } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       email: user?.email || "",
       firstName: user?.first_name || "",
@@ -58,7 +58,7 @@ const Account: React.FC = () => {
             <label>Email:</label>
             {isEditing.email ? <input type="email" {...register("email")} /> : <span>{user?.email}</span>}
             {isEditing.email ? (
-              <FaRegSave className={styles.icon} onClick={() => handleSubmit(onSubmit)()} />
+              <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("email")} />
             )}
@@ -68,7 +68,7 @@ const Account: React.FC = () => {
             <label>First Name:</label>
             {isEditing.firstName ? <input type="text" {...register("firstName")} /> : <span>{user?.first_name}</span>}
             {isEditing.firstName ? (
-              <FaRegSave className={styles.icon} onClick={() => handleSubmit(onSubmit)()} />
+              <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("firstName")} />
             )}
@@ -78,7 +78,7 @@ const Account: React.FC = () => {
             <label>Last Name:</label>
             {isEditing.lastName ? <input type="text" {...register("lastName")} /> : <span>{user?.last_name}</span>}
             {isEditing.lastName ? (
-              <FaRegSave className={styles.icon} onClick={() => handleSubmit(onSubmit)()} />
+              <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("lastName")} />
             )}
@@ -88,7 +88,7 @@ const Account: React.FC = () => {
             <label>Password:</label>
             {isEditing.password ? <input type="password" {...register("password")} /> : <span>••••••••</span>}
             {isEditing.password ? (
-              <FaRegSave className={styles.icon} onClick={() => handleSubmit(onSubmit)()} />
+              <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("password")} />
             )}
