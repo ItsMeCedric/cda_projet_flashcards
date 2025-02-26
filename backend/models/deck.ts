@@ -54,6 +54,6 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
       }
     );
   }
-
+}
 
 export default Deck;
