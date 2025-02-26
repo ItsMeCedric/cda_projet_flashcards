@@ -1,6 +1,7 @@
 import styles from "./Deck.module.css";
+import { Deck as DeckType } from "../../@types/deck";
 
-const Deck = ({ deck }: { deck: Deck }) => {
+const Deck = ({ deck }: { deck: DeckType }) => {
   return (
     <div className={styles.card}>
       <svg className={styles.flag} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

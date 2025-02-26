@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import axiosInstance from "../../utils/axios";
 import { Deck } from "../../@types/deck";
+import styles from "./UserDecks.module.css";
 
 const UserDecks: React.FC = () => {
   const [decks, setDecks] = useState<Deck[]>([]);
@@ -26,7 +27,7 @@ const UserDecks: React.FC = () => {
   const totalDecks = decks.length;
 
   return (
-    <div>
+    <div className={styles.all_deck}>
       <h2>Mes Decks</h2>
       <p>Nombre total de decks : {totalDecks}</p>
       <ul>
