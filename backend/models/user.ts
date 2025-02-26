@@ -1,6 +1,7 @@
 "use strict";
 
-import { Model, InferCreationAttributes, CreationOptional, InferAttributes } from "sequelize";
+import { Model, InferCreationAttributes, CreationOptional, InferAttributes, Association } from "sequelize";
+import Deck from "./deck";
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<string>;
@@ -8,6 +9,10 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare email: string;
   declare profilePicture: CreationOptional<string>;
   declare hash: string;
+
+  declare static associations: {
+    decks: Association<User, Deck>;
+  };
 }
 
 export default User;
