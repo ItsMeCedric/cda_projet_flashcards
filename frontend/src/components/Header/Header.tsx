@@ -1,16 +1,21 @@
-import logo from "../../assets/FlashMcCard.png";
+import logo_light from "../../assets/FlashMcCard.png";
+import logo_dark from "../../assets/FlashMcCard_white.png";
+
 import styles from "./Header.module.css";
-//import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-//import { ThemeContext } from "../../contexts/ThemeContext";
+import { useContext } from "react";
+
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
+import { ThemeContext } from "../../contexts/ThemeContext";
+
 // import types
-// import { ThemeContextType } from "../../@types/theme";
+import { ThemeContextType } from "../../@types/theme";
 
 const Header = () => {
+  const { theme } = useContext(ThemeContext) as ThemeContextType;
   return (
     <div className={styles.header}>
-      <img src={logo} alt="logo" className={styles.logo} />
+      <img src={theme === "light" ? logo_light : logo_dark} alt="logo" className={styles.logo} />
       <div className={styles.navbar}>
         <NavLink to={"/"}>Home</NavLink>
         <span>|</span>
