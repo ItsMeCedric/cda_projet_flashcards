@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import axiosInstance from "../../utils/axios";
-
 import { Deck } from "../../@types/deck";
 
 const UserDecks: React.FC = () => {
@@ -23,9 +22,13 @@ const UserDecks: React.FC = () => {
     }
   }, [user]);
 
+  // total decks user
+  const totalDecks = decks.length;
+
   return (
     <div>
       <h2>Mes Decks</h2>
+      <p>Nombre total de decks : {totalDecks}</p>
       <ul>
         {decks.map((deck) => (
           <li key={deck.id}>{deck.name}</li>
