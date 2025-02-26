@@ -31,7 +31,7 @@ const SignIn = () => {
   useEffect(() => {
     console.log(user);
     if (isLogged) {
-      navigate("/", { replace: true }); // todo : LS/à remplacer par la redirection vers le dashboard
+      navigate("/account", { replace: true }); // todo : LS/à remplacer par la redirection vers le dashboard
     }
   }, [isLogged, navigate, user]);
 

@@ -32,6 +32,9 @@ const Header = () => {
         <NavLink className={styles.login} to={"/signin"}>
           Sign In
         </NavLink>
+        <NavLink className={styles.login} to={"/account"}>
+          Account
+        </NavLink>
       </div>
     </div>
   );

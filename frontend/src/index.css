@@ -24,6 +24,7 @@ a {
   --fld: #f8f8f8;
   --brd: #d0d0d0;
   --btn: #d93b3a;
+  --hvr: #de0000;
   --btn-txt: #ffffff;
 }
 
@@ -35,5 +36,6 @@ a {
   --fld: #3e3d3c;
   --brd: #222222;
   --btn: #f4b08b;
+  --hvr: #f08349;
   --btn-txt: #201f1e;
 }
