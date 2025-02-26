@@ -13,6 +13,10 @@ const db = config.use_env_variable
   ? new Sequelize(process.env[config.use_env_variable] as string, config)
   : new Sequelize(config.database, config.username, config.password, config);
 
+User.initialize(db);
+Deck.initialize(db);
+Card.initialize(db);
+
 User.hasMany(Deck, {
   foreignKey: "userId",
   as: "decks",
