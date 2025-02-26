@@ -1,16 +1,15 @@
 import styles from "./UserDecks.module.css";
-import DeckList from "../../components/DeckList/DeckList";
 import Header from "../../components/Header/Header";
 import Hero from "../../components/Hero/Hero";
-import decks from "../../../mock/decks.json";
 import Footer from "../../components/Footer/Footer";
+import UserDecks from "../../components/UserDecks/UserDecks";
 
 const Home = () => {
   return (
     <div className={styles.wrap}>
       <Header />
       <Hero />
-      <DeckList decks={decks.userId} />
+      <UserDecks />
       <Footer />
     </div>
   );
