@@ -1,22 +1,22 @@
-"use strict";
-
 import {
   Association,
   CreationOptional,
   DataTypes,
+  ForeignKey,
   InferAttributes,
   InferCreationAttributes,
   Model,
   Sequelize,
 } from "sequelize";
 import Card from "./card";
+import User from "./user";
 
 class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare id: CreationOptional<number>;
   declare name: string;
   declare downloads: number;
   declare mark: CreationOptional<number>;
-  declare userId: number;
+  declare userId: ForeignKey<User["id"]>;
 
   declare static associations: {
     cards: Association<Deck, Card>;
@@ -50,6 +50,7 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
       {
         sequelize,
         modelName: "Deck",
+        indexes: [{ fields: ["userId"] }],
       }
     );
   }
