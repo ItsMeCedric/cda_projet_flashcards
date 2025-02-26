@@ -8,6 +8,14 @@
   margin: 0;
   color: var(--btn-txt);
 }
+.back {
+  width: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  fill: var(--hvr);
+}
 
 h3 {
   color: var(--txt-main);
