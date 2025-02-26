@@ -3,6 +3,7 @@ import authRouter from "./routers/authRouter";
 import cardRouter from "./routers/cardRouter";
 import db from "../models/index";
 import deckRouter from "./routers/deckRouter";
+import userRouter from "./routers/userRouter";
 
 const PORT = process.env.PORT || 4000;
 

@@ -1,6 +1,13 @@
-"use strict";
-
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
+import {
+  CreationOptional,
+  DataTypes,
+  ForeignKey,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+  Sequelize,
+} from "sequelize";
+import Deck from "./deck";
 
 class Card extends Model<InferAttributes<Card>, InferCreationAttributes<Card>> {
   declare id: CreationOptional<number>;
@@ -10,7 +17,7 @@ class Card extends Model<InferAttributes<Card>, InferCreationAttributes<Card>> {
   declare answerImg: CreationOptional<string>;
   declare playedDate: CreationOptional<Date>;
   declare boxNumber: CreationOptional<number>;
-  declare deckId: number;
+  declare deckId: ForeignKey<Deck["id"]>;
 
   static initialize(sequelize: Sequelize) {
     Card.init(
@@ -52,6 +59,7 @@ class Card extends Model<InferAttributes<Card>, InferCreationAttributes<Card>> {
       {
         sequelize,
         modelName: "Card",
+        indexes: [{ fields: ["deckId"] }],
       }
     );
   }

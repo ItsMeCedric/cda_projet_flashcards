@@ -1,6 +1,7 @@
 import userRepository from "../repositories/userRepository";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
+import { underscoredIf } from "sequelize/types/utils";
 
 export interface RegisterData {
   username: string;
@@ -25,11 +26,13 @@ const register = async (data: RegisterData) => {
     secret: Buffer.from(process.env.ARGON2SECRET as string),
   });
   const newData = {
+    id: undefined,
     username: data.username,
     email: data.email,
     hash: hash,
+    profilePicture: undefined,
   };
-  await userRepository.addUser(newData);
+  await userRepository.create(newData);
 };
 
 const login = async (data: LoginData) => {
