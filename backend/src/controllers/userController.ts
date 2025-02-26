@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import userService from "../services/userService";
 
 const getAllusers = async (req: Request, res: Response) => {
-  const users = await userService.getAllusers();
+  const users = await userService.getAllUsers();
   res.status(200).json(users);
 };
 

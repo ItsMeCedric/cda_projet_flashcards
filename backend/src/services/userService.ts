@@ -2,7 +2,7 @@ import { InferAttributes, InferCreationAttributes } from "sequelize";
 import userRepository from "../repositories/userRepository";
 import user from "../../models/user";
 
-const getAllusers = () => {
+const getAllUsers = () => {
   return userRepository.findAll();
 };
 
@@ -22,4 +22,4 @@ const destroy = (id: number) => {
   return userRepository.destroy(id);
 };
 
-export default { getAllusers, findById, create, update, destroy };
+export default { getAllUsers, findById, create, update, destroy };
