@@ -1,23 +1,23 @@
-import styles from './Account.module.css'
+import styles from "./Account.module.css";
 
-type Props = {}
+type Props = {};
 
 const Account = (props: Props) => {
   const handleEmailChange = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   const handlePasswordChange = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   return (
     <div className={styles.profile_page}>
       <div className={styles.card_container}>
         <img
           className={styles.round}
-          src='https://fastly.picsum.photos/id/593/200/200.jpg?hmac=E26lTUTkzs_AeuWXrkT-kFTudfYDTVCjgKVE_HDzRmk'
-          alt='user'
+          src="https://fastly.picsum.photos/id/593/200/200.jpg?hmac=E26lTUTkzs_AeuWXrkT-kFTudfYDTVCjgKVE_HDzRmk"
+          alt="user"
         />
         <h3>Username</h3>
         <h6>Email</h6>
@@ -40,7 +40,7 @@ const Account = (props: Props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Account
+export default Account;
