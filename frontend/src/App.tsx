@@ -5,7 +5,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import RGPD from "./pages/RGPD/RGPD";
-import Account from "./pages/Account/Account";
+import Account from "./components/Account/Account";
 
 const App = () => {
   return (
