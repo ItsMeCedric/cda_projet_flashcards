@@ -19,7 +19,7 @@ export const loginUser = async (credentials: LoginCredentials): Promise<UserMock
   if (response.data.length === 0) {
     throw new Error("User not found");
   }
-  console.log(response.data);
+  localStorage.setItem("userId", response.data.id);
   return response.data[0];
 };
 

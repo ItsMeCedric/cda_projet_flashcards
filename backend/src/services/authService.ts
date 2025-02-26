@@ -52,7 +52,7 @@ const login = async (data: LoginData) => {
   const token = jwt.sign({ id: user.id }, process.env.JWTSECRET as string, {
     expiresIn: "1d",
   });
-  return token;
+  return { token, id: user.id };
 };
 
 export default { register, login };

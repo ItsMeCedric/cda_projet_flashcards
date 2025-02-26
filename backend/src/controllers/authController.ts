@@ -9,9 +9,9 @@ const register = (req: Request, res: Response) => {
 
 const login = async (req: Request, res: Response) => {
   const data = req.body;
-  const token = await authService.login(data);
-  res.cookie("Authorization", `Bearer ${token}`, { secure: true, httpOnly: true, sameSite: "strict" });
-  res.status(200).json({ message: "Connexion réussie!" });
+  const response = await authService.login(data);
+  res.cookie("Authorization", `Bearer ${response.token}`, { secure: true, httpOnly: true, sameSite: "strict" });
+  res.status(200).json({ message: "Connexion réussie!", id: response.id });
 };
 
 const logout = (req: Request, res: Response) => {
