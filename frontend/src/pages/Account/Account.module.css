@@ -6,24 +6,25 @@
   flex-direction: column;
   min-height: 90vh;
   margin: 0;
+  color: var(--btn-txt);
 }
 
 h3 {
-  color: white;
+  color: var(--txt-main);
   margin: 10px 0;
 }
 
 h6 {
-  color: white;
+  color: var(--txt-main);
   margin: 5px 0;
   text-transform: uppercase;
 }
 
 .card_container {
-  background-color: #d14040;
+  background-color: var(--bg-alt);
   border-radius: 5px;
-  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
-  color: #b3b8cd;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+  color: var(--btn);
   padding-top: 30px;
   position: relative;
   width: 350px;
@@ -32,7 +33,7 @@ h6 {
 }
 
 .card_container .round {
-  border: 1px solid #eb793d;
+  border: 1px solid var(--btn);
   border-radius: 50%;
   padding: 7px;
 }
@@ -45,42 +46,80 @@ h6 {
 }
 
 button.primary {
-  background-color: #d14040;
+  background-color: var(--btn);
   font-family: Montserrat, sans-serif;
   cursor: pointer;
   font-size: 14px;
   padding: 10px 15px;
   border-radius: 8px;
   transition: background-color 0.3s ease;
-  border: white solid 1px;
-  color: white;
+  border: var(--brd) solid 1px;
+  color: var(--btn-txt);
 }
 
 .primary:hover {
-  background-color: #b13131;
+  background-color: var(--hvr);
 }
 
 .prefer {
-  background-color: #d14040;
+  background-color: var(--btn);
+  color: var(--btn-txt);
   text-align: left;
   padding: 15px;
   margin-top: 30px;
-  border-top: black dotted 1px;
+  border-top: var(--brd) dotted 1px;
 }
 
 .prefer ul {
-  color: white;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
 .prefer ul li {
-  color: white;
   border: 1px solid #2d2747;
   border-radius: 2px;
   display: inline-block;
   font-size: 12px;
   margin: 0 7px 7px 0;
   padding: 7px;
+}
+
+.prefer h6 {
+  color: var(--btn-txt);
+}
+
+.field {
+  position: relative;
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.field input {
+  border: 1px solid var(--btn);
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 14px;
+  width: auto;
+  max-width: 200px;
+  height: 24px;
+  box-sizing: border-box;
+}
+
+.field label {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.field .icon {
+  cursor: pointer;
+  margin-left: 10px;
+  color: var(--btn);
+  transition: color 0.3s ease;
+}
+
+.field .icon:hover {
+  color: var(--hvr);
 }
