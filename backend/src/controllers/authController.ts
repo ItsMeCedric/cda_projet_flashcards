@@ -7,11 +7,11 @@ const register = (req: Request, res: Response) => {
   res.status(201).json({ message: "Compte créé avec succés" });
 };
 
-const login = (req: Request, res: Response) => {
+const login = async (req: Request, res: Response) => {
   const data = req.body;
-  const response = authService.login(data);
-  res.cookie("Authorization", "Bearer ${token}", { secure: true, httpOnly: true, sameSite: "strict" });
-  res.status(200).json(response);
+  const token = await authService.login(data);
+  res.cookie("Authorization", `Bearer ${token}`, { secure: true, httpOnly: true, sameSite: "strict" });
+  res.status(200).json({ message: "Connexion réussie!" });
 };
 
 const logout = (req: Request, res: Response) => {

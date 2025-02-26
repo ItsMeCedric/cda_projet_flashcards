@@ -1,7 +1,6 @@
 import userRepository from "../repositories/userRepository";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { underscoredIf } from "sequelize/types/utils";
 
 export interface RegisterData {
   username: string;
@@ -10,13 +9,15 @@ export interface RegisterData {
 }
 
 interface LoginData {
-  username: string;
+  email: string;
   password: string;
 }
 
 const register = async (data: RegisterData) => {
-  const existingEmail = await userRepository.findByEmail(data.email);
-  const existingUsername = await userRepository.findByUsername(data.username);
+  let existingEmail = undefined;
+  let existingUsername = undefined;
+  if (data.email) existingEmail = await userRepository.findByEmail(data.email);
+  if (data.username) existingUsername = await userRepository.findByUsername(data.username);
   if (existingEmail || existingUsername) {
     throw new Error("Vous avez déjà un compte");
   }
@@ -37,7 +38,7 @@ const register = async (data: RegisterData) => {
 
 const login = async (data: LoginData) => {
   // log avec le username ou l'email
-  const user = await userRepository.findByUsername(data.username);
+  const user = await userRepository.findByEmail(data.email);
   if (user) {
     const isPasswordValid = await argon2.verify(user.hash, data.password, {
       secret: Buffer.from(process.env.ARGON2SECRET as string),
