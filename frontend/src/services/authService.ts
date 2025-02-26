@@ -6,7 +6,7 @@ import axiosInstance from "../utils/axios";
 
 export const registerUser = async (credentials: RegisterCredentials) => {
   // todo : LS/ Appel à l'API json-server à effacer + verifier si mail ou username deja existant (côté server)
-  await axiosInstance.post("/users", credentials);
+  await axiosInstance.post("/auth/register", credentials);
 };
 
 export const loginUser = async (credentials: LoginCredentials): Promise<UserMock> => {
@@ -15,12 +15,11 @@ export const loginUser = async (credentials: LoginCredentials): Promise<UserMock
   // return response.data;
 
   // todo : LS/ Appel à l'API json-server à effacer
-  const response = await axiosInstance.get<UserMock[]>(
-    `/users?email=${credentials.email}&hash=${credentials.password}`
-  );
+  const response = await axiosInstance.post<UserMock[]>(`/auth/login`, credentials);
   if (response.data.length === 0) {
     throw new Error("User not found");
   }
+  console.log(response.data);
   return response.data[0];
 };
 
