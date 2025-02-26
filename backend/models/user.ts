@@ -9,4 +9,5 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare profilePicture: CreationOptional<string>;
   declare hash: string;
 }
+
 export default User;
