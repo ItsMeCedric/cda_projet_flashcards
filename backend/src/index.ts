@@ -12,7 +12,6 @@ db.sync();
 const app = express();
 app.use(json());
 
-userRouter.use("/:userId/decks", deckRouter);
 deckRouter.use("/:postId/cards", cardRouter);
 userRouter.use("/:userId/decks", deckRouter);
 app.use("/auth", authRouter);
