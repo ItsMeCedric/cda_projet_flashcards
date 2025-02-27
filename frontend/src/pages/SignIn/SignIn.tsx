@@ -29,7 +29,6 @@ const SignIn = () => {
 
   // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
-    console.log(user);
     if (isLogged) {
       navigate("/account", { replace: true }); // todo : LS/à remplacer par la redirection vers le dashboard
     }

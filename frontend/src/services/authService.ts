@@ -10,17 +10,10 @@ export const registerUser = async (credentials: RegisterCredentials) => {
 };
 
 export const loginUser = async (credentials: LoginCredentials): Promise<UserMock> => {
-  // todo : LS/ changer le type de retour + changer le endpoint
-  // const response = await axiosInstance.post<UserMock>("/", credentials);
-  // return response.data;
-
-  // todo : LS/ Appel à l'API json-server à effacer
-  const response = await axiosInstance.post<UserMock[]>(`/auth/login`, credentials);
-  if (response.data.length === 0) {
-    throw new Error("User not found");
-  }
-  localStorage.setItem("userId", response.data.id);
-  return response.data[0];
+  //TODO: la réponse contient le hash de l'user, très mauvais
+  const response = await axiosInstance.post<UserMock>(`/auth/login`, credentials);
+  localStorage.setItem("userId", response.data.id.toString());
+  return response.data;
 };
 
 export const validateUserToken = async () => {
@@ -28,5 +21,7 @@ export const validateUserToken = async () => {
 };
 
 export const logoutUser = async () => {
+  const response = await axiosInstance.get("/auth/logout");
+  if (response.status === 200) localStorage.removeItem("userId");
   console.log("authService/logoutUser");
 };

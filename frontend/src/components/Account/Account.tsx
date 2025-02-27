@@ -11,8 +11,7 @@ const Account: React.FC = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       email: user?.email || "",
-      username: user?.first_name || "",
-      lastName: user?.last_name || "",
+      username: user?.username || "",
       password: "",
     },
   });
@@ -21,7 +20,6 @@ const Account: React.FC = () => {
     email: false,
     password: false,
     username: false,
-    lastName: false,
   });
 
   const [email, setEmail] = useState("");
@@ -40,17 +38,16 @@ const Account: React.FC = () => {
     setIsEditing((prev) => ({ ...prev, [field]: true }));
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: { email: string; username: string; password: string }) => {
     try {
       const updatedData = {
         email: data.email,
-        first_name: data.username,
-        last_name: data.lastName,
+        username: data.username,
         password: data.password,
       };
       await axiosInstance.patch(`/api/users/${user?.id}`, updatedData);
       alert("Profile updated successfully!");
-      setIsEditing({ email: false, password: false, username: false, lastName: false });
+      setIsEditing({ email: false, password: false, username: false });
     } catch (error) {
       console.error("Failed to update profile:", error);
     }
