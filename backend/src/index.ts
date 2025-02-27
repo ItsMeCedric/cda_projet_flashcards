@@ -1,5 +1,4 @@
 import express, { json, Request, Response } from "express";
-import cors, { CorsOptions } from "cors";
 import authRouter from "./routers/authRouter";
 import cardRouter from "./routers/cardRouter";
 import db from "../models/index";

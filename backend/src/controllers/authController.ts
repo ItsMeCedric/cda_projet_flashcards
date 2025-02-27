@@ -15,7 +15,6 @@ const login = async (req: Request, res: Response) => {
 };
 
 const logout = (req: Request, res: Response) => {
-  console.log("ok2");
   res.clearCookie("Authorization");
   res.sendStatus(200);
 };
