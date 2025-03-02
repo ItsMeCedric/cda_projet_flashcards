@@ -6,6 +6,11 @@
   scrollbar-width: none; /*firefox*/
 }
 
+.dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
 /*chrome...*/
 body::-webkit-scrollbar {
   display: none;

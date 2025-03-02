@@ -1,11 +1,6 @@
 .profile_page {
   font-family: Montserrat, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 90vh;
-  margin: 0;
+  margin: 2rem;
   color: var(--btn-txt);
 }
 .back {
