@@ -1,0 +1,17 @@
+.wrap {
+  max-width: 1500px;
+  margin: 0 auto;
+  background-color: var(--bg-main);
+  color: var(--txt-main);
+  scrollbar-width: none; /*firefox*/
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
+/*chrome...*/
+body::-webkit-scrollbar {
+  display: none;
+}
