@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import axiosInstance from "../../utils/axios";
 import { useForm } from "react-hook-form";
 import styles from "./Account.module.css";
 import { FaUserEdit, FaRegSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Home from "../../pages/Home/Home";
 
 const Account: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth);
   const { register, handleSubmit } = useForm({
     defaultValues: {
       email: user?.email || "",
-      firstName: user?.first_name || "",
-      lastName: user?.last_name || "",
+      username: user?.username || "",
       password: "",
     },
   });
@@ -21,9 +19,18 @@ const Account: React.FC = () => {
   const [isEditing, setIsEditing] = useState({
     email: false,
     password: false,
-    firstName: false,
-    lastName: false,
+    username: false,
   });
+
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    axiosInstance.get(`/users/${localStorage.getItem("userId")}`).then((res) => {
+      setEmail(res.data.email);
+      setUsername(res.data.username);
+    });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -31,17 +38,16 @@ const Account: React.FC = () => {
     setIsEditing((prev) => ({ ...prev, [field]: true }));
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: { email: string; username: string; password: string }) => {
     try {
       const updatedData = {
         email: data.email,
-        first_name: data.firstName,
-        last_name: data.lastName,
+        username: data.username,
         password: data.password,
       };
       await axiosInstance.patch(`/api/users/${user?.id}`, updatedData);
       alert("Profile updated successfully!");
-      setIsEditing({ email: false, password: false, firstName: false, lastName: false });
+      setIsEditing({ email: false, password: false, username: false });
     } catch (error) {
       console.error("Failed to update profile:", error);
     }
@@ -64,12 +70,11 @@ const Account: React.FC = () => {
           src="https://fastly.picsum.photos/id/593/200/200.jpg?hmac=E26lTUTkzs_AeuWXrkT-kFTudfYDTVCjgKVE_HDzRmk"
           alt="user"
         />
-        <h3>{user?.username}</h3>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.field}>
             <label>Email:</label>
-            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{user?.email}</span>}
+            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{email}</span>}
             {isEditing.email ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
@@ -78,22 +83,12 @@ const Account: React.FC = () => {
           </div>
 
           <div className={styles.field}>
-            <label>First Name:</label>
-            {isEditing.firstName ? <input type="text" {...register("firstName")} /> : <span>{user?.first_name}</span>}
-            {isEditing.firstName ? (
+            <label>Username:</label>
+            {isEditing.username ? <input type="text" {...register("username")} /> : <span>{username}</span>}
+            {isEditing.username ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
-              <FaUserEdit className={styles.icon} onClick={() => handleEditClick("firstName")} />
-            )}
-          </div>
-
-          <div className={styles.field}>
-            <label>Last Name:</label>
-            {isEditing.lastName ? <input type="text" {...register("lastName")} /> : <span>{user?.last_name}</span>}
-            {isEditing.lastName ? (
-              <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
-            ) : (
-              <FaUserEdit className={styles.icon} onClick={() => handleEditClick("lastName")} />
+              <FaUserEdit className={styles.icon} onClick={() => handleEditClick("username")} />
             )}
           </div>
 

@@ -9,6 +9,10 @@
   flex-direction: column;
 }
 
+.container {
+  min-height: 75vh;
+}
+
 .auth_container {
   display: flex;
   gap: 20px;
