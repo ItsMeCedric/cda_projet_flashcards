@@ -28,6 +28,7 @@ const Login = () => {
   return (
     <div className={styles.wrap}>
       <Header />
+      <div className={styles.container}>
       <div className={styles.auth_container}>
         <div className={styles.form_wrapper}>
           <h2>Connexion</h2>
@@ -48,6 +49,7 @@ const Login = () => {
             </button>
           </form>
         </div>
+      </div>
       </div>
       <Footer />
     </div>

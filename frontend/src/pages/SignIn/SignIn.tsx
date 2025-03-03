@@ -37,7 +37,9 @@ const SignIn = () => {
 
   return (
     <div className={styles.wrap}>
+      
       <Header />
+      <div className={styles.container}>
       <div className={styles.auth_container}>
         <div className={styles.form_wrapper}>
           <h2>Inscription</h2>
@@ -79,6 +81,7 @@ const SignIn = () => {
             </button>
           </form>
         </div>
+      </div>
       </div>
       <Footer />
     </div>
