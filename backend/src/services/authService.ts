@@ -37,7 +37,6 @@ const register = async (data: RegisterData) => {
 };
 
 const login = async (data: LoginData) => {
-  // log avec le username ou l'email
   const user = await userRepository.findByEmail(data.email);
   if (user) {
     const isPasswordValid = await argon2.verify(user.hash, data.password, {
