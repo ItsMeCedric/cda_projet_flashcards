@@ -7,7 +7,7 @@ const getAllDecks = async (req: Request, res: Response) => {
 };
 
 const findById = async (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.deckId);
   const deck = await deckService.findById(id);
   res.status(200).json(deck);
 };

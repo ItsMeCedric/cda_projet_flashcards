@@ -1,5 +1,4 @@
 import express, { json, Request, Response } from "express";
-import cors, { CorsOptions } from "cors";
 import authRouter from "./routers/authRouter";
 import cardRouter from "./routers/cardRouter";
 import db from "../models/index";
@@ -15,22 +14,18 @@ db.sync();
 
 const app = express();
 
-const whitelist = ["http://localhost:5173"];
-const corsOptions: CorsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || whitelist.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`Not allowed by CORS: ${origin}`));
-    }
-  },
-  credentials: true,
-};
-app.use(cors(corsOptions));
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
 app.use(json());
 
 deckRouter.use("/:postId/cards", cardRouter);
 userRouter.use("/:userId/decks", deckRouter);
+app.use("/users", userRouter);
 app.use("/auth", authRouter);
 
 app.get("/", (req: Request, res: Response) => {

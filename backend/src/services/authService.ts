@@ -37,7 +37,6 @@ const register = async (data: RegisterData) => {
 };
 
 const login = async (data: LoginData) => {
-  // log avec le username ou l'email
   const user = await userRepository.findByEmail(data.email);
   if (user) {
     const isPasswordValid = await argon2.verify(user.hash, data.password, {
@@ -52,7 +51,7 @@ const login = async (data: LoginData) => {
   const token = jwt.sign({ id: user.id }, process.env.JWTSECRET as string, {
     expiresIn: "1d",
   });
-  return token;
+  return { token, id: user.id };
 };
 
 export default { register, login };

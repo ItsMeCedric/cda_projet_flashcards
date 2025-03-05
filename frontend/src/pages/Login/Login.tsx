@@ -13,13 +13,15 @@ const Login = () => {
   const { register, handleSubmit } = useForm<LoginCredentials>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLogged, user, isLoading, error } = useAppSelector((state) => state.auth);
+  let { isLogged, user, isLoading, error } = useAppSelector((state) => state.auth);
 
   const onSubmit: SubmitHandler<LoginCredentials> = (data) => dispatch(login(data));
 
   // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
-    console.log(user);
+    if (!localStorage.getItem("userId")) {
+      isLogged = false;
+    }
     if (isLogged) {
       navigate("/account", { replace: true }); // todo : LS/ à remplacer par la redirection vers le dashboard
     }

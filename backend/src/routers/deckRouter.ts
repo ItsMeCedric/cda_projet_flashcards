@@ -1,12 +1,13 @@
 import { Router } from "express";
 import deckController from "../controllers/deckController";
+import verifyAuth from "../middlewares/authMiddleware";
 
 const router = Router({ mergeParams: true });
 
-router.get("/", deckController.getAllDecks);
-router.get("/:deckId", deckController.findById);
-router.post("/", deckController.create);
-router.patch("/:deckId", deckController.update);
-router.delete("/:deckId", deckController.destroy);
+router.get("/", verifyAuth, deckController.getAllDecks);
+router.get("/:deckId", verifyAuth, deckController.findById);
+router.post("/", verifyAuth, deckController.create);
+router.patch("/:deckId", verifyAuth, deckController.update);
+router.delete("/:deckId", verifyAuth, deckController.destroy);
 
 export default router;
