@@ -3,10 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface SearchState {
   searchContent: string;
+  selectedThemes: string[];
 }
 
 const initialState: SearchState = {
   searchContent: "",
+  selectedThemes: [],
 };
 
 const searchSlice = createSlice({
@@ -16,8 +18,19 @@ const searchSlice = createSlice({
     setSearchContent(state, action: PayloadAction<string>) {
       state.searchContent = action.payload;
     },
+    toggleTheme: (state, action: PayloadAction<string>) => {
+      const theme = action.payload;
+      if (state.selectedThemes.includes(theme)) {
+        state.selectedThemes = state.selectedThemes.filter((t) => t !== theme);
+      } else {
+        state.selectedThemes.push(theme);
+      }
+    },
+    resetThemes: (state) => {
+      state.selectedThemes = [];
+    },
   },
 });
 
-export const { setSearchContent } = searchSlice.actions;
+export const { setSearchContent, toggleTheme, resetThemes } = searchSlice.actions;
 export default searchSlice.reducer;
