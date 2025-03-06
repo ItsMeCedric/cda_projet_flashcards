@@ -10,7 +10,7 @@ const register = (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
   const data = req.body;
   const response = await authService.login(data);
-  res.cookie("Authorization", `Bearer ${response.token}`, { secure: true, httpOnly: true, sameSite: "strict" });
+  res.cookie("Authorization", `Bearer ${response.token}`, { secure: true, httpOnly: true, sameSite: "strict", path: "/api" });
   res.status(200).json(response.user);
 };
 

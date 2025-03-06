@@ -5,6 +5,7 @@ import db from "../models/index";
 import deckRouter from "./routers/deckRouter";
 import userRouter from "./routers/userRouter";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 require("dotenv").config();
 
@@ -16,6 +17,7 @@ db.sync();
 const app = express();
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cookieParser());
 app.use(json());
 
 deckRouter.use("/:postId/cards", cardRouter);
