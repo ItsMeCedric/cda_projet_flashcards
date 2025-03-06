@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import RGPD from "./pages/RGPD/RGPD";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import AuthRoute from "./components/AuthRoute";
 
 const App = () => {
   return (
@@ -14,7 +15,9 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/RGPD" element={<RGPD />} />
-      <Route path="/account" element={<Dashboard />} />
+      <Route element={<AuthRoute />}>
+        <Route path="/account" element={<Dashboard />} />
+      </Route>
     </Routes>
   );
 };
