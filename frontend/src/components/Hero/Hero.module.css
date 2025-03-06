@@ -15,10 +15,25 @@
   color: var(--txt-main);
 }
 
-.hero input {
+.search {
   background-color: var(--fld);
   border-style: solid;
   border-color: var(--brd);
   outline: none;
   width: 30%;
+}
+
+.search_submit {
+  width: 10%;
+  background-color: var(--fld);
+  border-style: solid;
+  border-color: var(--brd);
+  outline: none;
+  color: var(--txt-main);
+  cursor: pointer;
+}
+
+.search_submit:hover {
+  background-color: var(--btn);
+  color: var(--btn-txt);
 }
