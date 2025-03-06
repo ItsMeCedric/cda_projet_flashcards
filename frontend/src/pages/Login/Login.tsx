@@ -34,11 +34,15 @@ const Login = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className={styles.form_group}>
                 <label htmlFor={styles.login_email}>Email</label>
-                <input {...register("email", { required: true })} placeholder="Entrez votre email" />
+                <input type="email" {...register("email", { required: true })} placeholder="Entrez votre email" />
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="login-password">Mot de passe</label>
-                <input {...register("password", { required: true })} placeholder="Entrez votre mot de passe" />
+                <input
+                  type="password"
+                  {...register("password", { required: true })}
+                  placeholder="Entrez votre mot de passe"
+                />
               </div>
               {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
               {error && <div className={styles.error}>{error}</div>}
