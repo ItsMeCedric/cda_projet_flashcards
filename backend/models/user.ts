@@ -15,6 +15,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare email: string;
   declare profilePicture: CreationOptional<string>;
   declare hash: string;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
 
   declare static associations: {
     decks: Association<User, Deck>;
@@ -44,6 +46,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
           type: DataTypes.STRING,
           allowNull: false,
         },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
       },
       {
         sequelize,

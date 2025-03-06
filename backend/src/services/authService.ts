@@ -49,9 +49,11 @@ const login = async (data: LoginData) => {
     throw new Error("Identifiant ou mot de passe invalide");
   }
   const token = jwt.sign({ id: user.id }, process.env.JWTSECRET as string, {
-    expiresIn: "1d",
+    expiresIn: "2h",
   });
-  return { token, id: user.id };
+
+  const { hash, updatedAt, createdAt, ...sendUser } = user.toJSON();
+  return { token, user: sendUser };
 };
 
 export default { register, login };

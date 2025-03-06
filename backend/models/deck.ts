@@ -17,6 +17,8 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare downloads: number;
   declare mark: CreationOptional<number>;
   declare userId: ForeignKey<User["id"]>;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
 
   declare static associations: {
     cards: Association<Deck, Card>;
@@ -46,6 +48,8 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
           type: DataTypes.INTEGER,
           allowNull: false,
         },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
       },
       {
         sequelize,

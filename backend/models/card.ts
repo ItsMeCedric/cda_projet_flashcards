@@ -18,6 +18,8 @@ class Card extends Model<InferAttributes<Card>, InferCreationAttributes<Card>> {
   declare playedDate: CreationOptional<Date>;
   declare boxNumber: CreationOptional<number>;
   declare deckId: ForeignKey<Deck["id"]>;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
 
   static initialize(sequelize: Sequelize) {
     Card.init(
@@ -55,6 +57,8 @@ class Card extends Model<InferAttributes<Card>, InferCreationAttributes<Card>> {
           type: DataTypes.INTEGER,
           allowNull: false,
         },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
       },
       {
         sequelize,
