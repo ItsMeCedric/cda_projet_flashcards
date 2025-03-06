@@ -16,8 +16,7 @@ export interface RegisterCredentialsForm extends RegisterCredentials {
 }
 
 export interface AuthState {
-  isLogged: boolean;
-  user: User | null;
+  user: User | undefined;
   isLoading: boolean;
   success: string | null;
   error: string | null;

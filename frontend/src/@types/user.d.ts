@@ -4,8 +4,6 @@
 export interface UserMock {
   id: number;
   username: string;
-  first_name: string | null;
-  last_name: string | null;
   email: string;
   b64Url: string;
   verified: boolean;
@@ -15,10 +13,7 @@ export interface UserMock {
 export interface User {
   id: number;
   username: string;
-  first_name: string | null;
-  last_name: string | null;
   email: string;
   b64Url: string;
-  // verified: boolean;
-  // hash: string;
+  verified: boolean;
 }

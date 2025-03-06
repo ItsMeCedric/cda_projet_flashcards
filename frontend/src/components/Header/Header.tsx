@@ -10,17 +10,17 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 
 // import types
 import { ThemeContextType } from "../../@types/theme";
-import axiosInstance from "../../utils/axios";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { logout as logoutAction } from "../../store/actions/authActions";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLogged } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const logout = () => {
     dispatch(logoutAction());
+    navigate("/", { replace: true });
   };
   const { theme } = useContext(ThemeContext) as ThemeContextType;
 
@@ -37,7 +37,7 @@ const Header = () => {
         <ToggleTheme />
       </div>
       <div className={styles.auth_btn}>
-        {localStorage.getItem("userId") ? (
+        {user != undefined ? (
           <>
             <NavLink className={styles.login} to={"/account"}>
               Account

@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { registerUser, loginUser, validateUserToken, logoutUser } from "../../services/authService";
 import { LoginCredentials, RegisterCredentials } from "../../@types/auth";
-import { UserMock } from "../../@types/user";
+import { User } from "../../@types/user";
 
 // Action pour reset le state
 export const resetAuthState = createAction("auth/RESET_AUTH_STATE");
@@ -21,7 +21,7 @@ export const register = createAsyncThunk(
 );
 
 // Action pour la connexion d'un utilisateur (asynchrone)
-export const login = createAsyncThunk<UserMock, LoginCredentials>( // todo : changer le type de retour
+export const login = createAsyncThunk<User, LoginCredentials>( // todo : changer le type de retour
   "auth/LOGIN",
   async (credentials, { rejectWithValue }) => {
     try {

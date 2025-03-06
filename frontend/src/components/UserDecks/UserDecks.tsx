@@ -11,7 +11,7 @@ const UserDecks: React.FC = () => {
   useEffect(() => {
     const fetchDecks = async () => {
       try {
-        const response = await axiosInstance.get(`/${user?.id}/decks`);
+        const response = await axiosInstance.get(`/users/${user?.id}/decks`);
         setDecks(response.data);
       } catch (error) {
         console.error("Failed to fetch decks:", error);

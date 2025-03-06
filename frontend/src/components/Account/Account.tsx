@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import axiosInstance from "../../utils/axios";
 import { useForm } from "react-hook-form";
@@ -22,16 +22,6 @@ const Account: React.FC = () => {
     username: false,
   });
 
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    axiosInstance.get(`/users/${localStorage.getItem("userId")}`).then((res) => {
-      setEmail(res.data.email);
-      setUsername(res.data.username);
-    });
-  }, []);
-
   const navigate = useNavigate();
 
   const handleEditClick = (field: string) => {
@@ -45,7 +35,7 @@ const Account: React.FC = () => {
         username: data.username,
         password: data.password,
       };
-      await axiosInstance.patch(`/api/users/${user?.id}`, updatedData);
+      await axiosInstance.patch(`/users/${user?.id}`, updatedData);
       alert("Profile updated successfully!");
       setIsEditing({ email: false, password: false, username: false });
     } catch (error) {
@@ -75,7 +65,7 @@ const Account: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.field}>
             <label>Email:</label>
-            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{email}</span>}
+            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{user?.email}</span>}
             {isEditing.email ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
@@ -85,7 +75,7 @@ const Account: React.FC = () => {
 
           <div className={styles.field}>
             <label>Username:</label>
-            {isEditing.username ? <input type="text" {...register("username")} /> : <span>{username}</span>}
+            {isEditing.username ? <input type="text" {...register("username")} /> : <span>{user?.username}</span>}
             {isEditing.username ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (

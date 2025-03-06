@@ -1,7 +1,7 @@
 // todo : LS/ Appel à l'API (verif endpoint) + return des données
 
 import { LoginCredentials, RegisterCredentials } from "../@types/auth";
-import { UserMock } from "../@types/user";
+import { User } from "../@types/user";
 import axiosInstance from "../utils/axios";
 
 export const registerUser = async (credentials: RegisterCredentials) => {
@@ -9,11 +9,11 @@ export const registerUser = async (credentials: RegisterCredentials) => {
   await axiosInstance.post("/auth/register", credentials);
 };
 
-export const loginUser = async (credentials: LoginCredentials): Promise<UserMock> => {
+export const loginUser = async (credentials: LoginCredentials): Promise<User> => {
   //TODO: la réponse contient le hash de l'user, très mauvais
-  const response = await axiosInstance.post<UserMock>(`/auth/login`, credentials);
-  localStorage.setItem("userId", response.data.id.toString());
-  return response.data;
+  const response = await axiosInstance.post<User>(`/auth/login`, credentials);
+  if (response.status === 200) return response.data;
+  else throw new Error("error while logging in");
 };
 
 export const validateUserToken = async () => {

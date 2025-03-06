@@ -4,8 +4,7 @@ import { resetAuthState, register, login, validateToken, logout } from "../actio
 import { AuthState } from "../../@types/auth";
 
 const initialState: AuthState = {
-  isLogged: false,
-  user: null,
+  user: undefined,
   isLoading: false,
   success: null,
   error: null,
@@ -18,8 +17,7 @@ const authReducer = createReducer(initialState, (builder) => {
   builder
     // ----- RESET_AUTH_STATE
     .addCase(resetAuthState, (state) => {
-      state.isLogged = false;
-      state.user = null;
+      state.user = undefined;
       state.isLoading = false;
       state.success = null;
       state.error = null;
@@ -44,7 +42,6 @@ const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(login.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.isLogged = true;
       state.user = action.payload;
     })
     .addCase(login.rejected, (state, action) => {
@@ -58,12 +55,10 @@ const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(validateToken.fulfilled, (state) => {
       state.isLoading = false;
-      state.isLogged = true;
     })
     .addCase(validateToken.rejected, (state, action) => {
       state.isLoading = false;
-      state.isLogged = false;
-      state.user = null;
+      state.user = undefined;
       state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
     })
     // ----- LOGOUT
@@ -73,15 +68,13 @@ const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(logout.fulfilled, (state) => {
       state.isLoading = false;
-      state.isLogged = false;
-      state.user = null;
+      state.user = undefined;
       state.success = "Logout successful.";
       // todo : supprimer token / utilisateur
     })
     .addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
-      state.isLogged = false;
-      state.user = null;
+      state.user = undefined;
       state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
       // todo : supprimer quand même token / utilisateur ?
     });
