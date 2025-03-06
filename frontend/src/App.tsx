@@ -8,6 +8,7 @@ import RGPD from "./pages/RGPD/RGPD";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AuthRoute from "./components/AuthRoute";
 import NewDeck from "./pages/NewDeck/NewDeck";
+import NewCard from "./pages/NewCard/NewCard";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Route element={<AuthRoute />}>
         <Route path="/account" element={<Dashboard />} />
         <Route path="/new-deck" element={<NewDeck />} />
+        <Route path="/new-card" element={<NewCard />} />
       </Route>
     </Routes>
   );
