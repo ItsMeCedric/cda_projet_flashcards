@@ -55,7 +55,7 @@ const SignIn = () => {
               </div>
               <div className={styles.form_group}>
                 <label htmlFor={styles.register_email}>Email</label>
-                <input {...register("email", { required: true })} placeholder="Entrez votre email" />
+                <input type="email" {...register("email", { required: true })} placeholder="Entrez votre email" />
                 {errors.email && <p className={styles.error}>{errors.email.message}</p>}
               </div>
               <div className={styles.form_group}>
