@@ -1,40 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { useAppSelector } from "../../hooks/redux";
-import axiosInstance from "../../utils/axios";
-import { Deck } from "../../@types/deck";
 import styles from "./UserDecks.module.css";
+import Deck from "../Deck/Deck";
+import { useEffect, useState } from "react";
+import axiosInstance from "../../utils/axios";
+import { useAppSelector } from "../../hooks/redux";
+import { Deck as DeckType } from "../../@types/deck";
 
-const UserDecks: React.FC = () => {
-  const [decks, setDecks] = useState<Deck[]>([]);
+const UserDecks = () => {
+  const [decks, setDecks] = useState<DeckType[]>([]);
   const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    const fetchDecks = async () => {
-      try {
-        const response = await axiosInstance.get(`/users/${user?.id}/decks`);
-        setDecks(response.data);
-      } catch (error) {
-        console.error("Failed to fetch decks:", error);
-      }
-    };
-
     if (user) {
-      fetchDecks();
+      axiosInstance
+        .get(`/users/${user.id}/decks`)
+        .then((res) => {
+          console.log("Fetched decks:", res.data);
+          setDecks(res.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching decks:", error);
+        });
     }
   }, [user]);
 
-  // total decks user
-  const totalDecks = decks.length;
-
   return (
     <div className={styles.all_deck}>
-      <h2>Mes Decks</h2>
-      <p>Nombre total de decks : {totalDecks}</p>
-      <ul>
-        {decks.map((deck) => (
-          <li key={deck.id}>{deck.name}</li>
-        ))}
-      </ul>
+      {decks.map((deck) => (
+        <Deck key={deck.id} deck={deck} />
+      ))}
     </div>
   );
 };
