@@ -20,7 +20,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
 app.use(json());
 
-deckRouter.use("/:postId/cards", cardRouter);
+deckRouter.use("/:deckId/cards", cardRouter);
 userRouter.use("/:userId/decks", deckRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);

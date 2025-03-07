@@ -48,9 +48,11 @@ class Card extends Model<InferAttributes<Card>, InferCreationAttributes<Card>> {
         playedDate: {
           type: DataTypes.DATE,
           allowNull: true,
+          defaultValue: Date.now(),
         },
         boxNumber: {
           type: DataTypes.INTEGER,
+          allowNull: true,
           defaultValue: 0,
         },
         deckId: {
