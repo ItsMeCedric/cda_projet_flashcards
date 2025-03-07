@@ -14,7 +14,7 @@ const findById = async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
   const data = req.body;
-  const card = await cardService.create({ ...data, deckId: req.params.deckId });
+  const card = await cardService.create({ ...data, deckId: parseInt(req.params.deckId) });
   res.status(201).json(card);
 };
 
