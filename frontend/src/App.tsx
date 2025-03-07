@@ -21,7 +21,6 @@ const App = () => {
         <Route path="/account" element={<Dashboard />} />
         <Route path="/new-card" element={<NewCard />} />
         <Route path="/new-deck" element={<NewDeck />} />
-        <Route path="/new-card" element={<NewCard />} />
       </Route>
     </Routes>
   );
