@@ -15,7 +15,7 @@ const NewCard = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    axiosInstance.post(`/users/${user}/decks/${deckId}/cards`, { question, answer, deckId }).then((res) => {
+    axiosInstance.post(`/users/${user?.id}/decks/${deckId}/cards`, { question, answer, deckId }).then((res) => {
       console.log(res);
     });
   };
