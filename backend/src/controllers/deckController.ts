@@ -15,7 +15,7 @@ const findById = async (req: Request, res: Response) => {
 //TODO: ajouter le middleware de vérification d'authentification
 const create = async (req: Request, res: Response) => {
   const data = req.body;
-  const deck = await deckService.create(data);
+  const deck = await deckService.create({ ...data, userId: req.params.userId });
   res.status(201).json(deck);
 };
 
