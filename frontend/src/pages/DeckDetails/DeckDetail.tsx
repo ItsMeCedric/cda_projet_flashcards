@@ -9,10 +9,12 @@ const DeckDetail = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [deck, setDeck] = useState<Deck | undefined>(undefined);
+  const [cards, setCards] = useState<Card[] | undefined>(undefined);
   const deckId = state.deckId;
 
   useEffect(() => {
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}`).then((res) => setDeck(res.data));
+    axiosInstance.get(`/users/${user?.id}/decks/${deckId}/cards`).then((res) => setCards(res.data));
   }, []);
 
   const addCard = (e: MouseEvent<HTMLButtonElement>) => {
@@ -20,7 +22,7 @@ const DeckDetail = () => {
     navigate("/new-card", { state: { deckId } });
   };
 
-  if (deck === undefined) {
+  if (deck === undefined || cards === undefined) {
     return <p>Loading...</p>;
   }
   return (
@@ -28,6 +30,9 @@ const DeckDetail = () => {
       <h2>{deck.name}</h2>
       <h3>{deck.subject}</h3>
       <button onClick={addCard}>Ajouter une carte au deck</button>
+      {cards.map((card) => (
+        <p>{card.question}</p>
+      ))}
     </>
   );
 };
