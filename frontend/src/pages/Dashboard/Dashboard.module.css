@@ -11,6 +11,22 @@
   flex-direction: row;
 }
 
+.btn_option {
+  cursor: pointer;
+  padding: 15px;
+  background-color: var(--btn);
+  color: var(--btn-txt);
+  border-style: none;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+}
+
+.btn_grp {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
 /*chrome...*/
 body::-webkit-scrollbar {
   display: none;

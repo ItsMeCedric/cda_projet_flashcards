@@ -6,7 +6,8 @@ interface RequestWithUser extends Request {
 }
 
 const verifyAuth = (req: Request, res: Response, next: NextFunction): void => {
-  const token = req.cookies['Authorization'] && req.cookies['Authorization'].split(" ")[1];
+  const token = req.cookies["Authorization"] && req.cookies["Authorization"].split(" ")[1];
+  console.log(token);
   if (!token) {
     res.sendStatus(401);
     return;
