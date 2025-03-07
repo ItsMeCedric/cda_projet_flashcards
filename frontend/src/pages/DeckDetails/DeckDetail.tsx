@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axios";
 import { useAppSelector } from "../../hooks/redux";
 import { Deck } from "../../@types/deck";
+import styles from "./DeckDetails.module.css";
 
 const DeckDetail = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -30,9 +31,11 @@ const DeckDetail = () => {
       <h2>{deck.name}</h2>
       <h3>{deck.subject}</h3>
       <button onClick={addCard}>Ajouter une carte au deck</button>
-      {cards.map((card) => (
-        <p>{card.question}</p>
-      ))}
+      <div className={styles.card_container}>
+        {cards.map((card) => (
+          <p>{card.question}</p>
+        ))}
+      </div>
     </>
   );
 };
