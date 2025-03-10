@@ -32,6 +32,8 @@ const register = async (data: RegisterData) => {
     email: data.email,
     hash: hash,
     profilePicture: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
   };
   await userRepository.create(newData);
 };

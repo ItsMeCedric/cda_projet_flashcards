@@ -4,20 +4,26 @@ import Footer from "../../components/Footer/Footer";
 import axiosInstance from "../../utils/axios";
 import { useAppSelector } from "../../hooks/redux";
 import styles from "./NewCard.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NewCard = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const { deckId } = state;
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [questionImg, setQuestionImg] = useState("");
+  const [answerImg, setAnswerImg] = useState("");
   const { user } = useAppSelector((state) => state.auth);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    axiosInstance.post(`/users/${user}/decks/${deckId}/cards`, { question, answer, deckId }).then((res) => {
-      console.log(res);
-    });
+    axiosInstance
+      .post(`/users/${user?.id}/decks/${deckId}/cards`, { question, answer, questionImg, answerImg })
+      .then((res) => {
+        console.log(res);
+      });
+    navigate("/deck-details", { state: { deckId } });
   };
 
   return (

@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import AuthRoute from "./components/AuthRoute";
 import NewCard from "./pages/NewCard/NewCard";
 import NewDeck from "./pages/NewDeck/NewDeck";
+import DeckDetails from "./pages/DeckDetails/DeckDetail";
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
         <Route path="/account" element={<Dashboard />} />
         <Route path="/new-card" element={<NewCard />} />
         <Route path="/new-deck" element={<NewDeck />} />
-        <Route path="/new-card" element={<NewCard />} />
+        <Route path="/deck-details" element={<DeckDetails />} />
       </Route>
     </Routes>
   );

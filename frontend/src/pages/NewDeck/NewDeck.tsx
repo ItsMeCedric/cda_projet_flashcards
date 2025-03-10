@@ -4,17 +4,20 @@ import Footer from "../../components/Footer/Footer";
 import axiosInstance from "../../utils/axios";
 import { useAppSelector } from "../../hooks/redux";
 import styles from "./NewDeck.module.css";
+import { useNavigate } from "react-router-dom";
 
 const NewDeck = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [subject, setSubject] = useState("");
   const { user } = useAppSelector((state) => state.auth);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    axiosInstance.post(`/users/${user}/decks`, { name, subject }).then((res) => {
+    axiosInstance.post(`/users/${user?.id}/decks`, { name, subject }).then((res) => {
       console.log(res);
     });
+    navigate("/account", { replace: true });
   };
 
   return (
