@@ -5,13 +5,21 @@ import { useForm } from "react-hook-form";
 import styles from "./Account.module.css";
 import { FaUserEdit, FaRegSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { setDataAccount } from "../../store/reducers/accountSlice";
+import { useDispatch } from "react-redux";
 
 const Account: React.FC = () => {
+  const dispatch = useDispatch();
   const { user } = useAppSelector((state) => state.auth);
+  const dataAccount = useAppSelector((state) => state.account.dataAccount);
+  // si store pas initialisé alors on prend les valeurs de user
+  if (!dataAccount.email) {
+    dispatch(setDataAccount(user));
+  }
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      email: user?.email || "",
-      username: user?.username || "",
+      email: dataAccount.email,
+      username: dataAccount.username,
       password: "",
     },
   });
@@ -35,8 +43,9 @@ const Account: React.FC = () => {
         username: data.username,
         password: data.password,
       };
-      await axiosInstance.patch(`/users/${user?.id}`, updatedData);
-      alert("Profile updated successfully!");
+      const res = await axiosInstance.patch(`/users/${user?.id}`, updatedData);
+      const ret = { email: res.data.email, username: res.data.username, password: "" };
+      dispatch(setDataAccount(ret));
       setIsEditing({ email: false, password: false, username: false });
     } catch (error) {
       console.error("Failed to update profile:", error);
@@ -52,8 +61,7 @@ const Account: React.FC = () => {
           }}
           className={styles.back}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
+          viewBox="0 0 448 512">
           <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
         </svg>
         <img
@@ -65,7 +73,7 @@ const Account: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.field}>
             <label>Email:</label>
-            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{user?.email}</span>}
+            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{dataAccount.email}</span>}
             {isEditing.email ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
@@ -75,7 +83,7 @@ const Account: React.FC = () => {
 
           <div className={styles.field}>
             <label>Username:</label>
-            {isEditing.username ? <input type="text" {...register("username")} /> : <span>{user?.username}</span>}
+            {isEditing.username ? <input type="text" {...register("username")} /> : <span>{dataAccount.username}</span>}
             {isEditing.username ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
