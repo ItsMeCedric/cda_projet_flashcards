@@ -21,10 +21,12 @@ const create = async (req: Request, res: Response) => {
 
 const update = async (req: Request, res: Response) => {
   const data = req.body;
-  data.password = await argon2.hash(data.password, {
-    type: argon2.argon2id,
-    secret: Buffer.from(process.env.ARGON2SECRET as string),
-  });
+  if (data.password) {
+    data.password = await argon2.hash(data.password, {
+      type: argon2.argon2id,
+      secret: Buffer.from(process.env.ARGON2SECRET as string),
+    });
+  }
   const id = parseInt(req.params.userId);
   await userService.update({ ...data, id });
   const user = await userService.findById(id);
