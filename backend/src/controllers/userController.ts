@@ -25,7 +25,7 @@ const update = async (req: Request, res: Response) => {
 };
 
 const destroy = async (req: Request, res: Response) => {
-  const id = parseInt(req.body.id);
+  const id = parseInt(req.params.userId);
   await userService.destroy(id);
   res.status(200).json({ id: id });
 };
