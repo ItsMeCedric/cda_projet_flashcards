@@ -19,7 +19,7 @@ const register = async (data: RegisterData) => {
   if (data.email) existingEmail = await userRepository.findByEmail(data.email);
   if (data.username) existingUsername = await userRepository.findByUsername(data.username);
   if (existingEmail || existingUsername) {
-    throw new Error("Vous avez déjà un compte");
+    throw "Vous avez déjà un compte";
   }
 
   const hash = await argon2.hash(data.password, {
@@ -45,10 +45,10 @@ const login = async (data: LoginData) => {
       secret: Buffer.from(process.env.ARGON2SECRET as string),
     });
     if (!isPasswordValid) {
-      throw new Error("Identifiant ou mot de passe invalide");
+      throw "Identifiant ou mot de passe invalide";
     }
   } else {
-    throw new Error("Identifiant ou mot de passe invalide");
+    throw "Identifiant ou mot de passe invalide";
   }
   const token = jwt.sign({ id: user.id }, process.env.JWTSECRET as string, {
     expiresIn: "2h",
