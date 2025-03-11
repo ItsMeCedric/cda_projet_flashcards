@@ -127,3 +127,7 @@ button.primary {
 .field .icon:hover {
   color: var(--hvr);
 }
+
+.error {
+  font-size: 12px;
+}

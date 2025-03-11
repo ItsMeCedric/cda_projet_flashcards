@@ -7,6 +7,8 @@ import { FaUserEdit, FaRegSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { setDataAccount } from "../../store/reducers/accountSlice";
 import { useDispatch } from "react-redux";
+import { updateAccountSchema } from "../../validators/accountSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const Account: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,14 +18,18 @@ const Account: React.FC = () => {
   if (!dataAccount.email) {
     dispatch(setDataAccount(user));
   }
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(updateAccountSchema),
     defaultValues: {
       email: dataAccount.email,
       username: dataAccount.username,
       password: "",
     },
   });
-
   const [isEditing, setIsEditing] = useState({
     email: false,
     password: false,
@@ -43,6 +49,7 @@ const Account: React.FC = () => {
         username: data.username,
         password: data.password,
       };
+      console.log(updatedData);
       const res = await axiosInstance.patch(`/users/${user?.id}`, updatedData);
       const ret = { email: res.data.email, username: res.data.username, password: "" };
       dispatch(setDataAccount(ret));
@@ -93,13 +100,16 @@ const Account: React.FC = () => {
 
           <div className={styles.field}>
             <label>Password:</label>
-            {isEditing.password ? <input type="password" {...register("password")} /> : <span>••••••••</span>}
+            <div className={styles.password}>
+              {isEditing.password ? <input type="password" {...register("password")} /> : <span>••••••••</span>}
+            </div>
             {isEditing.password ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("password")} />
             )}
           </div>
+          {errors.password && <p className={styles.error}>{errors.password.message}</p>}
         </form>
 
         <div className={styles.prefer}>
