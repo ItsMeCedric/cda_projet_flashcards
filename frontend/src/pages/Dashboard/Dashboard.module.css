@@ -9,6 +9,7 @@
 .dashboard {
   display: flex;
   flex-direction: row;
+  margin-bottom: 4%;
 }
 
 .btn_option {
