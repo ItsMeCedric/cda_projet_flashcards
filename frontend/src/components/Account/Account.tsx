@@ -49,7 +49,7 @@ const Account: React.FC = () => {
         username: data.username,
         password: data.password,
       };
-      console.log(updatedData);
+
       const res = await axiosInstance.patch(`/users/${user?.id}`, updatedData);
       const ret = { email: res.data.email, username: res.data.username, password: "" };
       dispatch(setDataAccount(ret));
