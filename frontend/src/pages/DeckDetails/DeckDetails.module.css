@@ -6,3 +6,84 @@
   justify-content: center;
   gap: 3rem;
 }
+
+.wrap {
+  max-width: 1500px;
+  margin: 0 auto;
+  background-color: var(--bg-main);
+  color: var(--txt-main);
+  text-align: justify;
+  text-justify: inter-word;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  min-height: 75vh;
+}
+
+.auth_container {
+  display: flex;
+  gap: 20px;
+  background-color: var(--bg-alt); /*bg alt*/
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.19),
+    0 4px 4px rgba(0, 0, 0, 0.23);
+  max-width: 800px;
+  width: 700px;
+  justify-content: center;
+  margin: 5rem auto;
+}
+
+.form_wrapper {
+  flex: 1;
+}
+
+h2 {
+  color: var(--txt-alt); /* txt alt */
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.form_group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--txt-main); /*txt main*/
+}
+
+input {
+  width: 97%;
+  padding: 10px;
+  border: 1px solid var(--brd); /* brd */
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: var(--btn); /* btn */
+  outline: none;
+}
+
+.form_footer {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.btn {
+  background-color: var(--btn); /* btn */
+  color: var(--btn-txt); /* txt main */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
