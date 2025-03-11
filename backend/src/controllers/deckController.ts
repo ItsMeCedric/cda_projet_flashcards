@@ -22,15 +22,16 @@ const create = async (req: Request, res: Response) => {
 //TODO: ajouter le middleware de vérification d'authentification
 const update = async (req: Request, res: Response) => {
   const data = req.body;
-  const deck = await deckService.update(data);
+  const id = parseInt(req.params.deckId);
+  const deck = await deckService.update({ ...data, id });
   res.status(200).json(deck);
 };
 
 //TODO: ajouter le middleware de vérification d'authentification
 const destroy = async (req: Request, res: Response) => {
-  const id = parseInt(req.body.id);
+  const id = parseInt(req.params.id);
   await deckService.destroy(id);
-  res.status(200).json({ id: id });
+  res.status(200).json({ id });
 };
 
 export default { getAllDecks, findById, create, update, destroy };
