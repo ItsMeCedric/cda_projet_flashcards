@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import authService from "../services/authService";
+import jwt from "jsonwebtoken";
 
 const register = async (req: Request, res: Response) => {
   const data = req.body;
@@ -27,9 +28,23 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
+const loggedIn = async (req: Request, res: Response) => {
+  if (req.cookies && req.cookies["Authorization"]) {
+    const token = req.cookies["Authorization"].split(" ")[1];
+    try {
+      const ret = jwt.verify(token, process.env.JWTSECRET as string);
+      res.status(200).json({ id: ret.id });
+    } catch (err) {
+      res.sendStatus(401);
+    }
+  } else {
+    res.sendStatus(401);
+  }
+};
+
 const logout = (req: Request, res: Response) => {
   res.clearCookie("Authorization");
   res.sendStatus(200);
 };
 
-export default { register, login, logout };
+export default { register, login, loggedIn, logout };
