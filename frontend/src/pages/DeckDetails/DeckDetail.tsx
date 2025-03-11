@@ -50,6 +50,17 @@ const DeckDetail = () => {
     });
   };
 
+  const deleteCard = (e: MouseEvent<HTMLButtonElement>, cardId: number) => {
+    e.preventDefault();
+    axiosInstance.delete(`/users/${user?.id}/decks/${deckId}/cards/${cardId}`).then((res) => {
+      const tmpCards = cards?.filter((card) => card.id != cardId);
+      setCards(tmpCards);
+    });
+  };
+
+  if (deck === undefined || cards === undefined) {
+    return <p>Loading...</p>;
+  }
   return (
     <div className={styles.wrap}>
       <Header />
