@@ -6,6 +6,7 @@ import { Deck } from "../../@types/deck";
 import styles from "./DeckDetails.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import Card from "../../components/Card/Card";
 
 const DeckDetail = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -49,9 +50,9 @@ const DeckDetail = () => {
         <button className={styles.btn} onClick={addCard}>
           Ajouter une carte au deck
         </button>
-        <div className={styles.card_container}>
+        <div className={styles.cards_container}>
           {cards.map((card) => (
-            <p>{card.question}</p>
+            <Card card={card} />
           ))}
         </div>
       </div>
