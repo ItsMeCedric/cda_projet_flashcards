@@ -12,20 +12,14 @@ import NewDeck from "./pages/NewDeck/NewDeck";
 import DeckDetails from "./pages/DeckDetails/DeckDetail";
 import Game from "./pages/Game/Game";
 import { useEffect } from "react";
-import axiosInstance from "./utils/axios";
-import { useAppSelector } from "./hooks/redux";
+import { useAppDispatch } from "./hooks/redux";
+import { validateToken } from "./store/actions/authActions";
 
 const App = () => {
-  let { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    axiosInstance.get("/auth/loggedIn").then((res) => {
-      if (res.status === 200) {
-        axiosInstance.get(`/users/${res.data.id}`).then((u) => {
-          user = u.data;
-        });
-      }
-    });
+    dispatch(validateToken());
   }, []);
 
   return (
