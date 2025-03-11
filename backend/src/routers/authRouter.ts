@@ -5,7 +5,7 @@ const router = Router();
 
 router.post("/register", authController.register);
 router.post("/login", authController.login);
-rouget.get("/loggedIn", authController.loggedIn);
+router.get("/loggedIn", authController.loggedIn);
 router.get("/logout", authController.logout);
 
 export default router;
