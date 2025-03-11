@@ -4,6 +4,9 @@ import axiosInstance from "../../utils/axios";
 import { useAppSelector } from "../../hooks/redux";
 import { Deck } from "../../@types/deck";
 import styles from "./DeckDetails.module.css";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Card from "../../components/Card/Card";
 
 const DeckDetail = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -18,6 +21,13 @@ const DeckDetail = () => {
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}/cards`).then((res) => setCards(res.data));
   }, []);
 
+  const deleteDeck = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    axiosInstance.delete(`/users/${user?.id}/decks/${deckId}`).then(() => {
+      navigate("/account", { replace: true });
+    });
+  };
+
   const addCard = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate("/new-card", { state: { deckId } });
@@ -27,16 +37,27 @@ const DeckDetail = () => {
     return <p>Loading...</p>;
   }
   return (
-    <>
-      <h2>{deck.name}</h2>
-      <h3>{deck.subject}</h3>
-      <button onClick={addCard}>Ajouter une carte au deck</button>
-      <div className={styles.card_container}>
-        {cards.map((card) => (
-          <p>{card.question}</p>
-        ))}
+    <div className={styles.wrap}>
+      <Header />
+      <div className={styles.container}>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <h2>{deck.name}</h2>
+          <h3>{deck.subject}</h3>
+          <button className={styles.btn} onClick={deleteDeck}>
+            x
+          </button>
+        </div>
+        <button className={styles.btn} onClick={addCard}>
+          Ajouter une carte au deck
+        </button>
+        <div className={styles.cards_container}>
+          {cards.map((card) => (
+            <Card card={card} />
+          ))}
+        </div>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 
