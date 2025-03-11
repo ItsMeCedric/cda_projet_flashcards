@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
       boxNumber: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -41,4 +41,3 @@ module.exports = {
     await queryInterface.dropTable("Cards");
   },
 };
-
