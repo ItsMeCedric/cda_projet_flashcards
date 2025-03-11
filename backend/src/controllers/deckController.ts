@@ -29,7 +29,7 @@ const update = async (req: Request, res: Response) => {
 
 //TODO: ajouter le middleware de vérification d'authentification
 const destroy = async (req: Request, res: Response) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.deckId);
   await deckService.destroy(id);
   res.status(200).json({ id });
 };
