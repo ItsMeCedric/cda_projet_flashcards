@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import authService from "../services/authService";
 import jwt from "jsonwebtoken";
+import userRepository from "../repositories/userRepository";
 
 const register = async (req: Request, res: Response) => {
   const data = req.body;
@@ -33,7 +34,9 @@ const loggedIn = async (req: Request, res: Response) => {
     const token = req.cookies["Authorization"].split(" ")[1];
     try {
       const ret = jwt.verify(token, process.env.JWTSECRET as string);
-      res.status(200).json({ id: ret.id });
+      const user = await userRepository.findById(ret.id);
+      const { hash, updatedAt, createdAt, ...sendUser } = user?.toJSON();
+      res.status(200).json(sendUser);
     } catch (err) {
       res.sendStatus(401);
     }

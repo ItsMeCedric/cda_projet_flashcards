@@ -12,14 +12,15 @@ export const registerUser = async (credentials: RegisterCredentials) => {
 };
 
 export const loginUser = async (credentials: LoginCredentials): Promise<User> => {
-  //TODO: la réponse contient le hash de l'user, très mauvais
   const response = await axiosInstance.post<User>(`/auth/login`, credentials);
   if (response.status === 200) return response.data;
   else throw response.data;
 };
 
 export const validateUserToken = async () => {
-  console.log("authService/validateUserToken");
+  const response = await axiosInstance.get<User>(`/auth/loggedIn`);
+  if (response.status === 200) return response.data;
+  else throw response.data;
 };
 
 export const logoutUser = async () => {

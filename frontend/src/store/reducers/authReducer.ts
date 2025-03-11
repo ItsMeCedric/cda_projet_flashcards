@@ -53,7 +53,8 @@ const authReducer = createReducer(initialState, (builder) => {
       state.isLoading = true;
       state.error = null;
     })
-    .addCase(validateToken.fulfilled, (state) => {
+    .addCase(validateToken.fulfilled, (state, action) => {
+      state.user = action.payload;
       state.isLoading = false;
     })
     .addCase(validateToken.rejected, (state, action) => {
