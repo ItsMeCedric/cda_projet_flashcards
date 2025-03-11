@@ -17,6 +17,7 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare subject: string;
   declare downloads: number;
   declare mark: CreationOptional<number>;
+  declare playCount: CreationOptional<number>;
   declare userId: ForeignKey<User["id"]>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
@@ -48,6 +49,11 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
         mark: {
           type: DataTypes.FLOAT,
           allowNull: true,
+        },
+        playCount: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          defaultValue: 0,
         },
         userId: {
           type: DataTypes.INTEGER,

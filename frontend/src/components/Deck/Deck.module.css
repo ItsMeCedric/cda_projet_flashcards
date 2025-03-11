@@ -11,7 +11,9 @@
   background-color: var(--bg-alt);
   align-items: center;
   /*shadow*/
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.19),
+    0 4px 4px rgba(0, 0, 0, 0.23);
 }
 
 .flag {
@@ -42,6 +44,17 @@
 .card img {
   margin-top: 6%;
   margin-bottom: 10%;
+}
+
+.playCount {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.playCount svg {
+  height: 15px;
+  fill: rebeccapurple;
 }
 
 .downloads {
@@ -77,6 +90,7 @@
 .description {
   height: 170px;
   margin: 0.6rem;
+  overflow: hidden;
 }
 
 .icons {

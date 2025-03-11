@@ -12,8 +12,8 @@ const NewCard = () => {
   const { deckId } = state;
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
-  const [questionImg, setQuestionImg] = useState("");
-  const [answerImg, setAnswerImg] = useState("");
+  const [questionImg] = useState("");
+  const [answerImg] = useState("");
   const { user } = useAppSelector((state) => state.auth);
 
   const handleSubmit = (e: FormEvent) => {
