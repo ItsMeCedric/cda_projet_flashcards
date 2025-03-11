@@ -21,7 +21,8 @@ const login = async (req: Request, res: Response) => {
       secure: true,
       httpOnly: true,
       sameSite: "strict",
-      path: "/api",
+      path: "/",
+      maxAge: 1000 * 60 * 60 * 2,
     });
     res.status(200).json(response.user);
   } catch (err) {
