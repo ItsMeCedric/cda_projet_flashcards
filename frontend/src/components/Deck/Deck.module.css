@@ -1,19 +1,17 @@
 .card {
   /* div setup */
-  width: 300px;
+  width: 320px;
   height: auto;
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 10px 15px;
+  padding: 5px;
   position: relative;
   border-radius: 15px;
   background-color: var(--bg-alt);
   align-items: center;
-  /*shadow*/
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.19),
-    0 4px 4px rgba(0, 0, 0, 0.23);
+  /* shadow */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
 }
 
 .flag {
@@ -33,23 +31,32 @@
 /* deck's title */
 .card h3 {
   color: var(--txt-alt);
-  max-width: 280px;
+  max-width: 300px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 40px;
+  height: 6%;
 }
 
 /* deck's picture */
-.card img {
-  margin-top: 6%;
-  margin-bottom: 10%;
+.thumbnail {
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  margin: 2% 0 2% 0;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .playCount {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .playCount svg {
@@ -60,7 +67,7 @@
 .downloads {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .downloads svg {
@@ -71,7 +78,7 @@
 .mark {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .mark svg {
@@ -81,26 +88,50 @@
 
 /* deck's info div */
 .infos {
-  width: 280px;
+  width: 300px;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .description {
-  height: 170px;
-  margin: 0.6rem;
-  overflow: hidden;
+  height: 200px;
+  margin: 0.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: justify;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+  background-color: var(--btn);
+  color: var(--btn-txt);
+  border-style: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
 }
 
 .icons {
   width: 280px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 0.2rem;
-  margin-left: 20px;
-  margin-right: 20px;
   align-items: center;
   align-content: center;
 }
