@@ -14,6 +14,7 @@ import User from "./user";
 class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare id: CreationOptional<number>;
   declare name: string;
+  declare subject: string;
   declare downloads: number;
   declare mark: CreationOptional<number>;
   declare userId: ForeignKey<User["id"]>;
@@ -33,6 +34,10 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
           primaryKey: true,
         },
         name: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        subject: {
           type: DataTypes.STRING,
           allowNull: false,
         },

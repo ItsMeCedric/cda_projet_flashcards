@@ -21,14 +21,14 @@ const DeckDetail = () => {
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}/cards`).then((res) => setCards(res.data));
   }, []);
 
-  const deleteDeck = (e: MouseEvent<HTMLButtonElement>) => {
+  const deleteDeck = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     axiosInstance.delete(`/users/${user?.id}/decks/${deckId}`).then(() => {
       navigate("/account", { replace: true });
     });
   };
 
-  const addCard = (e: MouseEvent<HTMLButtonElement>) => {
+  const addCard = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     navigate("/new-card", { state: { deckId } });
   };
@@ -40,16 +40,22 @@ const DeckDetail = () => {
     <div className={styles.wrap}>
       <Header />
       <div className={styles.container}>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <h2>{deck.name}</h2>
-          <h3>{deck.subject}</h3>
-          <button className={styles.btn} onClick={deleteDeck}>
-            x
-          </button>
+        <div className={styles.header}>
+          <div className={styles.spacer}></div>
+          <div className={styles.title}>
+            <h2>{deck.name}</h2>
+            <h3>{deck.subject}</h3>
+          </div>
+
+          <div className={styles.all_btn}>
+            <a className={styles.btn} onClick={deleteDeck}>
+              Supprimer
+            </a>
+            <a className={styles.btn} onClick={addCard}>
+              Ajouter une carte au deck
+            </a>
+          </div>
         </div>
-        <button className={styles.btn} onClick={addCard}>
-          Ajouter une carte au deck
-        </button>
         <div className={styles.cards_container}>
           {cards.map((card) => (
             <Card card={card} />
