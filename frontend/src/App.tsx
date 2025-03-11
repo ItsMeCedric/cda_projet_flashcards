@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 
 import SignIn from "./pages/SignIn/SignIn";
 import Home from "./pages/Home/Home";
@@ -12,15 +12,18 @@ import NewDeck from "./pages/NewDeck/NewDeck";
 import DeckDetails from "./pages/DeckDetails/DeckDetail";
 import Game from "./pages/Game/Game";
 import { useEffect } from "react";
-import { useAppDispatch } from "./hooks/redux";
+import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import { validateToken } from "./store/actions/authActions";
 
 const App = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(validateToken());
-  }, []);
+    if (user != undefined) navigate("/account");
+  }, [user]);
 
   return (
     <Routes>
