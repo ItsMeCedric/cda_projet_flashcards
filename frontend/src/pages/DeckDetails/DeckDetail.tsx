@@ -23,6 +23,14 @@ const DeckDetail = () => {
     navigate("/new-card", { state: { deckId } });
   };
 
+  const deleteCard = (e: MouseEvent<HTMLButtonElement>, cardId: number) => {
+    e.preventDefault();
+    axiosInstance.delete(`/users/${user?.id}/decks/${deckId}/cards/${cardId}`).then((res) => {
+      const tmpCards = cards?.filter((card) => card.id != cardId);
+      setCards(tmpCards);
+    });
+  };
+
   if (deck === undefined || cards === undefined) {
     return <p>Loading...</p>;
   }
@@ -33,7 +41,12 @@ const DeckDetail = () => {
       <button onClick={addCard}>Ajouter une carte au deck</button>
       <div className={styles.card_container}>
         {cards.map((card) => (
-          <p>{card.question}</p>
+          <div>
+            <p>{card.question}</p>
+            <button className={styles.btn} onClick={(e) => deleteCard(e, card.id)}>
+              x
+            </button>
+          </div>
         ))}
       </div>
     </>
