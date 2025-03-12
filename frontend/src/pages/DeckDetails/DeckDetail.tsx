@@ -21,6 +21,25 @@ const DeckDetail = () => {
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}/cards`).then((res) => setCards(res.data));
   }, []);
 
+  if (deck === undefined || cards === undefined) {
+    return <p>Loading...</p>;
+  }
+
+  const addCard = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    navigate("/new-card", { state: { deckId } });
+  };
+
+  const makePublic = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    axiosInstance.get(`/users/${user?.id}/decks/${deckId}/publish`).then((res) => {
+      setDeck((deck) => {
+        if (deck === undefined) return undefined;
+        return { ...deck, public: res.data.public };
+      });
+    });
+  };
+
   const deleteDeck = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     axiosInstance.delete(`/users/${user?.id}/decks/${deckId}`).then(() => {
@@ -28,14 +47,6 @@ const DeckDetail = () => {
     });
   };
 
-  const addCard = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    navigate("/new-card", { state: { deckId } });
-  };
-
-  if (deck === undefined || cards === undefined) {
-    return <p>Loading...</p>;
-  }
   return (
     <div className={styles.wrap}>
       <Header />
@@ -48,11 +59,14 @@ const DeckDetail = () => {
           </div>
 
           <div className={styles.all_btn}>
-            <a className={styles.btn} onClick={deleteDeck}>
-              Supprimer
-            </a>
             <a className={styles.btn} onClick={addCard}>
               Ajouter une carte au deck
+            </a>
+            <a className={styles.btn} onClick={makePublic}>
+              Rendre public
+            </a>
+            <a className={styles.btn} onClick={deleteDeck}>
+              Supprimer
             </a>
           </div>
         </div>

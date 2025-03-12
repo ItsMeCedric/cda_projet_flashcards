@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize";
 import Deck from "./deck";
 import User from "./user";
 import Card from "./card";
+import Store from "./store";
 
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
@@ -14,6 +15,7 @@ const db = config.use_env_variable
 User.initialize(db);
 Deck.initialize(db);
 Card.initialize(db);
+Store.initialize(db);
 
 User.hasMany(Deck, {
   foreignKey: "userId",
@@ -33,6 +35,16 @@ Deck.hasMany(Card, {
 Card.belongsTo(Deck, {
   foreignKey: "deckId",
   as: "deck",
+});
+
+Store.hasOne(Deck, {
+  foreignKey: "deckId",
+  as: "deck",
+});
+
+Deck.belongsTo(Store, {
+  foreignKey: "storeId",
+  as: "store",
 });
 
 export default db;
