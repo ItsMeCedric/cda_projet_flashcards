@@ -6,6 +6,12 @@ const getAllCards = async (req: Request, res: Response) => {
   res.status(200).json(cards);
 };
 
+const getAllCardsByDeckId = async (req: Request, res: Response) => {
+  const deckId = parseInt(req.params.deckId);
+  const cards = await cardService.getAllByDeckId(deckId);
+  res.status(200).json(cards);
+};
+
 const findById = async (req: Request, res: Response) => {
   const id = parseInt(req.params.cardId);
   const card = await cardService.findById(id);
@@ -31,4 +37,4 @@ const destroy = async (req: Request, res: Response) => {
   res.status(200).json({ id });
 };
 
-export default { getAllCards, findById, create, update, destroy };
+export default { getAllCards, getAllCardsByDeckId, findById, create, update, destroy };
