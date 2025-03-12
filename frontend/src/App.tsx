@@ -1,6 +1,5 @@
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router";
-
+import { Routes, Route } from "react-router";
 import SignIn from "./pages/SignIn/SignIn";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -17,12 +16,10 @@ import { validateToken } from "./store/actions/authActions";
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(validateToken());
-    if (user != undefined) navigate("/account");
+    if (user === undefined) dispatch(validateToken());
   }, [user]);
 
   return (

@@ -4,23 +4,23 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axios";
 import { useAppSelector } from "../../hooks/redux";
 import { Deck as DeckType } from "../../@types/deck";
+import { useLocation } from "react-router-dom";
 
 const UserDecks = () => {
+  const { pathname } = useLocation();
   const [decks, setDecks] = useState<DeckType[]>([]);
   const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (user) {
-      axiosInstance
-        .get(`/users/${user.id}/decks`)
-        .then((res) => {
-          setDecks(res.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching decks:", error);
-        });
-    }
-  }, []);
+    axiosInstance
+      .get(`/users/${user?.id}/decks`)
+      .then((res) => {
+        setDecks(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching decks:", error);
+      });
+  }, [pathname]);
 
   return (
     <div className={styles.all_deck}>
