@@ -5,5 +5,6 @@ export interface Deck {
   themes: string[];
   downloads: number;
   mark: number;
+  playCount: number;
   url: string;
 }

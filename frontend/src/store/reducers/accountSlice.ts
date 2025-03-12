@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { useAppSelector } from "../../hooks/redux";
 
 // const { user } = useAppSelector((state) => state.auth);
 // console.log(user);

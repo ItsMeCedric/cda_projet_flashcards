@@ -10,6 +10,7 @@ import AuthRoute from "./components/AuthRoute";
 import NewCard from "./pages/NewCard/NewCard";
 import NewDeck from "./pages/NewDeck/NewDeck";
 import DeckDetails from "./pages/DeckDetails/DeckDetail";
+import Game from "./pages/Game/Game";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/new-card" element={<NewCard />} />
         <Route path="/new-deck" element={<NewDeck />} />
         <Route path="/deck-details" element={<DeckDetails />} />
+        <Route path="/play" element={<Game />} />
       </Route>
     </Routes>
   );

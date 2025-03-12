@@ -2,7 +2,7 @@ import styles from "./Hero.module.css";
 import { useAppSelector } from "../../hooks/redux";
 
 import { useDispatch } from "react-redux";
-import { setSearchContent, toggleTheme, resetThemes } from "../../store/reducers/searchSlice";
+import { setSearchContent, toggleTheme } from "../../store/reducers/searchSlice";
 import { useState } from "react";
 
 const Hero = () => {
