@@ -9,7 +9,10 @@ const AuthRoute = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (user === undefined) navigate("/", { replace: true });
+    if (user === undefined) {
+      navigate("/", { replace: true });
+      return;
+    }
     dispatch(validateToken()).then(
       () => {},
       () => {
