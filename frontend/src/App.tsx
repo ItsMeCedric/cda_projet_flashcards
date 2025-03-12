@@ -19,6 +19,7 @@ const App = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
+    console.log(user);
     if (user === undefined) dispatch(validateToken());
   }, [user]);
 
