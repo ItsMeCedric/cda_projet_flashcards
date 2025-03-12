@@ -17,12 +17,10 @@ import { validateToken } from "./store/actions/authActions";
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(validateToken());
-    if (user != undefined) navigate("/account");
+    if (user === undefined) dispatch(validateToken());
   }, [user]);
 
   return (
