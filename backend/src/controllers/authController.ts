@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import authService from "../services/authService";
+import jwt from "jsonwebtoken";
+import userRepository from "../repositories/userRepository";
 
 const register = async (req: Request, res: Response) => {
   const data = req.body;
@@ -19,11 +21,28 @@ const login = async (req: Request, res: Response) => {
       secure: true,
       httpOnly: true,
       sameSite: "strict",
-      path: "/api",
+      path: "/",
+      maxAge: 1000 * 60 * 60 * 2,
     });
     res.status(200).json(response.user);
   } catch (err) {
     res.status(401).json({ message: err });
+  }
+};
+
+const loggedIn = async (req: Request, res: Response) => {
+  if (req.cookies && req.cookies["Authorization"]) {
+    const token = req.cookies["Authorization"].split(" ")[1];
+    try {
+      const ret = jwt.verify(token, process.env.JWTSECRET as string);
+      const user = await userRepository.findById(ret.id);
+      const { hash, updatedAt, createdAt, ...sendUser } = user?.toJSON();
+      res.status(200).json(sendUser);
+    } catch (err) {
+      res.sendStatus(401);
+    }
+  } else {
+    res.sendStatus(401);
   }
 };
 
@@ -32,4 +51,4 @@ const logout = (req: Request, res: Response) => {
   res.sendStatus(200);
 };
 
-export default { register, login, logout };
+export default { register, login, loggedIn, logout };
