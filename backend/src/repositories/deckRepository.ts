@@ -1,4 +1,4 @@
-import { InferAttributes, InferCreationAttributes } from "sequelize";
+import { InferAttributes, InferCreationAttributes, Op } from "sequelize";
 import Deck from "../../models/deck";
 
 const findAll = async () => {
@@ -11,6 +11,16 @@ const findById = async (id: number) => {
 
 const findByUserId = async (id: number) => {
   return await Deck.findAll({ where: { userId: id } });
+};
+
+const findPublic = async () => {
+  return await Deck.findAll({
+    where: {
+      storeId: {
+        [Op.ne]: null,
+      },
+    },
+  });
 };
 
 const create = async (data: InferCreationAttributes<Deck>) => {
@@ -26,4 +36,4 @@ const destroy = async (id: number) => {
   return await Deck.destroy({ where: { id } });
 };
 
-export default { findAll, findById, findByUserId, create, update, destroy };
+export default { findAll, findById, findByUserId, findPublic, create, update, destroy };

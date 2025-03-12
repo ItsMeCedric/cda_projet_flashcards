@@ -10,6 +10,7 @@ import {
 } from "sequelize";
 import Card from "./card";
 import User from "./user";
+import Store from "./store";
 
 class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare id: CreationOptional<number>;
@@ -19,11 +20,13 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare mark: CreationOptional<number>;
   declare playCount: CreationOptional<number>;
   declare userId: ForeignKey<User["id"]>;
+  declare storeId: CreationOptional<ForeignKey<Store["id"]>>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 
   declare static associations: {
     cards: Association<Deck, Card>;
+    store: Association<Deck, Store>;
   };
 
   static initialize(sequelize: Sequelize) {
@@ -58,6 +61,11 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
         userId: {
           type: DataTypes.INTEGER,
           allowNull: false,
+        },
+        storeId: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          defaultValue: null,
         },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
