@@ -8,11 +8,8 @@ const AuthRoute = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log("auth route");
     dispatch(validateToken()).then(
-      () => {
-        console.log("valid token");
-      },
+      () => {},
       () => {
         navigate("/", { replace: true });
       }
