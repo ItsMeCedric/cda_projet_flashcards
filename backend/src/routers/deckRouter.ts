@@ -4,7 +4,7 @@ import verifyAuth from "../middlewares/authMiddleware";
 
 const router = Router({ mergeParams: true });
 
-router.get("/", verifyAuth, deckController.getAllDecks);
+router.get("/", verifyAuth, deckController.getAllDecksByUserId);
 router.get("/:deckId", verifyAuth, deckController.findById);
 router.post("/", verifyAuth, deckController.create);
 router.patch("/:deckId", verifyAuth, deckController.update);
