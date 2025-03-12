@@ -10,16 +10,14 @@ const UserDecks = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (user) {
-      axiosInstance
-        .get(`/users/${user.id}/decks`)
-        .then((res) => {
-          setDecks(res.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching decks:", error);
-        });
-    }
+    axiosInstance
+      .get(`/users/${user?.id}/decks`)
+      .then((res) => {
+        setDecks(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching decks:", error);
+      });
   }, []);
 
   return (
