@@ -1,19 +1,14 @@
 import { Outlet, Navigate } from "react-router";
-import { useAppSelector } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { useEffect } from "react";
-import axiosInstance from "../utils/axios";
+import { validateToken } from "../store/actions/authActions";
 
 const AuthRoute = () => {
+  const dispatch = useAppDispatch();
   let { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    axiosInstance.get("/auth/loggedIn").then((res) => {
-      if (res.status === 200) {
-        axiosInstance.get(`/users/${res.data.id}`).then((u) => {
-          user = u.data;
-        });
-      }
-    });
+    dispatch(validateToken());
   }, []);
 
   if (user == undefined) return <Navigate to={"/"} />;
