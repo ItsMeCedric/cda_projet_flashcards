@@ -7,6 +7,8 @@ import axiosInstance from "../../utils/axios";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import { useNavigate } from "react-router-dom";
+import { FaUserSlash } from "react-icons/fa";
+import { FaSheetPlastic } from "react-icons/fa6";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -23,10 +25,10 @@ const Dashboard = () => {
       <Header />
       <div className={styles.btn_grp}>
         <NavLink className={styles.btn_option} to={"/new-deck"}>
-          Créer un deck
+          Créer un deck <FaSheetPlastic />
         </NavLink>
         <a onClick={deleteUser} className={styles.btn_option}>
-          Supprimer le profil
+          Supprimer le profil <FaUserSlash />
         </a>
       </div>
 

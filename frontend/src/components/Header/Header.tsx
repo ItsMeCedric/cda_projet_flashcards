@@ -1,6 +1,8 @@
 import logo_light from "../../assets/FlashMcCard.png";
 import logo_dark from "../../assets/FlashMcCard_white.png";
 
+import { FaSignInAlt, FaSignOutAlt, FaUser, FaUserCheck } from "react-icons/fa";
+
 import styles from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -40,19 +42,19 @@ const Header = () => {
         {user != undefined ? (
           <>
             <NavLink className={styles.login} to={"/account"}>
-              Account
+              Account <FaUserCheck />
             </NavLink>
             <a className={styles.login} onClick={logout}>
-              Logout
+              Logout <FaSignOutAlt />
             </a>
           </>
         ) : (
           <>
             <NavLink className={styles.login} to={"/login"}>
-              Login
+              Login <FaUser />
             </NavLink>
             <NavLink className={styles.login} to={"/signin"}>
-              Sign In
+              Sign In <FaSignInAlt />
             </NavLink>
           </>
         )}
