@@ -8,6 +8,7 @@ const AuthRoute = () => {
   let { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
+    console.log("auth route");
     dispatch(validateToken());
   }, []);
 
