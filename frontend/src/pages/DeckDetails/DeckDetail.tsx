@@ -18,8 +18,11 @@ const DeckDetail = () => {
 
   useEffect(() => {
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}`).then((res) => setDeck(res.data));
+  }, [navigate, user?.id, state.deckId]);
+
+  useEffect(() => {
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}/cards`).then((res) => setCards(res.data));
-  }, []);
+  }, [navigate, user?.id, state.deckId]);
 
   const deleteDeck = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -36,6 +39,7 @@ const DeckDetail = () => {
   if (deck === undefined || cards === undefined) {
     return <p>Loading...</p>;
   }
+
   return (
     <div className={styles.wrap}>
       <Header />

@@ -14,14 +14,13 @@ const UserDecks = () => {
       axiosInstance
         .get(`/users/${user.id}/decks`)
         .then((res) => {
-          console.log("Fetched decks:", res.data);
           setDecks(res.data);
         })
         .catch((error) => {
           console.error("Error fetching decks:", error);
         });
     }
-  }, [user]);
+  }, []);
 
   return (
     <div className={styles.all_deck}>
