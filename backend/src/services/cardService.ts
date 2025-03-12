@@ -6,6 +6,10 @@ const getAllCards = () => {
   return cardRepository.findAll();
 };
 
+const getAllByDeckId = (deckId: number) => {
+  return cardRepository.findByDeckId(deckId);
+};
+
 const findById = (id: number) => {
   return cardRepository.findById(id);
 };
@@ -22,4 +26,4 @@ const destroy = (id: number) => {
   return cardRepository.destroy(id);
 };
 
-export default { getAllCards, findById, create, update, destroy };
+export default { getAllCards, getAllByDeckId, findById, create, update, destroy };
