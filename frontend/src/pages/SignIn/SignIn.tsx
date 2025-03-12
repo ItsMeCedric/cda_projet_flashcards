@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,9 +19,11 @@ const SignIn = () => {
   } = useForm<RegisterCredentialsForm>({
     resolver: zodResolver(registerSchema),
   });
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { user, isLoading, success, error } = useAppSelector((state) => state.auth);
+  const { pathname } = useLocation();
+  let { user, isLoading, success, error } = useAppSelector((state) => state.auth);
 
   const onSubmit: SubmitHandler<RegisterCredentialsForm> = (data) => {
     dispatch(registerAction(data));
@@ -34,6 +36,11 @@ const SignIn = () => {
     }
   }, [navigate, user]);
 
+  useEffect(() => {
+    error = null;
+    setIsError(false);
+    console.log(error);
+  }, [pathname]);
   return (
     <div className={styles.wrap}>
       <Header />

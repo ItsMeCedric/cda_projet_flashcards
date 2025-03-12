@@ -16,7 +16,7 @@ export const register = createAsyncThunk(
       // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
       console.error(error);
       if (error.status === 400) return rejectWithValue("Compte existant");
-      return rejectWithValue("error");
+      return rejectWithValue("Erreur");
     }
   }
 );
@@ -31,7 +31,7 @@ export const login = createAsyncThunk<User, LoginCredentials>( // todo : changer
       // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
       console.error(error);
       if (error.status === 401) return rejectWithValue("Email ou mot de passe erroné.");
-      return rejectWithValue("error");
+      return rejectWithValue("Erreur");
     }
   }
 );
@@ -43,7 +43,7 @@ export const validateToken = createAsyncThunk("auth/VALIDATE_USER_TOKEN", async 
   } catch (error) {
     // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
     console.error(error);
-    return rejectWithValue("error");
+    return rejectWithValue("");
   }
 });
 
