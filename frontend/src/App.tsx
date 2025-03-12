@@ -10,18 +10,18 @@ import NewCard from "./pages/NewCard/NewCard";
 import NewDeck from "./pages/NewDeck/NewDeck";
 import DeckDetails from "./pages/DeckDetails/DeckDetail";
 import Game from "./pages/Game/Game";
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "./hooks/redux";
-import { validateToken } from "./store/actions/authActions";
+//import { useEffect } from "react";
+//import { useAppDispatch, useAppSelector } from "./hooks/redux";
+//import { validateToken } from "./store/actions/authActions";
 
 const App = () => {
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.auth);
+  //const dispatch = useAppDispatch();
+  //const { user } = useAppSelector((state) => state.auth);
 
-  useEffect(() => {
-    console.log(user);
-    if (user === undefined) dispatch(validateToken());
-  }, [user]);
+  //useEffect(() => {
+  //  console.log(user);
+  //  if (user === undefined) dispatch(validateToken());
+  //}, [user]);
 
   return (
     <Routes>
