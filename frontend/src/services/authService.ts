@@ -20,7 +20,7 @@ export const loginUser = async (credentials: LoginCredentials): Promise<User> =>
 export const validateUserToken = async () => {
   const response = await axiosInstance.get<User>(`/auth/loggedIn`);
   if (response.status === 200) return response.data;
-  else return "";
+  else throw response.data;
 };
 
 export const logoutUser = async () => {
