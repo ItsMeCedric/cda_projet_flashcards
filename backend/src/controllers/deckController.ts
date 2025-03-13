@@ -57,4 +57,8 @@ const publish = async (req: Request, res: Response) => {
   }
 };
 
+<<<<<<< HEAD
 export default { getAllDecks, getAllDecksByUserId, findById, findPublic, create, update, destroy, publish };
+=======
+export default { getAllDecks, findById, findPublic, create, update, destroy, publish };
+>>>>>>> 2f5c719aedb6598c5f12375e7c6d558583aaf986
