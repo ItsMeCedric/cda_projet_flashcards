@@ -1,7 +1,6 @@
 import { useEffect, useState, MouseEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axios";
-import { useAppSelector } from "../../hooks/redux";
 import styles from "./Game.module.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
@@ -13,9 +12,9 @@ type NextDisplay = "next_hidden" | "next_shown";
 
 const Game = () => {
   const navigate = useNavigate();
-  const { user } = useAppSelector((state) => state.auth);
   const { state } = useLocation();
   const deckId = state.deckId;
+  const userId = state.userId;
   const [deck, setDeck] = useState<Deck | undefined>(undefined);
   const [cards, setCards] = useState<Card[] | undefined>(undefined);
   const [card, setCard] = useState<Card | undefined>(undefined);
@@ -29,11 +28,10 @@ const Game = () => {
   const [correctAnswer, setCorrectAnswer] = useState<number>(0);
 
   useEffect(() => {
-    axiosInstance.get(`/users/${user?.id}/decks/${deckId}`).then((res) => {
+    axiosInstance.get(`/users/${userId}/decks/${deckId}`).then((res) => {
       setDeck(res.data);
-      console.log(res.data);
     });
-    axiosInstance.get(`/users/${user?.id}/decks/${deckId}/cards`).then((res) => {
+    axiosInstance.get(`/users/${userId}/decks/${deckId}/cards`).then((res) => {
       setCards(res.data);
       setCard(res.data[index]);
     });
@@ -75,7 +73,7 @@ const Game = () => {
 
   const endGame = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    axiosInstance.patch(`/users/${user?.id}/decks/${deckId}`, { id: deckId, playCount: deck.playCount + 1 });
+    axiosInstance.patch(`/users/${userId}/decks/${deckId}`, { id: deckId, playCount: deck.playCount + 1 });
     navigate("/account", { replace: true });
   };
 

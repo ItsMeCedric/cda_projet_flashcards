@@ -20,10 +20,9 @@ const NewCard = () => {
     e.preventDefault();
     axiosInstance
       .post(`/users/${user?.id}/decks/${deckId}/cards`, { question, answer, questionImg, answerImg })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        navigate("/deck-details", { state: { deckId } });
       });
-    navigate("/deck-details", { state: { deckId } });
   };
 
   return (
