@@ -64,7 +64,7 @@ const authReducer = createReducer(initialState, (builder) => {
     .addCase(validateToken.rejected, (state, action) => {
       state.isLoading = false;
       state.user = undefined;
-      state.error = null;
+      state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
     })
     // ----- LOGOUT
     .addCase(logout.pending, (state) => {
