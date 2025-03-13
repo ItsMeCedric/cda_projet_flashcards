@@ -6,6 +6,8 @@ import { User } from "../../@types/user";
 // Action pour reset le state
 export const resetAuthState = createAction("auth/RESET_AUTH_STATE");
 
+export const resetError = createAction("auth/RESET_ERROR");
+
 // Action pour l'inscription d'un utilisateur (asynchrone)
 export const register = createAsyncThunk(
   "auth/REGISTER",
