@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { login } from "../../store/actions/authActions";
+import { login, resetError } from "../../store/actions/authActions";
 import { LoginCredentials } from "../../@types/auth";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -10,12 +10,17 @@ import Footer from "../../components/Footer/Footer";
 import styles from "./Login.module.css";
 
 const Login = () => {
+  const { pathname } = useLocation();
   const { register, handleSubmit } = useForm<LoginCredentials>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   let { user, isLoading, error } = useAppSelector((state) => state.auth);
 
   const onSubmit: SubmitHandler<LoginCredentials> = (data) => dispatch(login(data));
+
+  useEffect(() => {
+    dispatch(resetError());
+  }, [pathname]);
 
   // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {

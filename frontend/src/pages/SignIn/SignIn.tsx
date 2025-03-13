@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { register as registerAction } from "../../store/actions/authActions";
+import { register as registerAction, resetError } from "../../store/actions/authActions";
 import { RegisterCredentialsForm } from "../../@types/auth";
 import { registerSchema } from "../../validators/authSchema";
 import Header from "../../components/Header/Header";
@@ -19,7 +19,6 @@ const SignIn = () => {
   } = useForm<RegisterCredentialsForm>({
     resolver: zodResolver(registerSchema),
   });
-  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
@@ -37,10 +36,9 @@ const SignIn = () => {
   }, [navigate, user]);
 
   useEffect(() => {
-    error = null;
-    setIsError(false);
-    console.log(error);
+    dispatch(resetError());
   }, [pathname]);
+
   return (
     <div className={styles.wrap}>
       <Header />
