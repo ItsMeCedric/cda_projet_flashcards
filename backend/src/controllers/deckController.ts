@@ -28,8 +28,6 @@ const findPublic = async (req: Request, res: Response) => {
 //TODO: ajouter le middleware de vérification d'authentification
 const create = async (req: Request, res: Response) => {
   const data = req.body;
-  console.log(data);
-  console.log(parseInt(req.params.userId));
   const deck = await deckService.create({ ...data, userId: parseInt(req.params.userId) });
   res.status(201).json(deck);
 };
