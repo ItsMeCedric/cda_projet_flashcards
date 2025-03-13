@@ -6,6 +6,8 @@ import { User } from "../../@types/user";
 // Action pour reset le state
 export const resetAuthState = createAction("auth/RESET_AUTH_STATE");
 
+export const resetError = createAction("auth/RESET_ERROR");
+
 // Action pour l'inscription d'un utilisateur (asynchrone)
 export const register = createAsyncThunk(
   "auth/REGISTER",
@@ -16,7 +18,7 @@ export const register = createAsyncThunk(
       // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
       console.error(error);
       if (error.status === 400) return rejectWithValue("Compte existant");
-      return rejectWithValue("error");
+      return rejectWithValue("Erreur");
     }
   }
 );
@@ -31,7 +33,7 @@ export const login = createAsyncThunk<User, LoginCredentials>( // todo : changer
       // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
       console.error(error);
       if (error.status === 401) return rejectWithValue("Email ou mot de passe erroné.");
-      return rejectWithValue("error");
+      return rejectWithValue("Erreur");
     }
   }
 );
@@ -43,7 +45,7 @@ export const validateToken = createAsyncThunk("auth/VALIDATE_USER_TOKEN", async 
   } catch (error) {
     // todo : LS/ gestion des erreurs (est ce une errur axios ? si oui, si non...)
     console.error(error);
-    return rejectWithValue("error");
+    return rejectWithValue("");
   }
 });
 
