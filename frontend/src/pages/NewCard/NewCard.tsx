@@ -21,7 +21,7 @@ const NewCard = () => {
     axiosInstance
       .post(`/users/${user?.id}/decks/${deckId}/cards`, { question, answer, questionImg, answerImg })
       .then(() => {
-        navigate("/deck-details", { state: { deckId } });
+        navigate(-1, { state: { deckId } });
       });
   };
 
