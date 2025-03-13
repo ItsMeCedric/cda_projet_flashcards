@@ -65,7 +65,7 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
         storeId: {
           type: DataTypes.INTEGER,
           allowNull: true,
-          defaultValue: null,
+          defaultValue: undefined,
         },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
@@ -73,7 +73,7 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
       {
         sequelize,
         modelName: "Deck",
-        indexes: [{ fields: ["userId"] }],
+        indexes: [{ fields: ["userId", "storeId"] }],
       }
     );
   }

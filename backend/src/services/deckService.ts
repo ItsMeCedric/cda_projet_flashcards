@@ -32,10 +32,15 @@ const destroy = (id: number) => {
 };
 
 const publish = async (id: number) => {
-  const store = await storeService.create({ deckId: id });
   let deck = await findById(id);
   if (deck === null) throw "Deck not found";
-  deck.storeId = store.id;
+  if (deck.storeId) {
+    await storeService.destroy(deck.storeId);
+    deck.storeId = null;
+  } else {
+    const store = await storeService.create({ deckId: id });
+    deck.storeId = store.id;
+  }
   deck = await deck.save();
   return deck;
 };

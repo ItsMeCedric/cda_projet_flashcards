@@ -6,5 +6,6 @@ export interface Deck {
   downloads: number;
   mark: number;
   playCount: number;
+  storeId: number | null;
   url: string;
 }

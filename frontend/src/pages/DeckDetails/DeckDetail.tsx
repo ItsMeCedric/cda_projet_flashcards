@@ -38,7 +38,7 @@ const DeckDetail = () => {
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}/publish`).then((res) => {
       setDeck((deck) => {
         if (deck === undefined) return undefined;
-        return { ...deck, public: res.data.public };
+        return { ...deck, storeId: res.data.storeId };
       });
     });
   };
@@ -66,7 +66,7 @@ const DeckDetail = () => {
               Ajouter une carte au deck
             </a>
             <a className={styles.btn} onClick={makePublic}>
-              Rendre public
+              {deck.storeId ? "Rendre privé" : "Rendre public"}
             </a>
             <a className={styles.btn} onClick={deleteDeck}>
               Supprimer
