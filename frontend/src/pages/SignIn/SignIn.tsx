@@ -22,7 +22,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-  let { user, isLoading, success, error } = useAppSelector((state) => state.auth);
+  const { user, isLoading, success, error } = useAppSelector((state) => state.auth);
 
   const onSubmit: SubmitHandler<RegisterCredentialsForm> = (data) => {
     dispatch(registerAction(data));
