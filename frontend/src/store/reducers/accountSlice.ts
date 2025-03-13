@@ -5,11 +5,11 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 // console.log(user);
 
 interface AccountState {
-  dataAccount: { email: string; username: string; password: string };
+  dataAccount: { email: string; username: string; password: string; profilePicture: string };
 }
 
 const initialState: AccountState = {
-  dataAccount: { email: "", username: "", password: "" },
+  dataAccount: { email: "", username: "", password: "", profilePicture: "" },
 };
 
 const accountSlice = createSlice({

@@ -2,6 +2,6 @@
 **/package-lock.json
 **/dist/
 **/.vscode/
-
+**/uploads
 **/*.js
 **/*.js.map

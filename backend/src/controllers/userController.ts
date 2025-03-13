@@ -28,6 +28,9 @@ const update = async (req: Request, res: Response) => {
       secret: Buffer.from(process.env.ARGON2SECRET as string),
     });
   }
+  if (data.profilePicture && req.file) {
+    data.profilePicture = `/uploads/${req.file.filename}`;
+  }
 
   const id = parseInt(req.params.userId);
   await userService.update({ ...data, id });

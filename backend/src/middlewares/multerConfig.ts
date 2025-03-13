@@ -1,22 +1,31 @@
 import multer from "multer";
-// const storage = multer.diskStorage({
-//   destination: (req: Request, file, cb: CallableFunction) => {
-//     cb(null, "uploads");
-//   },
-//   filename: (req, file, cb) => {
-//     const filename = Date.now() + "-" + file.originalname;
-//     cb(null, filename);
-//   },
-// });
+import { Request } from "express";
+
+// Stockage
 const storage = multer.diskStorage({
-  destination: (_: MulterRequest, __: Express.Multer.File, callback: CallableFunction) => {
-    callback(null, "uploads");
+  destination: (req, file, cb) => {
+    cb(null, "uploads");
   },
-  filename: (_, file, callback) => {
-    const extArray = file.mimetype.split("/");
-    const extension = extArray[extArray.length - 1];
-    callback(null, `${uuid()}.${extension}`);
+  filename: (req, file, cb) => {
+    const filename = Date.now() + "-" + file.originalname;
+    cb(null, filename);
   },
 });
 
-module.exports = multer({ storage });
+// Filtre
+const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+  const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error("Seuls les fichiers JPEG, PNG et JPG sont autorisés"));
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, //5mo
+  fileFilter: fileFilter,
+});
+
+export default upload;
