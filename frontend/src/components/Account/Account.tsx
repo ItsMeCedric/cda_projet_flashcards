@@ -100,26 +100,14 @@ const Account: React.FC = () => {
           }}
           className={styles.back}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512">
+          viewBox="0 0 448 512"
+        >
           <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
         </svg>
         <div className={styles.imageContainer} onClick={() => document.getElementById("fileInput")?.click()}>
-<<<<<<< HEAD
           <img className={styles.round} src={profilePicture} alt="user" />
           <input type="file" id="fileInput" style={{ display: "none" }} accept="image/*" onChange={handleImageChange} />
-=======
-          <img
-            className={styles.round}
-            src={
-              dataAccount.profilePicture ||
-              "https://fastly.picsum.photos/id/593/200/200.jpg?hmac=E26lTUTkzs_AeuWXrkT-kFTudfYDTVCjgKVE_HDzRmk"
-            }
-            alt="user"
-          />
-          <input type="file" id="fileInput" style={{ display: "none" }} onChange={handleImageChange} />
->>>>>>> e35e9e524575ef9461fb8471f8fe6f8d428a61c6
         </div>
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.field}>
             <label>Email:</label>
