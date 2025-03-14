@@ -50,10 +50,16 @@ const Account: React.FC = () => {
         password: data.password,
       };
 
-      const res = await axiosInstance.patch(`/users/${user?.id}`, updatedData);
-      const ret = { email: res.data.email, username: res.data.username, password: "", profilePicture };
-      dispatch(setDataAccount(ret));
-      setIsEditing({ email: false, password: false, username: false });
+      axiosInstance.patch(`/users/${user?.id}`, updatedData).then((res) => {
+        if (res.status === 409) {
+          const ret = { email, username, password: "", profilePicture };
+          dispatch(setDataAccount(ret));
+        } else {
+          const ret = { email: res.data.email, username: res.data.username, password: "", profilePicture };
+          dispatch(setDataAccount(ret));
+        }
+        setIsEditing({ email: false, password: false, username: false });
+      });
     } catch (error) {
       console.error("Failed to update profile:", error);
     }
