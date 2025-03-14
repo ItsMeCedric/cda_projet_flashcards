@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { resetAuthState, register, login, validateToken, logout } from "../actions/authActions";
+import { resetAuthState, register, login, validateToken, logout, resetError } from "../actions/authActions";
 import { AuthState } from "../../@types/auth";
 
 const initialState: AuthState = {
@@ -15,6 +15,10 @@ const UNKNOWN_ERROR = "Unknown error";
 const authReducer = createReducer(initialState, (builder) => {
   // todo : A compléter
   builder
+    .addCase(resetError, (state) => {
+      state.error = null;
+      state.success = null;
+    })
     // ----- RESET_AUTH_STATE
     .addCase(resetAuthState, (state) => {
       state.user = undefined;
@@ -60,7 +64,7 @@ const authReducer = createReducer(initialState, (builder) => {
     .addCase(validateToken.rejected, (state, action) => {
       state.isLoading = false;
       state.user = undefined;
-      state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
+      state.error = null;
     })
     // ----- LOGOUT
     .addCase(logout.pending, (state) => {
