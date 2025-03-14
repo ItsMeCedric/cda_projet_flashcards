@@ -1,6 +1,7 @@
 import { InferAttributes, InferCreationAttributes } from "sequelize";
 import userRepository from "../repositories/userRepository";
 import user from "../../models/user";
+import argon2 from "argon2";
 
 const getAllUsers = () => {
   return userRepository.findAll();
@@ -14,7 +15,22 @@ const create = (data: InferCreationAttributes<user>) => {
   return userRepository.create(data);
 };
 
-const update = (data: InferAttributes<user>) => {
+const update = async (data: InferAttributes<user>, file: Express.Multer.File | undefined) => {
+  const user = await userRepository.findByUsername(data.username);
+  const userEmail = await userRepository.findByEmail(data.email);
+  if (user || userEmail) {
+    throw new Error("Conflicting data");
+  }
+  if (data.password) {
+    data.hash = await argon2.hash(data.password, {
+      type: argon2.argon2id,
+      secret: Buffer.from(process.env.ARGON2SECRET as string),
+    });
+  }
+  if (file) {
+    data.profilePicture = `/uploads/${file.filename}`;
+  }
+
   return userRepository.update(data);
 };
 
