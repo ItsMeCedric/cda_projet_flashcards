@@ -54,8 +54,8 @@ const Account: React.FC = () => {
   const onSubmit = async (data: { email: string; username: string; password: string }) => {
     try {
       const updatedData = {
-        email: data.email,
-        username: data.username,
+        email: user?.email === data.email ? undefined : data.email,
+        username: user?.username === data.username ? undefined : data.username,
         password: data.password,
       };
 
