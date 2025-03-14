@@ -7,6 +7,8 @@ import userRouter from "./routers/userRouter";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import deckController from "./controllers/deckController";
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsdoc from 'swagger-jsdoc';
 
 require("dotenv").config();
 
@@ -16,6 +18,25 @@ const PORT = process.env.PORT || 4000;
 db.sync();
 
 const app = express();
+
+// Configuration de Swagger
+const swaggerOptions: swaggerJsdoc.Options = {
+  definition: {
+    openapi: '3.0.0', // Version OpenAPI
+    info: {
+      title: 'API FlashMcCards',
+      version: '1.0.0',
+      description: 'Documentation de l\'API de FlashMcCards',
+    },
+  },
+  apis: ['./src/routers/*.ts'], // Chemin vers les fichiers de routes TypeScript
+};
+
+// Générer la documentation Swagger
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
+// Servir Swagger UI à l'URL /api-docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
