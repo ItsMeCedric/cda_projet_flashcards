@@ -15,7 +15,7 @@ const Account: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth);
   const { email, username, password, profilePicture } = useAppSelector((state) => state.account.dataAccount);
   // si store pas initialisé alors on prend les valeurs de user
-  if (email == undefined) {
+  if (!email || email == undefined) {
     dispatch(setDataAccount(user));
   }
   const {
