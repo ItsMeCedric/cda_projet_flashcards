@@ -21,6 +21,10 @@ const create = async (req: Request, res: Response) => {
 const update = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.userId);
+  if (req.user.id != id) {
+    res.sendStatus(401);
+    return;
+  }
   try {
     await userService.update({ ...data, id }, req.file);
     const user = await userService.findById(id);

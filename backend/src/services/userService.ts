@@ -16,11 +16,6 @@ const create = (data: InferCreationAttributes<user>) => {
 };
 
 const update = async (data: InferAttributes<user>, file: Express.Multer.File | undefined) => {
-  const user = await userRepository.findByUsername(data.username);
-  const userEmail = await userRepository.findByEmail(data.email);
-  if (user || userEmail) {
-    throw new Error("Conflicting data");
-  }
   if (data.password) {
     data.hash = await argon2.hash(data.password, {
       type: argon2.argon2id,
