@@ -31,7 +31,6 @@ const Game = () => {
   useEffect(() => {
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}`).then((res) => {
       setDeck(res.data);
-      console.log(res.data);
     });
     axiosInstance.get(`/users/${user?.id}/decks/${deckId}/cards`).then((res) => {
       setCards(res.data);

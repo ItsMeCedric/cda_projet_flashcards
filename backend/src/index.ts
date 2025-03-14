@@ -24,6 +24,12 @@ deckRouter.use("/:deckId/cards", cardRouter);
 userRouter.use("/:userId/decks", deckRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
+app.use(
+  "/uploads",
+  express.static("./uploads", {
+    setHeaders: (res, path, stat) => res.set("Cache-Control", "public, max-age=31536000"),
+  })
+);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ status: "success", message: "backend is working!" });

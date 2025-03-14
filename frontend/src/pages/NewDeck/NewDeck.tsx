@@ -14,9 +14,7 @@ const NewDeck = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    axiosInstance.post(`/users/${user?.id}/decks`, { name, subject }).then((res) => {
-      console.log(res);
-    });
+    axiosInstance.post(`/users/${user?.id}/decks`, { name, subject });
     navigate("/account", { replace: true });
   };
 

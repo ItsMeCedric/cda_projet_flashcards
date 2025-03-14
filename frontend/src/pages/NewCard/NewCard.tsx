@@ -18,11 +18,8 @@ const NewCard = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    axiosInstance
-      .post(`/users/${user?.id}/decks/${deckId}/cards`, { question, answer, questionImg, answerImg })
-      .then((res) => {
-        console.log(res);
-      });
+    axiosInstance.post(`/users/${user?.id}/decks/${deckId}/cards`, { question, answer, questionImg, answerImg });
+
     navigate("/deck-details", { state: { deckId } });
   };
 
