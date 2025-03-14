@@ -43,6 +43,15 @@ h6 {
   height: 150px;
 }
 
+.image_container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#fileInput {
+  width: 150px;
+}
 .buttons {
   display: flex;
   justify-content: center;
