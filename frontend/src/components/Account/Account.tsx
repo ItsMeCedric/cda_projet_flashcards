@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import axiosInstance from "../../utils/axios";
 import { useForm } from "react-hook-form";
@@ -13,9 +13,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const Account: React.FC = () => {
   const dispatch = useDispatch();
   const { user } = useAppSelector((state) => state.auth);
-  const dataAccount = useAppSelector((state) => state.account.dataAccount);
+  const { email, username, password, profilePicture } = useAppSelector((state) => state.account.dataAccount);
   // si store pas initialisé alors on prend les valeurs de user
-  if (!dataAccount.email) {
+  if (!email) {
     dispatch(setDataAccount(user));
   }
   const {
@@ -25,8 +25,8 @@ const Account: React.FC = () => {
   } = useForm({
     resolver: zodResolver(updateAccountSchema),
     defaultValues: {
-      email: dataAccount.email,
-      username: dataAccount.username,
+      email: email,
+      username: username,
       password: "",
     },
   });
@@ -51,11 +51,43 @@ const Account: React.FC = () => {
       };
 
       const res = await axiosInstance.patch(`/users/${user?.id}`, updatedData);
-      const ret = { email: res.data.email, username: res.data.username, password: "" };
+      const ret = { email: res.data.email, username: res.data.username, password: "", profilePicture };
       dispatch(setDataAccount(ret));
       setIsEditing({ email: false, password: false, username: false });
     } catch (error) {
       console.error("Failed to update profile:", error);
+    }
+  };
+
+  const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+
+      // Envoyer l'image au backend et mettre à jour la base de données
+      await handleUpload(file);
+    }
+  };
+
+  const handleUpload = async (file: File) => {
+    const formData = new FormData();
+    formData.append("profilePicture", file);
+    try {
+      const response = await axiosInstance.patch(`/users/${user?.id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      // Mettre à jour l'image avec l'URL renvoyée par le backend
+
+      const ret = {
+        email,
+        username,
+        password,
+        profilePicture: import.meta.env.VITE_API_URL + response.data.profilePicture,
+      };
+
+      dispatch(setDataAccount(ret));
+    } catch (error) {
+      console.error("Erreur lors de l'upload :", error);
     }
   };
 
@@ -71,16 +103,27 @@ const Account: React.FC = () => {
           viewBox="0 0 448 512">
           <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
         </svg>
-        <img
-          className={styles.round}
-          src="https://fastly.picsum.photos/id/593/200/200.jpg?hmac=E26lTUTkzs_AeuWXrkT-kFTudfYDTVCjgKVE_HDzRmk"
-          alt="user"
-        />
+        <div className={styles.imageContainer} onClick={() => document.getElementById("fileInput")?.click()}>
+<<<<<<< HEAD
+          <img className={styles.round} src={profilePicture} alt="user" />
+          <input type="file" id="fileInput" style={{ display: "none" }} accept="image/*" onChange={handleImageChange} />
+=======
+          <img
+            className={styles.round}
+            src={
+              dataAccount.profilePicture ||
+              "https://fastly.picsum.photos/id/593/200/200.jpg?hmac=E26lTUTkzs_AeuWXrkT-kFTudfYDTVCjgKVE_HDzRmk"
+            }
+            alt="user"
+          />
+          <input type="file" id="fileInput" style={{ display: "none" }} onChange={handleImageChange} />
+>>>>>>> e35e9e524575ef9461fb8471f8fe6f8d428a61c6
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.field}>
             <label>Email:</label>
-            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{dataAccount.email}</span>}
+            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{email}</span>}
             {isEditing.email ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
@@ -90,7 +133,7 @@ const Account: React.FC = () => {
 
           <div className={styles.field}>
             <label>Username:</label>
-            {isEditing.username ? <input type="text" {...register("username")} /> : <span>{dataAccount.username}</span>}
+            {isEditing.username ? <input type="text" {...register("username")} /> : <span>{username}</span>}
             {isEditing.username ? (
               <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
             ) : (
