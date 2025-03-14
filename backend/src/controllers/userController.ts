@@ -28,7 +28,6 @@ const update = async (req: Request, res: Response) => {
   try {
     await userService.update({ ...data, id }, req.file);
     const user = await userService.findById(id);
-
     res.status(200).json(user);
   } catch (err) {
     res.sendStatus(409);
