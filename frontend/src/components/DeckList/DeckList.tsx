@@ -10,7 +10,6 @@ const DeckList = ({ decks }: { decks: DeckType[] }) => {
   const searchContent = useAppSelector((state) => state.search.searchContent);
   const selectedThemes = useAppSelector((state) => state.search.selectedThemes);
 
-  console.log(selectedThemes);
   return (
     <div className={styles.all_deck}>
       {decks

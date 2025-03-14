@@ -13,7 +13,7 @@ const Deck = ({ deck }: { deck: DeckType }) => {
 
   const playDeck = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    navigate("/play", { state: { deckId: deck.id } });
+    navigate("/play", { state: { deckId: deck.id, userId: deck.userId } });
   };
 
   return (
