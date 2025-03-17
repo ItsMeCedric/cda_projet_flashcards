@@ -2,5 +2,5 @@
 
 sudo -u flashmccards bash -c 'source /home/flashmccards/.nvm/nvm.sh && NODE_ENV=production npm --prefix ./frontend run build'
 sudo cp -r ./frontend/dist/* /var/www/html
-cd backend && NODE_ENV=production npm --prefix ./backend run migrate && NODE_ENV=production npm --prefix ./backend run seed
+NODE_ENV=production npm --prefix ./backend run migrate && NODE_ENV=production npm --prefix ./backend run seed
 sudo systemctl restart flashmccards
