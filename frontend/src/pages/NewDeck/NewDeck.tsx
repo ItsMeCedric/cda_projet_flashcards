@@ -15,7 +15,7 @@ const NewDeck = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     axiosInstance.post(`/users/${user?.id}/decks`, { name, subject }).then((res) => {
-      navigate("/deck-details", { state: { deckId: res.data.id } });
+      navigate("/deck-details", { state: { deckId: res.data.id, ownerId: user?.id } });
     });
   };
 

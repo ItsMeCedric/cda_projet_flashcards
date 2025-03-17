@@ -31,7 +31,7 @@ const DeckDetail = () => {
 
   const addCard = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    navigate("/new-card", { state: { deckId } });
+    navigate("/new-card", { state: { deckId, ownerId: deck.userId } });
   };
 
   const makePublic = (e: MouseEvent<HTMLAnchorElement>) => {
