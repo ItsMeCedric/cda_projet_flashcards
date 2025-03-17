@@ -15,13 +15,14 @@ const DeckDetail = () => {
   const [deck, setDeck] = useState<Deck | undefined>(undefined);
   const [cards, setCards] = useState<Card[] | undefined>(undefined);
   const deckId = state.deckId;
+  const ownerId = state.userId;
 
   useEffect(() => {
-    axiosInstance.get(`/users/${user?.id}/decks/${deckId}`).then((res) => setDeck(res.data));
+    axiosInstance.get(`/users/${ownerId}/decks/${deckId}`).then((res) => setDeck(res.data));
   }, [navigate, user?.id, state.deckId]);
 
   useEffect(() => {
-    axiosInstance.get(`/users/${user?.id}/decks/${deckId}/cards`).then((res) => setCards(res.data));
+    axiosInstance.get(`/users/${ownerId}/decks/${deckId}/cards`).then((res) => setCards(res.data));
   }, [navigate, user?.id, state.deckId]);
 
   if (deck === undefined || cards === undefined) {
@@ -35,7 +36,7 @@ const DeckDetail = () => {
 
   const makePublic = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    axiosInstance.get(`/users/${user?.id}/decks/${deckId}/publish`).then((res) => {
+    axiosInstance.get(`/users/${ownerId}/decks/${deckId}/publish`).then((res) => {
       setDeck((deck) => {
         if (deck === undefined) return undefined;
         return { ...deck, storeId: res.data.storeId };
@@ -45,7 +46,7 @@ const DeckDetail = () => {
 
   const deleteDeck = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    axiosInstance.delete(`/users/${user?.id}/decks/${deckId}`).then(() => {
+    axiosInstance.delete(`/users/${ownerId}/decks/${deckId}`).then(() => {
       navigate("/account", { replace: true });
     });
   };
@@ -61,17 +62,20 @@ const DeckDetail = () => {
             <h3>{deck.subject}</h3>
           </div>
 
-          <div className={styles.all_btn}>
-            <a className={styles.btn} onClick={addCard}>
-              Ajouter une carte au deck
-            </a>
-            <a className={styles.btn} onClick={makePublic}>
-              {deck.storeId ? "Rendre privé" : "Rendre public"}
-            </a>
-            <a className={styles.btn} onClick={deleteDeck}>
-              Supprimer
-            </a>
-          </div>
+          {user?.id === deck.userId ||
+            (user?.role === "admin" && (
+              <div className={styles.all_btn}>
+                <a className={styles.btn} onClick={addCard}>
+                  Ajouter une carte au deck
+                </a>
+                <a className={styles.btn} onClick={makePublic}>
+                  {deck.storeId ? "Rendre privé" : "Rendre public"}
+                </a>
+                <a className={styles.btn} onClick={deleteDeck}>
+                  Supprimer
+                </a>
+              </div>
+            ))}
         </div>
         <div className={styles.cards_container}>
           {cards.map((card) => (

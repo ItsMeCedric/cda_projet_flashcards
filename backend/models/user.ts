@@ -11,6 +11,7 @@ import Deck from "./deck";
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<string>;
+  declare role: CreationOptional<string>;
   declare username: string;
   declare email: string;
   declare profilePicture: CreationOptional<string>;
@@ -29,6 +30,11 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
           type: DataTypes.INTEGER,
           autoIncrement: true,
           primaryKey: true,
+        },
+        role: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          defaultValue: "user",
         },
         username: {
           type: DataTypes.STRING,
