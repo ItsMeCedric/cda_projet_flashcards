@@ -27,6 +27,7 @@ module.exports = {
             secret: Buffer.from(process.env.ARGON2SECRET),
           }),
           email: "demo@demo.com",
+          role: "user",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
