@@ -15,7 +15,7 @@ const DeckDetail = () => {
   const [deck, setDeck] = useState<Deck | undefined>(undefined);
   const [cards, setCards] = useState<Card[] | undefined>(undefined);
   const deckId = state.deckId;
-  const ownerId = state.userId;
+  const ownerId = state.ownerId;
 
   useEffect(() => {
     axiosInstance.get(`/users/${ownerId}/decks/${deckId}`).then((res) => setDeck(res.data));
