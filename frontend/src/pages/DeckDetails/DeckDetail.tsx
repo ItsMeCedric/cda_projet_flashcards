@@ -51,6 +51,8 @@ const DeckDetail = () => {
     });
   };
 
+  console.log(user?.id);
+
   return (
     <div className={styles.wrap}>
       <Header />
@@ -62,20 +64,19 @@ const DeckDetail = () => {
             <h3>{deck.subject}</h3>
           </div>
 
-          {user?.id === deck.userId ||
-            (user?.role === "admin" && (
-              <div className={styles.all_btn}>
-                <a className={styles.btn} onClick={addCard}>
-                  Ajouter une carte au deck
-                </a>
-                <a className={styles.btn} onClick={makePublic}>
-                  {deck.storeId ? "Rendre privé" : "Rendre public"}
-                </a>
-                <a className={styles.btn} onClick={deleteDeck}>
-                  Supprimer
-                </a>
-              </div>
-            ))}
+          {(user?.id === deck.userId || user?.role === "admin") && (
+            <div className={styles.all_btn}>
+              <a className={styles.btn} onClick={addCard}>
+                Ajouter une carte au deck
+              </a>
+              <a className={styles.btn} onClick={makePublic}>
+                {deck.storeId ? "Rendre privé" : "Rendre public"}
+              </a>
+              <a className={styles.btn} onClick={deleteDeck}>
+                Supprimer
+              </a>
+            </div>
+          )}
         </div>
         <div className={styles.cards_container}>
           {cards.map((card) => (
