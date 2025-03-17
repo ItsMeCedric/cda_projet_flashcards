@@ -6,7 +6,6 @@ import deckRouter from "./routers/deckRouter";
 import userRouter from "./routers/userRouter";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import verifyAuth from "./middlewares/authMiddleware";
 import deckController from "./controllers/deckController";
 
 require("dotenv").config();
@@ -23,7 +22,7 @@ app.use(cookieParser());
 app.use(json());
 
 deckRouter.use("/:deckId/cards", cardRouter);
-app.get("/decks/public", verifyAuth, deckController.findPublic);
+app.get("/decks/public", deckController.findPublic);
 userRouter.use("/:userId/decks", deckRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
