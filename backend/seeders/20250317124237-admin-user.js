@@ -20,6 +20,16 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          username: "demo",
+          hash: await argon2.hash("]Z&o]I?'<agy|lYebxv7B+,;X$<)_,]OO;^aiN@k", {
+            type: argon2.argon2id,
+            secret: Buffer.from(process.env.ARGON2SECRET),
+          }),
+          email: "demo@demo.com",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
