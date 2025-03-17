@@ -28,32 +28,49 @@ const findPublic = async (req: Request, res: Response) => {
 //TODO: ajouter le middleware de vérification d'authentification
 const create = async (req: Request, res: Response) => {
   const data = req.body;
-  const deck = await deckService.create({ ...data, userId: parseInt(req.params.userId) });
-  res.status(201).json(deck);
+  const id = parseInt(req.params.userId);
+  if (id === req.user.id || req.user.role === "admin") {
+    const deck = await deckService.create({ ...data, userId: id });
+    res.status(201).json(deck);
+  } else {
+    res.sendStatus(401);
+  }
 };
 
 //TODO: ajouter le middleware de vérification d'authentification
 const update = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.deckId);
-  const deck = await deckService.update({ ...data, id });
-  res.status(200).json(deck);
+  if (id === req.user.id || req.user.role === "admin") {
+    const deck = await deckService.update({ ...data, id });
+    res.status(200).json(deck);
+  } else {
+    res.sendStatus(401);
+  }
 };
 
 //TODO: ajouter le middleware de vérification d'authentification
 const destroy = async (req: Request, res: Response) => {
   const id = parseInt(req.params.deckId);
-  await deckService.destroy(id);
-  res.status(200).json({ id });
+  if (id === req.user.id || req.user.role === "admin") {
+    await deckService.destroy(id);
+    res.status(200).json({ id });
+  } else {
+    res.sendStatus(401);
+  }
 };
 
 const publish = async (req: Request, res: Response) => {
   const id = parseInt(req.params.deckId);
-  try {
-    const deck = await deckService.publish(id);
-    res.status(200).json(deck);
-  } catch (err) {
-    res.status(500).json({ message: err });
+  if (id === req.user.id || req.user.role === "admin") {
+    try {
+      const deck = await deckService.publish(id);
+      res.status(200).json(deck);
+    } catch (err) {
+      res.status(500).json({ message: err });
+    }
+  } else {
+    res.sendStatus(401);
   }
 };
 

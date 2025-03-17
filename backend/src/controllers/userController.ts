@@ -14,6 +14,10 @@ const findById = async (req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
   const data = req.body;
+  if (data.role) {
+    res.sendStatus(401);
+    return;
+  }
   const user = await userService.create(data);
   res.status(201).json(user);
 };

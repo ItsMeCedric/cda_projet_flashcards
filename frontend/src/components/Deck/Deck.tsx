@@ -8,7 +8,7 @@ const Deck = ({ deck }: { deck: DeckType }) => {
   const navigate = useNavigate();
   const openDeckDetails = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    navigate("/deck-details", { state: { deckId: deck.id } });
+    navigate("/deck-details", { state: { deckId: deck.id, ownerId: deck.userId } });
   };
 
   const playDeck = (e: MouseEvent<HTMLButtonElement>) => {
