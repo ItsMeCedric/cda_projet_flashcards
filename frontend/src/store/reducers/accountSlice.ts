@@ -16,8 +16,11 @@ const accountSlice = createSlice({
     setDataAccount(state, action: PayloadAction<any>) {
       state.dataAccount = action.payload;
     },
+    reset(state) {
+      state.dataAccount = { email: "", username: "", password: "", profilePicture: "" };
+    },
   },
 });
 
-export const { setDataAccount } = accountSlice.actions;
+export const { setDataAccount, reset } = accountSlice.actions;
 export default accountSlice.reducer;
