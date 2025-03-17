@@ -62,6 +62,8 @@ const destroy = async (req: Request, res: Response) => {
 
 const publish = async (req: Request, res: Response) => {
   const id = parseInt(req.params.deckId);
+  console.log(id);
+  console.log(req.user.id);
   if (id === req.user.id || req.user.role === "admin") {
     try {
       const deck = await deckService.publish(id);
