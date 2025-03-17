@@ -14,6 +14,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { ThemeContextType } from "../../@types/theme";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { logout as logoutAction } from "../../store/actions/authActions";
+import { reset } from "../../store/reducers/accountSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   const logout = () => {
+    dispatch(reset());
     dispatch(logoutAction());
     navigate("/", { replace: true });
   };

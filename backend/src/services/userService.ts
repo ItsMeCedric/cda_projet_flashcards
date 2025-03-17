@@ -16,8 +16,10 @@ const create = (data: InferCreationAttributes<user>) => {
 };
 
 const update = async (data: InferAttributes<user>, file: Express.Multer.File | undefined) => {
-  const user = await userRepository.findByUsername(data.username);
-  const userEmail = await userRepository.findByEmail(data.email);
+  let user = undefined;
+  let userEmail = undefined;
+  if (data.username) user = await userRepository.findByUsername(data.username);
+  if (data.email) userEmail = await userRepository.findByEmail(data.email);
   if (user || userEmail) {
     throw new Error();
   }
