@@ -25,23 +25,28 @@ const create = async (req: Request, res: Response) => {
 const update = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.userId);
-  if (req.user.id != id) {
+  if (req.user.id === id || req.user.role === "admin") {
+    try {
+      await userService.update({ ...data, id }, req.file);
+      const user = await userService.findById(id);
+      res.status(200).json(user);
+    } catch (err) {
+      res.sendStatus(409);
+    }
+  } else {
     res.sendStatus(401);
     return;
-  }
-  try {
-    await userService.update({ ...data, id }, req.file);
-    const user = await userService.findById(id);
-    res.status(200).json(user);
-  } catch (err) {
-    res.sendStatus(409);
   }
 };
 
 const destroy = async (req: Request, res: Response) => {
   const id = parseInt(req.params.userId);
-  await userService.destroy(id);
-  res.status(200).json({ id: id });
+  if (req.user.id === id || req.user.role === "admin") {
+    await userService.destroy(id);
+    res.status(200).json({ id: id });
+  } else {
+    res.sendStatus(401);
+  }
 };
 
 export default { getAllUsers, findById, create, update, destroy };
