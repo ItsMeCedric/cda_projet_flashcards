@@ -9,6 +9,8 @@ const router = Router({ mergeParams: true });
  * tags:
  *   - name: Cards
  *     description: API pour la gestion des cartes
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 
 /**
@@ -29,6 +31,10 @@ const router = Router({ mergeParams: true });
  *     responses:
  *       200:
  *         description: Liste des cartes retournée avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.get("/", verifyAuth, cardController.getAllCardsByDeckId);
 
@@ -50,6 +56,10 @@ router.get("/", verifyAuth, cardController.getAllCardsByDeckId);
  *     responses:
  *       200:
  *         description: Carte retournée avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.get("/:cardId", verifyAuth, cardController.findById);
 
@@ -75,6 +85,10 @@ router.get("/:cardId", verifyAuth, cardController.findById);
  *     responses:
  *       201:
  *         description: Carte créée avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.post("/", verifyAuth, cardController.create);
 
@@ -107,6 +121,10 @@ router.post("/", verifyAuth, cardController.create);
  *     responses:
  *       200:
  *         description: Carte mise à jour avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.patch("/:cardId", verifyAuth, cardController.update);
 
@@ -128,6 +146,10 @@ router.patch("/:cardId", verifyAuth, cardController.update);
  *     responses:
  *       200:
  *         description: Carte supprimée avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.delete("/:cardId", verifyAuth, cardController.destroy);
 

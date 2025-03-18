@@ -1,5 +1,6 @@
 import { Router } from "express";
 import authController from "../controllers/authController";
+import verifyAuth from "../middlewares/authMiddleware";
 
 const router = Router();
 
@@ -73,8 +74,12 @@ router.post("/login", authController.login);
  *     responses:
  *       200:
  *         description: Utilisateur connecté retourné
+ *       401:
+ *         description: Token manquant ou invalide
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
-router.get("/loggedIn", authController.loggedIn);
+router.get("/loggedIn", verifyAuth, authController.loggedIn);
 
 /**
  * @swagger
@@ -87,7 +92,11 @@ router.get("/loggedIn", authController.loggedIn);
  *     responses:
  *       200:
  *         description: Utilisateur déconnecté avec succès
+ *       401:
+ *         description: Token manquant ou invalide
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
-router.get("/logout", authController.logout);
+router.get("/logout", verifyAuth, authController.logout);
 
 export default router;

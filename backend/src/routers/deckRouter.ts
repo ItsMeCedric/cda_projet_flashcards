@@ -20,7 +20,7 @@ const router = Router({ mergeParams: true });
  *     summary: Retourne tous les jeux d'un utilisateur
  *     description: Cette route permet de récupérer tous les jeux associés à un utilisateur donné par son ID.
  *     parameters:
- *       - in: path
+ *       - in: query
  *         name: userId
  *         required: true
  *         description: ID de l'utilisateur pour lequel récupérer les jeux.
@@ -29,6 +29,10 @@ const router = Router({ mergeParams: true });
  *     responses:
  *       200:
  *         description: Liste des jeux retournée avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.get("/", verifyAuth, deckController.getAllDecksByUserId);
 
@@ -50,6 +54,10 @@ router.get("/", verifyAuth, deckController.getAllDecksByUserId);
  *     responses:
  *       200:
  *         description: Jeu retourné avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.get("/:deckId", verifyAuth, deckController.findById);
 
@@ -71,6 +79,10 @@ router.get("/:deckId", verifyAuth, deckController.findById);
  *     responses:
  *       200:
  *         description: Jeu publié avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.get("/:deckId/publish", verifyAuth, deckController.publish);
 
@@ -96,6 +108,10 @@ router.get("/:deckId/publish", verifyAuth, deckController.publish);
  *     responses:
  *       201:
  *         description: Jeu créé avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.post("/", verifyAuth, deckController.create);
 
@@ -128,6 +144,10 @@ router.post("/", verifyAuth, deckController.create);
  *     responses:
  *       200:
  *         description: Jeu mis à jour avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.patch("/:deckId", verifyAuth, deckController.update);
 
@@ -149,6 +169,10 @@ router.patch("/:deckId", verifyAuth, deckController.update);
  *     responses:
  *       200:
  *         description: Jeu supprimé avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.delete("/:deckId", verifyAuth, deckController.destroy);
 
