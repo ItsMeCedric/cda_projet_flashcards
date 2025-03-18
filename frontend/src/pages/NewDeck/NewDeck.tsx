@@ -17,11 +17,8 @@ const NewDeck = () => {
   // Récuperer les themes en bdd
   useEffect(() => {
     axiosInstance.get("/theme").then((data) => {
-      data.data.map((obj: any) => {
-        setAllThemes([...allThemes, obj.label]);
-      });
+      setAllThemes(data.data);
     });
-    console.log(allThemes);
   }, []);
 
   const handleSubmit = (e: FormEvent) => {
