@@ -16,7 +16,7 @@ const router = Router({ mergeParams: true });
 
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   get:
  *     tags:
  *       - Users
@@ -34,7 +34,7 @@ router.get("/", verifyAuth, userController.getAllUsers);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   get:
  *     tags:
  *       - Users
@@ -59,7 +59,7 @@ router.get("/:userId", verifyAuth, userController.findById);
 
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   post:
  *     tags:
  *       - Users
@@ -88,7 +88,7 @@ router.post("/", verifyAuth, userController.create);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   patch:
  *     tags:
  *       - Users
@@ -124,7 +124,7 @@ router.patch("/:userId", verifyAuth, upload.single("profilePicture"), userContro
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   delete:
  *     tags:
  *       - Users

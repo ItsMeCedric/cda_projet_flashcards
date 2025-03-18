@@ -15,7 +15,7 @@ const router = Router({ mergeParams: true });
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}/cards:
+ * /api/users/{userId}/decks/{deckId}/cards:
  *   get:
  *     tags:
  *       - Cards
@@ -40,7 +40,7 @@ router.get("/", verifyAuth, cardController.getAllCardsByDeckId);
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}/cards/{cardId}:
+ * /api/users/{userId}/decks/{deckId}/cards/{cardId}:
  *   get:
  *     tags:
  *       - Cards
@@ -65,7 +65,7 @@ router.get("/:cardId", verifyAuth, cardController.findById);
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}/cards:
+ * /api/users/{userId}/decks/{deckId}/cards:
  *   post:
  *     tags:
  *       - Cards
@@ -94,7 +94,7 @@ router.post("/", verifyAuth, cardController.create);
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}/cards/{cardId}:
+ * /api/users/{userId}/decks/{deckId}/cards/{cardId}:
  *   patch:
  *     tags:
  *       - Cards
@@ -130,7 +130,7 @@ router.patch("/:cardId", verifyAuth, cardController.update);
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}/cards/{cardId}:
+ * /api/users/{userId}/decks/{deckId}/cards/{cardId}:
  *   delete:
  *     tags:
  *       - Cards

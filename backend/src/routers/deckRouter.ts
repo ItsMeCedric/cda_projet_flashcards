@@ -13,7 +13,7 @@ const router = Router({ mergeParams: true });
 
 /**
  * @swagger
- * /users/{userId}/decks:
+ * /api/users/{userId}/decks:
  *   get:
  *     tags:
  *       - Decks
@@ -38,7 +38,7 @@ router.get("/", verifyAuth, deckController.getAllDecksByUserId);
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}:
+ * /api/users/{userId}/decks/{deckId}:
  *   get:
  *     tags:
  *       - Decks
@@ -63,7 +63,7 @@ router.get("/:deckId", verifyAuth, deckController.findById);
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}/publish:
+ * /api/users/{userId}/decks/{deckId}/publish:
  *   get:
  *     tags:
  *       - Decks
@@ -88,7 +88,7 @@ router.get("/:deckId/publish", verifyAuth, deckController.publish);
 
 /**
  * @swagger
- * /users/{userId}/decks:
+ * /api/users/{userId}/decks:
  *   post:
  *     tags:
  *       - Decks
@@ -117,7 +117,7 @@ router.post("/", verifyAuth, deckController.create);
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}:
+ * /api/users/{userId}/decks/{deckId}:
  *   patch:
  *     tags:
  *       - Decks
@@ -153,7 +153,7 @@ router.patch("/:deckId", verifyAuth, deckController.update);
 
 /**
  * @swagger
- * /users/{userId}/decks/{deckId}:
+ * /api/users/{userId}/decks/{deckId}:
  *   delete:
  *     tags:
  *       - Decks

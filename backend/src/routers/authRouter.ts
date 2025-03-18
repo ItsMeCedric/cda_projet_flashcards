@@ -13,7 +13,7 @@ const router = Router();
 
 /**
  * @swagger
- * /auth/register:
+ * /api/auth/register:
  *   post:
  *     tags:
  *       - Auth
@@ -40,7 +40,7 @@ router.post("/register", authController.register);
 
 /**
  * @swagger
- * /auth/login:
+ * /api/auth/login:
  *   post:
  *     tags:
  *       - Auth
@@ -65,7 +65,7 @@ router.post("/login", authController.login);
 
 /**
  * @swagger
- * /auth/loggedIn:
+ * /api/auth/loggedIn:
  *   get:
  *     tags:
  *       - Auth
@@ -83,7 +83,7 @@ router.get("/loggedIn", verifyAuth, authController.loggedIn);
 
 /**
  * @swagger
- * /auth/logout:
+ * /api/auth/logout:
  *   get:
  *     tags:
  *       - Auth
