@@ -21,10 +21,12 @@ Theme.initialize(db);
 
 Deck.belongsToMany(Theme, {
   through: "DeckThemes",
+  foreignKey: "deckId",
 });
 
 Theme.belongsToMany(Deck, {
   through: "DeckThemes",
+  foreignKey: "themeId",
 });
 User.hasMany(Deck, {
   foreignKey: "userId",

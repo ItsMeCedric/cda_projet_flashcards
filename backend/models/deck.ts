@@ -11,7 +11,6 @@ import {
 import Card from "./card";
 import User from "./user";
 import Store from "./store";
-import Theme from "./theme";
 
 class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare id: CreationOptional<number>;
@@ -28,7 +27,6 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare static associations: {
     cards: Association<Deck, Card>;
     store: Association<Deck, Store>;
-    theme: Association<Deck, Theme>;
   };
 
   static initialize(sequelize: Sequelize) {
