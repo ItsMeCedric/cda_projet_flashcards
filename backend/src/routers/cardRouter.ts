@@ -78,9 +78,9 @@ router.get("/:cardId", verifyAuth, cardController.findById);
  *           schema:
  *             type: object
  *             properties:
- *               front:
+ *               question:
  *                 type: string
- *               back:
+ *               answer:
  *                 type: string
  *     responses:
  *       201:
@@ -114,9 +114,9 @@ router.post("/", verifyAuth, cardController.create);
  *           schema:
  *             type: object
  *             properties:
- *               front:
+ *               question:
  *                 type: string
- *               back:
+ *               answer:
  *                 type: string
  *     responses:
  *       200:

@@ -72,7 +72,7 @@ router.get("/:userId", verifyAuth, userController.findById);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               username:
  *                 type: string
  *               email:
  *                 type: string
@@ -108,9 +108,11 @@ router.post("/", verifyAuth, userController.create);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               username:
  *                 type: string
  *               email:
+ *                 type: string
+ *               password:
  *                 type: string
  *     responses:
  *       200:

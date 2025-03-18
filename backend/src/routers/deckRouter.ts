@@ -103,8 +103,12 @@ router.get("/:deckId/publish", verifyAuth, deckController.publish);
  *             properties:
  *               title:
  *                 type: string
- *               description:
+ *               subject:
  *                 type: string
+ *               themes:
+ *                 type: array
+ *                 items:
+ *                   type: string
  *     responses:
  *       201:
  *         description: deck créé avec succès
@@ -139,8 +143,12 @@ router.post("/", verifyAuth, deckController.create);
  *             properties:
  *               title:
  *                 type: string
- *               description:
+ *               subject:
  *                 type: string
+ *               themes:
+ *                 type: array
+ *                 items:
+ *                   type: string
  *     responses:
  *       200:
  *         description: deck mis à jour avec succès
