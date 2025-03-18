@@ -7,7 +7,7 @@ const router = Router({ mergeParams: true });
 
 /**
  * @swagger
- * /users:id:
+ * /users:
  *   get:
  *     summary: Retourne tous les utilisateurs
  *     responses:
@@ -16,7 +16,7 @@ const router = Router({ mergeParams: true });
  *         content:
  *           application/json:
  *             schema:
- *               type: object
+ *               type: array
  *               properties:
  *                 id:
  *                   type: number
