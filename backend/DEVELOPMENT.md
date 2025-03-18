@@ -7,4 +7,4 @@ start backend:
 `npm start`
 
 api:
-localhost:4000/api-docs
+localhost:4000/docs

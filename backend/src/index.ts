@@ -8,8 +8,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import verifyAuth from "./middlewares/authMiddleware";
 import deckController from "./controllers/deckController";
-import swaggerUi from 'swagger-ui-express';
-import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
 require("dotenv").config();
 
@@ -23,28 +23,28 @@ const app = express();
 // Configuration de Swagger
 const swaggerOptions: swaggerJsdoc.Options = {
   definition: {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-      title: 'API FlashMcCards',
-      version: '1.0.0',
-      description: 'Documentation de l\'API de FlashMcCards',
+      title: "API FlashMcCards",
+      version: "1.0.0",
+      description: "Documentation de l'API de FlashMcCards",
     },
     tags: [
       {
-        name: 'Auth',
-        description: 'Gestion de l\'authentification',
+        name: "Auth",
+        description: "Gestion de l'authentification",
       },
       {
-        name: 'Users',
-        description: 'Gestion des utilisateurs',
+        name: "Users",
+        description: "Gestion des utilisateurs",
       },
       {
-        name: 'Decks',
-        description: 'Gestion des decks',
+        name: "Decks",
+        description: "Gestion des decks",
       },
       {
-        name: 'Cards',
-        description: 'Gestion des cartes',
+        name: "Cards",
+        description: "Gestion des cartes",
       },
     ],
     securitySchemes: {
@@ -55,15 +55,14 @@ const swaggerOptions: swaggerJsdoc.Options = {
       },
     },
   },
-  apis: ['./src/routers/*.ts'], // Chemin vers vos fichiers de routes
+  apis: ["./src/routers/*.ts"], // Chemin vers vos fichiers de routes
 };
-
 
 // Générer la documentation Swagger
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
-// Servir Swagger UI à l'URL /api-docs
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// Servir Swagger UI à l'URL /docs
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
