@@ -1,6 +1,8 @@
 services:
   backend:
     build: ./backend/
+    environment:
+        NODE_ENV: production
     ports:
       - "127.0.0.1:4000:4000"
     volumes:
@@ -33,6 +35,8 @@ services:
     hostname: frontend
     build:
       context: ./frontend/
+    environment:
+        NODE_ENV: production
     ports:
       - "127.0.0.1:80:80"
     depends_on:
