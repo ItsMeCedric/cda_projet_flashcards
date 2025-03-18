@@ -22,8 +22,8 @@ services:
       test: ["CMD-SHELL", "pg_isready", "-d", "db", "-U", "db"]
       interval: 5s
       retries: 3
-      env_file: "./prod.env"
-        volumes:
+    env_file: "./prod.env"
+    volumes:
       - "./postgres:/var/lib/postgresql/data:z"
     networks:
       - backend
