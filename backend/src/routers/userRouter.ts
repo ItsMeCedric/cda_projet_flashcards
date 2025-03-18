@@ -10,6 +10,8 @@ const router = Router({ mergeParams: true });
  * tags:
  *   - name: Users
  *     description: API pour la gestion des utilisateurs
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 
 /**
@@ -23,22 +25,10 @@ const router = Router({ mergeParams: true });
  *     responses:
  *       200:
  *         description: Liste des utilisateurs retournée avec succès
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: number
- *                     example: 1
- *                   name:
- *                     type: string
- *                     example: "john"
- *                   email:
- *                     type: string
- *                     example: "john@domain.com"
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.get("/", verifyAuth, userController.getAllUsers);
 
@@ -60,6 +50,10 @@ router.get("/", verifyAuth, userController.getAllUsers);
  *     responses:
  *       200:
  *         description: Détails de l'utilisateur retournés avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.get("/:userId", verifyAuth, userController.findById);
 
@@ -85,6 +79,10 @@ router.get("/:userId", verifyAuth, userController.findById);
  *     responses:
  *       201:
  *         description: Utilisateur créé avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.post("/", verifyAuth, userController.create);
 
@@ -117,6 +115,10 @@ router.post("/", verifyAuth, userController.create);
  *     responses:
  *       200:
  *         description: Utilisateur mis à jour avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.patch("/:userId", verifyAuth, upload.single("profilePicture"), userController.update);
 
@@ -138,6 +140,10 @@ router.patch("/:userId", verifyAuth, upload.single("profilePicture"), userContro
  *     responses:
  *       200:
  *         description: Utilisateur supprimé avec succès
+ *       401:
+ *         description: Token non valide ou manquant
+ * security:
+ *   - BearerAuth: []  # Spécifie que cette route nécessite un token JWT
  */
 router.delete("/:userId", verifyAuth, userController.destroy);
 

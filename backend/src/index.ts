@@ -47,6 +47,13 @@ const swaggerOptions: swaggerJsdoc.Options = {
         description: 'Gestion des cartes',
       },
     ],
+    securitySchemes: {
+      BearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
   },
   apis: ['./src/routers/*.ts'], // Chemin vers vos fichiers de routes
 };
