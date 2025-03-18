@@ -3,8 +3,7 @@ services:
     build: ./backend/
     environment:
         NODE_ENV: production
-    env_file:
-        - ./backend/.env
+    env_file: "./backend/.env"
     ports:
       - "127.0.0.1:4000:4000"
     volumes:
@@ -23,8 +22,7 @@ services:
       test: ["CMD-SHELL", "pg_isready", "-d", "db", "-U", "db"]
       interval: 5s
       retries: 3
-      env_file:
-          - ./prod.env
+      env_file: "./prod.env"
         volumes:
       - "./postgres:/var/lib/postgresql/data:z"
     networks:
@@ -37,8 +35,7 @@ services:
       context: ./frontend/
     environment:
         NODE_ENV: production
-    env_file:
-        - ./frontend/.env
+    env_file: "./frontend/.env"
     ports:
       - "127.0.0.1:80:80"
     depends_on:
