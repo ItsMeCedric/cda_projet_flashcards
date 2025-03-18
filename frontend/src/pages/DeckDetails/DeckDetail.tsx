@@ -45,9 +45,12 @@ const DeckDetail = () => {
 
   const deleteDeck = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    axiosInstance.delete(`/users/${user?.id}/decks/${deckId}`).then(() => {
-      navigate("/account", { replace: true });
-    });
+    const result = confirm("Êtes-vous sur de vouloir supprimer le deck ?");
+    if (result) {
+      axiosInstance.delete(`/users/${user?.id}/decks/${deckId}`).then(() => {
+        navigate("/account", { replace: true });
+      });
+    }
   };
 
   return (

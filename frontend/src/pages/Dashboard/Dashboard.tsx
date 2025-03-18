@@ -15,7 +15,8 @@ const Dashboard = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   const deleteUser = async () => {
-    if (user) {
+    const result = confirm("Voulez-vous supprimer votre compte ?");
+    if (user && result) {
       await axiosInstance.delete(`/users/${user.id}`);
       navigate("/");
     }
