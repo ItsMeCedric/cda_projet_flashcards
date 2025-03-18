@@ -11,5 +11,6 @@ COPY src/ ./src/
 COPY models/ ./models/
 COPY config/ ./config/
 COPY migrations/ ./migrations/
+COPY seeders/ ./seeders/
 
 ENTRYPOINT [ "./entrypoint.sh" ]
