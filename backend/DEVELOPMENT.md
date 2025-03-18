@@ -5,3 +5,6 @@ start dev db:
 
 start backend:
 `npm start`
+
+api:
+localhost:4000/api-docs
