@@ -38,7 +38,7 @@ const publish = async (id: number) => {
     await storeService.destroy(deck.storeId);
     deck.storeId = null;
   } else {
-    const store = await storeService.create({ deckId: id });
+    const store = await storeService.create({ id: undefined, deckId: id, createdAt: undefined, updatedAt: undefined });
     deck.storeId = store.id;
   }
   deck = await deck.save();

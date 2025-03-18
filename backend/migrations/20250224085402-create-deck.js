@@ -37,7 +37,7 @@ module.exports = {
       storeId: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        defaultValue: undefined,
+        defaultValue: null,
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,

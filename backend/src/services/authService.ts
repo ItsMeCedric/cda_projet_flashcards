@@ -14,10 +14,8 @@ interface LoginData {
 }
 
 const register = async (data: RegisterData) => {
-  let existingEmail = undefined;
-  let existingUsername = undefined;
-  if (data.email) existingEmail = await userRepository.findByEmail(data.email);
-  if (data.username) existingUsername = await userRepository.findByUsername(data.username);
+  let existingEmail = await userRepository.findByEmail(data.email);
+  let existingUsername = await userRepository.findByUsername(data.username);
   if (existingEmail || existingUsername) {
     throw "Vous avez déjà un compte";
   }
@@ -31,6 +29,7 @@ const register = async (data: RegisterData) => {
     username: data.username,
     email: data.email,
     hash: hash,
+    role: "user",
     profilePicture: undefined,
     createdAt: undefined,
     updatedAt: undefined,

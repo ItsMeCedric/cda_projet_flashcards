@@ -1,6 +1,6 @@
 import { InferAttributes, InferCreationAttributes } from "sequelize";
 import userRepository from "../repositories/userRepository";
-import user from "../../models/user";
+import User from "../../models/user";
 import argon2 from "argon2";
 
 const getAllUsers = () => {
@@ -11,11 +11,20 @@ const findById = (id: number) => {
   return userRepository.findById(id);
 };
 
-const create = (data: InferCreationAttributes<user>) => {
+const create = (data: InferCreationAttributes<User>) => {
   return userRepository.create(data);
 };
 
-const update = async (data: InferAttributes<user>, file: Express.Multer.File | undefined) => {
+const update = async (
+  data: {
+    username: string | undefined;
+    email: string | undefined;
+    password: string | undefined;
+    hash: string | undefined;
+    profilePicture: string | undefined;
+  },
+  file: Express.Multer.File | undefined
+) => {
   let user = undefined;
   let userEmail = undefined;
   if (data.username) user = await userRepository.findByUsername(data.username);
@@ -33,7 +42,7 @@ const update = async (data: InferAttributes<user>, file: Express.Multer.File | u
     data.profilePicture = `/uploads/${file.filename}`;
   }
 
-  return userRepository.update(data);
+  return userRepository.update(data as unknown as InferAttributes<User>);
 };
 
 const destroy = (id: number) => {

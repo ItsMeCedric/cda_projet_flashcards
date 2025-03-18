@@ -1,8 +1,13 @@
 import { NextFunction, Request, Response } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 interface RequestWithUser extends Request {
-  user: JwtPayload | string;
+  user: JWTToken;
+}
+
+interface JWTToken {
+  id: number;
+  role: string;
 }
 
 const verifyAuth = (req: Request, res: Response, next: NextFunction): void => {
@@ -13,7 +18,7 @@ const verifyAuth = (req: Request, res: Response, next: NextFunction): void => {
   }
   try {
     const ret = jwt.verify(token, process.env.JWTSECRET as string);
-    (req as RequestWithUser).user = ret;
+    (req as RequestWithUser).user = ret as JWTToken;
     next();
   } catch (err) {
     res.sendStatus(403);

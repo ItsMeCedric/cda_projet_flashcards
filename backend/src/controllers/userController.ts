@@ -1,6 +1,15 @@
 import { Request, Response } from "express";
 import userService from "../services/userService";
 
+interface RequestWithUser extends Request {
+  user: JWTToken;
+}
+
+interface JWTToken {
+  id: number;
+  role: string;
+}
+
 const getAllUsers = async (req: Request, res: Response) => {
   const users = await userService.getAllUsers();
   res.status(200).json(users);
@@ -25,7 +34,7 @@ const create = async (req: Request, res: Response) => {
 const update = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.userId);
-  if (req.user.id === id || req.user.role === "admin") {
+  if ((req as RequestWithUser).user.id === id || (req as RequestWithUser).user.role === "admin") {
     try {
       await userService.update({ ...data, id }, req.file);
       const user = await userService.findById(id);
@@ -41,7 +50,7 @@ const update = async (req: Request, res: Response) => {
 
 const destroy = async (req: Request, res: Response) => {
   const id = parseInt(req.params.userId);
-  if (req.user.id === id || req.user.role === "admin") {
+  if ((req as RequestWithUser).user.id === id || (req as RequestWithUser).user.role === "admin") {
     await userService.destroy(id);
     res.status(200).json({ id: id });
   } else {

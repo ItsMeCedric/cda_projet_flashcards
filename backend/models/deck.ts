@@ -30,7 +30,7 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare mark: CreationOptional<number>;
   declare playCount: CreationOptional<number>;
   declare userId: ForeignKey<User["id"]>;
-  declare storeId: CreationOptional<ForeignKey<Store["id"]>>;
+  declare storeId: CreationOptional<ForeignKey<Store["id"]> | null>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 
@@ -84,7 +84,7 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
         storeId: {
           type: DataTypes.INTEGER,
           allowNull: true,
-          defaultValue: undefined,
+          defaultValue: null,
         },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,

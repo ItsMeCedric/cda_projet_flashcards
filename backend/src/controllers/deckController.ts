@@ -1,8 +1,14 @@
 import { Request, Response } from "express";
 import deckService from "../services/deckService";
-import storeService from "../services/storeService";
-import { InferCreationAttributes } from "sequelize";
-import { parse } from "path";
+
+interface RequestWithUser extends Request {
+  user: JWTToken;
+}
+
+interface JWTToken {
+  id: number;
+  role: string;
+}
 
 const getAllDecks = async (req: Request, res: Response) => {
   const decks = await deckService.getAllDecks();
@@ -31,7 +37,7 @@ const create = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.userId);
   const userId = parseInt(req.params.userId);
-  if (userId === req.user.id || req.user.role === "admin") {
+  if (userId === (req as RequestWithUser).user.id || (req as RequestWithUser).user.role === "admin") {
     const deck = await deckService.create({ ...data, userId: id });
     res.status(201).json(deck);
   } else {
@@ -44,7 +50,7 @@ const update = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.deckId);
   const userId = parseInt(req.params.userId);
-  if (userId === req.user.id || req.user.role === "admin") {
+  if (userId === (req as RequestWithUser).user.id || (req as RequestWithUser).user.role === "admin") {
     const deck = await deckService.update({ ...data, id });
     res.status(200).json(deck);
   } else {
@@ -56,7 +62,7 @@ const update = async (req: Request, res: Response) => {
 const destroy = async (req: Request, res: Response) => {
   const id = parseInt(req.params.deckId);
   const userId = parseInt(req.params.userId);
-  if (userId === req.user.id || req.user.role === "admin") {
+  if (userId === (req as RequestWithUser).user.id || (req as RequestWithUser).user.role === "admin") {
     await deckService.destroy(id);
     res.status(200).json({ id });
   } else {
@@ -67,7 +73,7 @@ const destroy = async (req: Request, res: Response) => {
 const publish = async (req: Request, res: Response) => {
   const id = parseInt(req.params.deckId);
   const userId = parseInt(req.params.userId);
-  if (userId === req.user.id || req.user.role === "admin") {
+  if (userId === (req as RequestWithUser).user.id || (req as RequestWithUser).user.role === "admin") {
     try {
       const deck = await deckService.publish(id);
       res.status(200).json(deck);
