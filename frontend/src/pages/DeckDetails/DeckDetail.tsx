@@ -59,6 +59,9 @@ const DeckDetail = () => {
           <div className={styles.title}>
             <h2>{deck.name}</h2>
             <h3>{deck.subject}</h3>
+            {deck.themes.map((theme) => {
+              return <p>{theme}</p>;
+            })}
           </div>
 
           <div className={styles.all_btn}>

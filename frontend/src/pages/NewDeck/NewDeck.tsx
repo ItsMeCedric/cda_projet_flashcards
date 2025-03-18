@@ -5,13 +5,14 @@ import axiosInstance from "../../utils/axios";
 import { useAppSelector } from "../../hooks/redux";
 import styles from "./NewDeck.module.css";
 import { useNavigate } from "react-router-dom";
+import { Theme } from "../../@types/deck";
 
 const NewDeck = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [subject, setSubject] = useState("");
   const [themes, setThemes] = useState([""]);
-  const [allThemes, setAllThemes] = useState([""]);
+  const [allThemes, setAllThemes] = useState<Theme[]>([]);
 
   const { user } = useAppSelector((state) => state.auth);
   // Récuperer les themes en bdd
@@ -19,11 +20,12 @@ const NewDeck = () => {
     axiosInstance.get("/theme").then((data) => {
       setAllThemes(data.data);
     });
+    console.log(allThemes);
   }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    axiosInstance.post(`/users/${user?.id}/decks`, { name, subject }).then((res) => {
+    axiosInstance.post(`/users/${user?.id}/decks`, { name, subject, themes }).then((res) => {
       navigate("/deck-details", { state: { deckId: res.data.id } });
     });
   };
@@ -62,14 +64,22 @@ const NewDeck = () => {
                   onChange={(e) => setSubject(e.target.value)}
                 />
               </div>
-              <div className={styles.form_group}>
+              <div className={`${styles.all_checkbox} ${styles.form_group}`}>
                 <label htmlFor="deck-subject">Thème(s) du deck</label>
-                {/* looper sur tous les theme pour les afficher */}
-                <input
-                  type="checkbox"
-                  value={subject}
-                  // onChange={(e) => checkTheme(valeur du map)}
-                />
+                {allThemes.map((theme) => {
+                  console.log(theme.label);
+                  return (
+                    <div className={styles.one_check}>
+                      <input
+                        type="checkbox"
+                        id={theme.label}
+                        name={theme.label}
+                        onChange={() => checkTheme(theme.label)}
+                      />
+                      <label htmlFor={theme.label}>{theme.label}</label>
+                    </div>
+                  );
+                })}
               </div>
               <button type="submit" className={styles.btn}>
                 Créer

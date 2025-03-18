@@ -10,3 +10,8 @@ export interface Deck {
   storeId: number | null;
   url: string;
 }
+
+export interface Theme {
+  id: number;
+  label: string;
+}

@@ -19,16 +19,13 @@ Card.initialize(db);
 Store.initialize(db);
 Theme.initialize(db);
 
-Deck.hasMany(Theme, {
-  foreignKey: "deckId",
-  as: "themes",
+Deck.belongsToMany(Theme, {
+  through: "DeckThemes",
 });
 
-Theme.belongsTo(Deck, {
-  foreignKey: "deckId",
-  as: "deck",
+Theme.belongsToMany(Deck, {
+  through: "DeckThemes",
 });
-
 User.hasMany(Deck, {
   foreignKey: "userId",
   as: "decks",
