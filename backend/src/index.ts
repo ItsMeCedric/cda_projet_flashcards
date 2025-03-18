@@ -61,7 +61,7 @@ const swaggerOptions: swaggerJsdoc.Options = {
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 // Servir Swagger UI à l'URL /docs
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
