@@ -19,13 +19,13 @@ const router = Router({ mergeParams: true });
  *   get:
  *     tags:
  *       - Cards
- *     summary: Retourne toutes les cartes d'un jeu
- *     description: Cette route permet de récupérer toutes les cartes d'un jeu spécifique par son ID.
+ *     summary: Retourne toutes les cartes d'un deck
+ *     description: Cette route permet de récupérer toutes les cartes d'un deck spécifique par son ID.
  *     parameters:
  *       - in: path
  *         name: deckId
  *         required: true
- *         description: ID du jeu dont les cartes doivent être récupérées.
+ *         description: ID du deck dont les cartes doivent être récupérées.
  *         schema:
  *           type: integer
  *     responses:
@@ -70,7 +70,7 @@ router.get("/:cardId", verifyAuth, cardController.findById);
  *     tags:
  *       - Cards
  *     summary: Crée une nouvelle carte
- *     description: Cette route permet de créer une carte dans un jeu existant.
+ *     description: Cette route permet de créer une carte dans un deck existant.
  *     requestBody:
  *       required: true
  *       content:

@@ -17,18 +17,18 @@ const router = Router({ mergeParams: true });
  *   get:
  *     tags:
  *       - Decks
- *     summary: Retourne tous les jeux d'un utilisateur
- *     description: Cette route permet de récupérer tous les jeux associés à un utilisateur donné par son ID.
+ *     summary: Retourne tous les deckx d'un utilisateur
+ *     description: Cette route permet de récupérer tous les deckx associés à un utilisateur donné par son ID.
  *     parameters:
  *       - in: query
  *         name: userId
  *         required: true
- *         description: ID de l'utilisateur pour lequel récupérer les jeux.
+ *         description: ID de l'utilisateur pour lequel récupérer les deckx.
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Liste des jeux retournée avec succès
+ *         description: Liste des deckx retournée avec succès
  *       401:
  *         description: Token non valide ou manquant
  * security:
@@ -42,18 +42,18 @@ router.get("/", verifyAuth, deckController.getAllDecksByUserId);
  *   get:
  *     tags:
  *       - Decks
- *     summary: Retourne un jeu par son ID
- *     description: Cette route permet de récupérer un jeu spécifique en fonction de son ID.
+ *     summary: Retourne un deck par son ID
+ *     description: Cette route permet de récupérer un deck spécifique en fonction de son ID.
  *     parameters:
  *       - in: path
  *         name: deckId
  *         required: true
- *         description: ID du jeu à récupérer.
+ *         description: ID du deck à récupérer.
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Jeu retourné avec succès
+ *         description: deck retourné avec succès
  *       401:
  *         description: Token non valide ou manquant
  * security:
@@ -67,18 +67,18 @@ router.get("/:deckId", verifyAuth, deckController.findById);
  *   get:
  *     tags:
  *       - Decks
- *     summary: Publie un jeu
- *     description: Cette route permet de publier un jeu, le rendant accessible publiquement.
+ *     summary: Publie un deck
+ *     description: Cette route permet de publier un deck, le rendant accessible publiquement.
  *     parameters:
  *       - in: path
  *         name: deckId
  *         required: true
- *         description: ID du jeu à publier.
+ *         description: ID du deck à publier.
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Jeu publié avec succès
+ *         description: deck publié avec succès
  *       401:
  *         description: Token non valide ou manquant
  * security:
@@ -92,8 +92,8 @@ router.get("/:deckId/publish", verifyAuth, deckController.publish);
  *   post:
  *     tags:
  *       - Decks
- *     summary: Crée un nouveau jeu
- *     description: Cette route permet de créer un jeu pour l'utilisateur spécifié.
+ *     summary: Crée un nouveau deck
+ *     description: Cette route permet de créer un deck pour l'utilisateur spécifié.
  *     requestBody:
  *       required: true
  *       content:
@@ -107,7 +107,7 @@ router.get("/:deckId/publish", verifyAuth, deckController.publish);
  *                 type: string
  *     responses:
  *       201:
- *         description: Jeu créé avec succès
+ *         description: deck créé avec succès
  *       401:
  *         description: Token non valide ou manquant
  * security:
@@ -121,13 +121,13 @@ router.post("/", verifyAuth, deckController.create);
  *   patch:
  *     tags:
  *       - Decks
- *     summary: Met à jour un jeu
- *     description: Cette route permet de mettre à jour un jeu existant en fonction de son ID.
+ *     summary: Met à jour un deck
+ *     description: Cette route permet de mettre à jour un deck existant en fonction de son ID.
  *     parameters:
  *       - in: path
  *         name: deckId
  *         required: true
- *         description: ID du jeu à mettre à jour.
+ *         description: ID du deck à mettre à jour.
  *         schema:
  *           type: integer
  *     requestBody:
@@ -143,7 +143,7 @@ router.post("/", verifyAuth, deckController.create);
  *                 type: string
  *     responses:
  *       200:
- *         description: Jeu mis à jour avec succès
+ *         description: deck mis à jour avec succès
  *       401:
  *         description: Token non valide ou manquant
  * security:
@@ -157,18 +157,18 @@ router.patch("/:deckId", verifyAuth, deckController.update);
  *   delete:
  *     tags:
  *       - Decks
- *     summary: Supprime un jeu
- *     description: Cette route permet de supprimer un jeu en fonction de son ID.
+ *     summary: Supprime un deck
+ *     description: Cette route permet de supprimer un deck en fonction de son ID.
  *     parameters:
  *       - in: path
  *         name: deckId
  *         required: true
- *         description: ID du jeu à supprimer.
+ *         description: ID du deck à supprimer.
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Jeu supprimé avec succès
+ *         description: deck supprimé avec succès
  *       401:
  *         description: Token non valide ou manquant
  * security:
