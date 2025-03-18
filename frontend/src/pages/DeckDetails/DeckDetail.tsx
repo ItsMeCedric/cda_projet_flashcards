@@ -78,7 +78,7 @@ const DeckDetail = () => {
         </div>
         <div className={styles.cards_container}>
           {cards.map((card) => (
-            <Card card={card} />
+            <Card card={card} ownerId={deck?.userId} />
           ))}
         </div>
       </div>

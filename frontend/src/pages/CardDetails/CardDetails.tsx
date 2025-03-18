@@ -19,7 +19,7 @@ const CardDetails = () => {
     e.preventDefault();
     const result = confirm("Voulez-vous vraiment supprimer cette carte ?");
     if (result) {
-      axiosInstance.delete(`/users/${ownerId}/deck/${deckId}/cards/${cardId}`).then((res) => {
+      axiosInstance.delete(`/users/${ownerId}/deck/${deckId}/cards/${cardId}`).then(() => {
         navigate(-1);
       });
     }
