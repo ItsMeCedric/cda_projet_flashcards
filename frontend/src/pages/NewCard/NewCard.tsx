@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const NewCard = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { deckId } = state;
+  const { deckId, ownerId } = state;
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [questionImg] = useState("");
@@ -21,7 +21,7 @@ const NewCard = () => {
     axiosInstance
       .post(`/users/${user?.id}/decks/${deckId}/cards`, { question, answer, questionImg, answerImg })
       .then(() => {
-        navigate("/deck-details", { state: { deckId } });
+        navigate("/deck-details", { state: { deckId, ownerId } });
       });
   };
 

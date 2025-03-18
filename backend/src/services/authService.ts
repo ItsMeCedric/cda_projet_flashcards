@@ -50,7 +50,7 @@ const login = async (data: LoginData) => {
   } else {
     throw "Identifiant ou mot de passe invalide";
   }
-  const token = jwt.sign({ id: user.id }, process.env.JWTSECRET as string, {
+  const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWTSECRET as string, {
     expiresIn: "2h",
   });
 
