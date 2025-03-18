@@ -12,14 +12,14 @@ const CardDetails = () => {
   const [card, setCard] = useState<Card | undefined>(undefined);
 
   useEffect(() => {
-    axiosInstance.get(`/users/${ownerId}/deck/${deckId}/cards/${cardId}`).then((card) => setCard(card.data));
+    axiosInstance.get(`/users/${ownerId}/decks/${deckId}/cards/${cardId}`).then((card) => setCard(card.data));
   }, [deckId, cardId]);
 
   const deleteCard = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const result = confirm("Voulez-vous vraiment supprimer cette carte ?");
     if (result) {
-      axiosInstance.delete(`/users/${ownerId}/deck/${deckId}/cards/${cardId}`).then(() => {
+      axiosInstance.delete(`/users/${ownerId}/decks/${deckId}/cards/${cardId}`).then(() => {
         navigate(-1);
       });
     }
