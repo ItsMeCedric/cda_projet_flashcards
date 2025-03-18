@@ -23,15 +23,34 @@ const app = express();
 // Configuration de Swagger
 const swaggerOptions: swaggerJsdoc.Options = {
   definition: {
-    openapi: '3.0.0', // Version OpenAPI
+    openapi: '3.0.0',
     info: {
       title: 'API FlashMcCards',
       version: '1.0.0',
       description: 'Documentation de l\'API de FlashMcCards',
     },
+    tags: [
+      {
+        name: 'Auth',
+        description: 'Gestion de l\'authentification',
+      },
+      {
+        name: 'Users',
+        description: 'Gestion des utilisateurs',
+      },
+      {
+        name: 'Decks',
+        description: 'Gestion des decks',
+      },
+      {
+        name: 'Cards',
+        description: 'Gestion des cartes',
+      },
+    ],
   },
-  apis: ['./src/routers/*.ts'], // Chemin vers les fichiers de routes TypeScript
+  apis: ['./src/routers/*.ts'], // Chemin vers vos fichiers de routes
 };
+
 
 // Générer la documentation Swagger
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
