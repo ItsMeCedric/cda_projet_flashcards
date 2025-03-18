@@ -1,6 +1,7 @@
 import express, { json, Request, Response } from "express";
 import authRouter from "./routers/authRouter";
 import cardRouter from "./routers/cardRouter";
+import themeRouter from "./routers/themeRouter";
 import db from "../models/index";
 import deckRouter from "./routers/deckRouter";
 import userRouter from "./routers/userRouter";
@@ -27,6 +28,7 @@ app.get("/decks/public", verifyAuth, deckController.findPublic);
 userRouter.use("/:userId/decks", deckRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
+app.use("/theme", themeRouter);
 app.use(
   "/uploads",
   express.static("./uploads", {

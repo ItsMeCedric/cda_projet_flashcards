@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import axiosInstance from "../../utils/axios";
@@ -10,13 +10,33 @@ const NewDeck = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [subject, setSubject] = useState("");
+  const [themes, setThemes] = useState([""]);
+  const [allThemes, setAllThemes] = useState([""]);
+
   const { user } = useAppSelector((state) => state.auth);
+  // Récuperer les themes en bdd
+  useEffect(() => {
+    axiosInstance.get("/theme").then((data) => {
+      data.data.map((obj: any) => {
+        setAllThemes([...allThemes, obj.label]);
+      });
+    });
+    console.log(allThemes);
+  }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     axiosInstance.post(`/users/${user?.id}/decks`, { name, subject }).then((res) => {
       navigate("/deck-details", { state: { deckId: res.data.id } });
     });
+  };
+
+  const checkTheme = (clickTheme: string) => {
+    if (themes.includes(clickTheme)) {
+      setThemes(themes.filter((value) => value != clickTheme));
+    } else {
+      setThemes([...themes, clickTheme]);
+    }
   };
 
   return (
@@ -43,6 +63,15 @@ const NewDeck = () => {
                   value={subject}
                   placeholder="Entrer le sujet du deck"
                   onChange={(e) => setSubject(e.target.value)}
+                />
+              </div>
+              <div className={styles.form_group}>
+                <label htmlFor="deck-subject">Thème(s) du deck</label>
+                {/* looper sur tous les theme pour les afficher */}
+                <input
+                  type="checkbox"
+                  value={subject}
+                  // onChange={(e) => checkTheme(valeur du map)}
                 />
               </div>
               <button type="submit" className={styles.btn}>
