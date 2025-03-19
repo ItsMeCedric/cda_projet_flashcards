@@ -13,6 +13,8 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE,
     });
   },
 
