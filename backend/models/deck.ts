@@ -38,6 +38,7 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
           type: DataTypes.INTEGER,
           autoIncrement: true,
           primaryKey: true,
+          allowNull: false,
         },
         name: {
           type: DataTypes.STRING,

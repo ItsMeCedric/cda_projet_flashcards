@@ -1,0 +1,52 @@
+services:
+  backend:
+    build: ./backend/
+    environment:
+        NODE_ENV: production
+    env_file: 
+      - "./backend/.env"
+    ports:
+      - "127.0.0.1:4000:4000"
+    volumes:
+      - "./backend/uploads:/app/uploads"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend
+    restart: unless-stopped
+
+  db:
+    hostname: db
+    image: postgres:alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db", "-U", "db"]
+      interval: 5s
+      retries: 3
+    env_file: 
+      - "./prod.env"
+    volumes:
+      - "./postgres:/var/lib/postgresql/data:z"
+    networks:
+      - backend
+    restart: unless-stopped
+
+  frontend:
+    hostname: frontend
+    build:
+      context: ./frontend/
+    environment:
+        NODE_ENV: production
+    env_file:
+      - "./frontend/.env"
+    ports:
+      - "127.0.0.1:4001:80"
+    depends_on:
+      - backend
+    networks:
+      - frontend
+    restart: unless-stopped
+
+networks:
+  backend:
+  frontend:

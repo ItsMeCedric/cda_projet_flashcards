@@ -7,8 +7,9 @@ import deckRouter from "./routers/deckRouter";
 import userRouter from "./routers/userRouter";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import verifyAuth from "./middlewares/authMiddleware";
 import deckController from "./controllers/deckController";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
 require("dotenv").config();
 
@@ -19,12 +20,56 @@ db.sync();
 
 const app = express();
 
+// Configuration de Swagger
+const swaggerOptions: swaggerJsdoc.Options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "API FlashMcCards",
+      version: "1.0.0",
+      description: "Documentation de l'API de FlashMcCards",
+    },
+    tags: [
+      {
+        name: "Auth",
+        description: "Gestion de l'authentification",
+      },
+      {
+        name: "Users",
+        description: "Gestion des utilisateurs",
+      },
+      {
+        name: "Decks",
+        description: "Gestion des decks",
+      },
+      {
+        name: "Cards",
+        description: "Gestion des cartes",
+      },
+    ],
+    securitySchemes: {
+      BearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+  },
+  apis: ["./src/routers/*.ts"], // Chemin vers vos fichiers de routes
+};
+
+// Générer la documentation Swagger
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
+// Servir Swagger UI à l'URL /docs
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
 app.use(json());
 
 deckRouter.use("/:deckId/cards", cardRouter);
-app.get("/decks/public", verifyAuth, deckController.findPublic);
+app.get("/decks/public", deckController.findPublic);
 userRouter.use("/:userId/decks", deckRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);

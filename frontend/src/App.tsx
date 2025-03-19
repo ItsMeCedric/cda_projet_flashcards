@@ -13,6 +13,7 @@ import Game from "./pages/Game/Game";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import { validateToken } from "./store/actions/authActions";
+import CardDetails from "./pages/CardDetails/CardDetails";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/new-card" element={<NewCard />} />
         <Route path="/new-deck" element={<NewDeck />} />
         <Route path="/deck-details" element={<DeckDetails />} />
+        <Route path="/card-details" element={<CardDetails />} />
         <Route path="/play" element={<Game />} />
       </Route>
     </Routes>

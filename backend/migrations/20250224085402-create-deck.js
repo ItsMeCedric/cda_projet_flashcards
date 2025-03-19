@@ -1,35 +1,49 @@
 "use strict";
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Decks", {
       id: {
-        allowNull: false,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
       },
       name: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      subject: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       downloads: {
         type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       mark: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+      },
+      playCount: {
         type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0,
       },
-      createdAt: {
+      userId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        type: Sequelize.DATE,
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
+      storeId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: undefined,
       },
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE,
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Decks");
   },
 };
-

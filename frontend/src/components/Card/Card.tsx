@@ -2,11 +2,11 @@ import styles from "./Card.module.css";
 import { useNavigate } from "react-router-dom";
 import { MouseEvent } from "react";
 
-const Card = ({ card }: { card: Card }) => {
+const Card = ({ card, ownerId }: { card: Card; ownerId: number }) => {
   const navigate = useNavigate();
   const openCardDetails = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    navigate("/card-details", { state: { cardId: card.id } });
+    navigate("/card-details", { state: { cardId: card.id, deckId: card.deckId, ownerId } });
   };
 
   return (

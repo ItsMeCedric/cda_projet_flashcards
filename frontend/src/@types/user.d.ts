@@ -12,6 +12,7 @@ export interface UserMock {
 
 export interface User {
   id: number;
+  role: "user" | "admin";
   username: string;
   email: string;
   b64Url: string;

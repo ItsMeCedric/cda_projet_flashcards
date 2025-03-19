@@ -51,25 +51,28 @@ const Account: React.FC = () => {
   };
 
   const onSubmit = async (data: { email: string; username: string; password: string }) => {
-    try {
-      const updatedData = {
-        email: user?.email === data.email ? undefined : data.email,
-        username: user?.username === data.username ? undefined : data.username,
-        password: data.password,
-      };
+    const result = confirm("Voulez-vous vraiment modifier votre profil ?");
+    if (result) {
+      try {
+        const updatedData = {
+          email: user?.email === data.email ? undefined : data.email,
+          username: user?.username === data.username ? undefined : data.username,
+          password: data.password,
+        };
 
-      axiosInstance.patch(`/users/${user?.id}`, updatedData).then((res) => {
-        if (res.status === 409) {
-          const ret = { email, username, password: "", profilePicture };
-          dispatch(setDataAccount(ret));
-        } else {
-          const ret = { email: res.data.email, username: res.data.username, password: "", profilePicture };
-          dispatch(setDataAccount(ret));
-        }
-        setIsEditing({ email: false, password: false, username: false });
-      });
-    } catch (error) {
-      console.error("Failed to update profile:", error);
+        axiosInstance.patch(`/users/${user?.id}`, updatedData).then((res) => {
+          if (res.status === 409) {
+            const ret = { email, username, password: "", profilePicture };
+            dispatch(setDataAccount(ret));
+          } else {
+            const ret = { email: res.data.email, username: res.data.username, password: "", profilePicture };
+            dispatch(setDataAccount(ret));
+          }
+          setIsEditing({ email: false, password: false, username: false });
+        });
+      } catch (error) {
+        console.error("Failed to update profile:", error);
+      }
     }
   };
 
@@ -113,7 +116,8 @@ const Account: React.FC = () => {
           }}
           className={styles.back}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512">
+          viewBox="0 0 448 512"
+        >
           <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
         </svg>
         <div className={styles.image_container}>
