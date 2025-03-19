@@ -7,18 +7,18 @@ module.exports = {
       deckId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Decks", // Assure-toi que le nom du modèle est correct
+          model: "Decks",
           key: "id",
         },
-        onDelete: "CASCADE", // Suppression en cascade lorsque le deck est supprimé
+        onDelete: "CASCADE",
       },
       themeId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Themes", // Assure-toi que le nom du modèle est correct
+          model: "Themes",
           key: "id",
         },
-        onDelete: "CASCADE", // Suppression en cascade lorsque le thème est supprimé
+        onDelete: "CASCADE",
       },
     });
   },

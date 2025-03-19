@@ -37,6 +37,7 @@ module.exports = {
       deckId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: "CASCADE",
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
