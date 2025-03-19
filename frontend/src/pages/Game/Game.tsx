@@ -78,42 +78,58 @@ const Game = () => {
   };
 
   return (
-    <>
+    <div className={styles["main-container"]}>
       <Header />
-      <div className={styles.container}>
-        <div style={{ display: showGame ? "" : "none" }}>
-          <div className={styles.card}>
-            <p>{card?.question}</p>
-            <button style={{ display: showButton }} onClick={showCheck}>
-              Afficher
-            </button>
-            <p className={styles[answerDisplay]}>{card?.answer}</p>
-            <div>
-              <button className={styles[checkDisplay]} onClick={(e) => setAnswer(e, true)}>
-                Vrai
-              </button>
-              <button className={styles[checkDisplay]} onClick={(e) => setAnswer(e, false)}>
-                Faux
-              </button>
+      <div className={styles.content}>
+        <div className={styles.container}>
+          <div style={{ display: showGame ? "" : "none" }}>
+            <div className={styles.card}>
+              <h3>{card?.question}</h3>
+              <div className={`${styles.description} ${styles[answerDisplay]}`}>
+                <p>{card?.answer}</p>
+              </div>
+              <div className={styles["button-container"]}>
+                {nextDisplay === "next_shown" && (
+                  <button className={styles.button} onClick={nextCard}>
+                    Suivant
+                  </button>
+                )}
+                {showButton === "inline" && (
+                  <button className={styles.button} onClick={showCheck}>
+                    Afficher
+                  </button>
+                )}
+                {checkDisplay === "check_shown" && (
+                  <div className={styles["answer-buttons"]}>
+                    <button className={styles.button} onClick={(e) => setAnswer(e, true)}>
+                      Vrai
+                    </button>
+                    <button className={styles.button} onClick={(e) => setAnswer(e, false)}>
+                      Faux
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className={styles["result-container"]}>
+              <p>
+                {correctAnswer}/{cards.length}
+              </p>
             </div>
           </div>
-          <p>
-            {correctAnswer}/{cards.length}
-          </p>
-          <button className={styles[nextDisplay]} onClick={nextCard}>
-            Suivant
-          </button>
-        </div>
-        <div style={{ display: showResult ? "" : "none" }}>
-          <p>GG!</p>
-          <p>
-            Vous avez {correctAnswer} bonne(s) réponse(s) sur {cards.length} carte(s)!
-          </p>
-          <button onClick={endGame}>Terminer</button>
+          <div style={{ display: showResult ? "" : "none" }}>
+            <p>GG!</p>
+            <p>
+              Vous avez {correctAnswer} bonne(s) réponse(s) sur {cards.length} carte(s)!
+            </p>
+            <div className={styles["end-button-container"]}>
+              <button className={styles.button} onClick={endGame}>Terminer</button>
+            </div>
+          </div>
         </div>
       </div>
-      <Footer />
-    </>
+      <Footer/>
+    </div>
   );
 };
 

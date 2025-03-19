@@ -1,3 +1,23 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100rem;
+  margin: 0 auto;
+  background-color: var(--bg-main);
+  color: var(--txt-main);
+  scrollbar-width: none; /*firefox*/
+}
+
+/*chrome...*/
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+.content {
+  flex: 1;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -6,21 +26,32 @@
 }
 
 .card {
-  /* div setup */
-  width: 300px;
-  height: auto;
+  width: 20rem;
+  height: 35rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 10px 15px;
+  padding: 0.3rem;
   position: relative;
-  border-radius: 15px;
+  border-radius: 1rem;
   background-color: var(--bg-alt);
   align-items: center;
-  /*shadow*/
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.19),
-    0 4px 4px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 0.6rem 1.3rem rgba(0, 0, 0, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
+}
+
+.card h3 {
+  color: var(--txt-alt);
+  max-width: 19rem;
+  height: 15rem;
+  padding: 1rem;
+}
+
+.description {
+  height: 13rem;
+  margin: 0.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: justify;
 }
 
 .answer_hidden {
@@ -33,4 +64,46 @@
 
 .next_hidden {
   display: none;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.6rem;
+  background-color: var(--btn);
+  color: var(--btn-txt);
+  border-style: none;
+  border-radius: 0.6rem;
+  width: 7rem;
+  height: 2rem;
+  box-shadow: 0 0.6rem 1.3rem rgba(0, 0, 0, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
+}
+
+.button-container {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.answer-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.result-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.end-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }

@@ -1,27 +1,22 @@
 .card {
-  width: 300px;
-  height: auto;
+  width: 20rem;
+  height: 35rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 10px 15px;
+  padding: 0.3rem;
   position: relative;
-  border-radius: 15px;
+  border-radius: 1rem;
   background-color: var(--bg-alt);
   align-items: center;
-  /*shadow*/
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.19),
-    0 4px 4px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 0.6rem 1.3rem rgba(0, 0, 0, 0.19), 0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
 }
 
 .card h3 {
   color: var(--txt-alt);
-  max-width: 280px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 40px;
+  max-width: 19rem;
+  height: 15rem;
+  padding: 1rem;
 }
 
 .card img {
@@ -30,25 +25,21 @@
 }
 
 .infos {
-  width: 280px;
+  width: 19rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center; /* Center the content horizontally */
 }
 
 .description {
-  height: 170px;
-  margin: 0.6rem;
-}
-
-.icons {
-  width: 280px;
+  height: 13rem;
+  width: 19rem;
+  margin: 0.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: justify;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 0.2rem;
-  margin-left: 20px;
-  margin-right: 20px;
-  align-items: center;
-  align-content: center;
+  align-items: center; /* Center the text vertically */
+  justify-content: center; /* Center the text horizontally */
 }
