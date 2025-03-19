@@ -1,5 +1,5 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { registerUser, loginUser, validateUserToken, logoutUser } from "../../services/authService";
+import { registerUser, loginUser, validateUserToken, logoutUser, updateAuthData } from "../../services/authService";
 import { LoginCredentials, RegisterCredentials } from "../../@types/auth";
 import { User } from "../../@types/user";
 
@@ -59,3 +59,15 @@ export const logout = createAsyncThunk("auth/LOGOUT", async (_, { rejectWithValu
     return rejectWithValue("error");
   }
 });
+
+// action pcq louis casse les couilles
+export const updateData = createAsyncThunk(
+  "auth/UPDATE_DATA",
+  async (data: RegisterCredentials, { rejectWithValue }) => {
+    try {
+      return await updateAuthData(data);
+    } catch (error) {
+      return rejectWithValue("error");
+    }
+  }
+);
