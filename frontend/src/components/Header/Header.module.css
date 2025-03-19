@@ -9,6 +9,7 @@
 
 .logo {
   width: 150px;
+  cursor: pointer;
 }
 
 .navbar {
@@ -38,5 +39,7 @@
   width: 120px;
   height: 30px;
   text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.19),
+    0 4px 4px rgba(0, 0, 0, 0.23);
 }

@@ -30,13 +30,11 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <img src={theme === "light" ? logo_light : logo_dark} alt="logo" className={styles.logo} />
+      <NavLink to={"/"}>
+        <img src={theme === "light" ? logo_light : logo_dark} alt="logo" className={styles.logo} />
+      </NavLink>
       <div className={styles.navbar}>
         <NavLink to={"/"}>Home</NavLink>
-        <span>|</span>
-        <NavLink to={"/"}>Explore</NavLink>
-        <span>|</span>
-        <NavLink to={"/"}>Contact Us</NavLink>
         <span>|</span>
         <ToggleTheme />
       </div>
