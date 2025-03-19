@@ -6,6 +6,7 @@ import userRouter from "./routers/userRouter";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import deckController from "./controllers/deckController";
+import themeRouter from "./routers/themeRouter";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get("/decks/public", deckController.findPublic);
 userRouter.use("/:userId/decks", deckRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
+app.use("/theme", themeRouter);
 app.use(
   "/uploads",
   express.static("./uploads", {
