@@ -16,6 +16,7 @@ class Theme extends Model<InferAttributes<Theme>, InferCreationAttributes<Theme>
         },
         label: {
           type: DataTypes.STRING,
+          unique: true,
         },
 
         createdAt: DataTypes.DATE,
