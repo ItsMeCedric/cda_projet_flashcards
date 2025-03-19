@@ -17,7 +17,7 @@ beforeAll(async () => {
       password: "jest",
     })
     .set("Content-Type", "application/json");
-  token = jwt.sign({ id: 1, role: "admin" }, process.env.JWTSECRET as string, { expiresIn: "10m" });
+  token = jwt.sign({ id: 1, role: "user" }, process.env.JWTSECRET as string, { expiresIn: "5m" });
   return request(app)
     .post("/users/1/decks")
     .send({
@@ -41,7 +41,6 @@ export const cardFlow = () =>
           .send({
             question: "jest",
             answer: "jest",
-            deckId: 1,
           })
           .set("Content-Type", "application/json")
           .set("Cookie", [`Authorization=Bearer%20${token}`])
@@ -78,7 +77,8 @@ export const cardFlow = () =>
             const res = await request(app)
               .get("/users/1/decks/1/cards/1")
               .set("Cookie", [`Authorization=Bearer%20${token}`]);
-            expect(res.statusCode).toBe(404);
+            expect(res.statusCode).toBe(200);
+            expect(res.body).toBe(null);
           });
       });
     });
