@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axios";
 import { useAppSelector } from "../../hooks/redux";
 import { Deck } from "../../@types/deck";
+import { Theme } from "../../@types/deck";
 import styles from "./DeckDetails.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -14,6 +15,7 @@ const DeckDetail = () => {
   const { state } = useLocation();
   const [deck, setDeck] = useState<Deck | undefined>(undefined);
   const [cards, setCards] = useState<Card[] | undefined>(undefined);
+  const [themes, setThemes] = useState<Theme[] | undefined>(undefined);
   const deckId = state.deckId;
   const ownerId = state.ownerId;
 
@@ -25,7 +27,11 @@ const DeckDetail = () => {
     axiosInstance.get(`/users/${ownerId}/decks/${deckId}/cards`).then((res) => setCards(res.data));
   }, [navigate, user?.id, state.deckId]);
 
-  if (deck === undefined || cards === undefined) {
+  useEffect(() => {
+    axiosInstance.get(`/deck-theme/${deckId}`).then((res) => setThemes(res.data));
+  }, [navigate, state.deckId]);
+
+  if (deck === undefined || cards === undefined || themes === undefined) {
     return <p>Loading...</p>;
   }
 
@@ -46,7 +52,7 @@ const DeckDetail = () => {
 
   const deleteDeck = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const result = confirm(" tes-vous sur de vouloir supprimer le deck ?");
+    const result = confirm("ÔøΩtes-vous sur de vouloir supprimer le deck ?");
     if (result) {
       axiosInstance.delete(`/users/${ownerId}/decks/${deckId}`).then(() => {
         navigate("/account", { replace: true });
@@ -65,9 +71,12 @@ const DeckDetail = () => {
           <div className={styles.title}>
             <h2>{deck.name}</h2>
             <h3>{deck.subject}</h3>
-            {/* {deck.themes.map((theme) => {
-              return <p>{theme}</p>;
-            })} */}
+            <div>
+              <h4>Th√®mes</h4>
+              {themes.map((theme) => {
+                return <p>{theme.label}</p>;
+              })}
+            </div>
           </div>
 
           {(user?.id === deck.userId || user?.role === "admin") && (

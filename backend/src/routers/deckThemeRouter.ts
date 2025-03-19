@@ -5,5 +5,6 @@ import verifyAuth from "../middlewares/authMiddleware";
 const router = Router({ mergeParams: true });
 
 router.post("/", verifyAuth, deckThemeController.addThemeToDeck);
+router.get("/:deckId", verifyAuth, deckThemeController.getAllThemeByDeck);
 
 export default router;

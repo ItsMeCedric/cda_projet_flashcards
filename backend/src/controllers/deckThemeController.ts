@@ -7,4 +7,11 @@ const addThemeToDeck = async (req: Request, res: Response) => {
   res.status(201).json(theme);
 };
 
-export default { addThemeToDeck };
+const getAllThemeByDeck = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.deckId);
+  const themes = await deckThemeService.getAllThemeByDeck(id);
+
+  res.status(201).json(themes);
+};
+
+export default { addThemeToDeck, getAllThemeByDeck };

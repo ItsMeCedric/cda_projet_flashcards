@@ -6,4 +6,8 @@ const addThemeToDeck = (data: InferCreationAttributes<Theme>, id: number) => {
   return deckThemeRepository.addThemeToDeck(data, id);
 };
 
-export default { addThemeToDeck };
+const getAllThemeByDeck = async (id: number) => {
+  return deckThemeRepository.getAllThemeByDeck(id);
+};
+
+export default { addThemeToDeck, getAllThemeByDeck };

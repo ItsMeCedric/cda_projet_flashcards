@@ -28,6 +28,7 @@ Theme.belongsToMany(Deck, {
   through: "DeckThemes",
   foreignKey: "themeId",
 });
+
 User.hasMany(Deck, {
   foreignKey: "userId",
   as: "decks",
