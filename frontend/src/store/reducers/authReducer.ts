@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { resetAuthState, register, login, validateToken, logout, resetError } from "../actions/authActions";
+import { resetAuthState, register, login, validateToken, logout, resetError, updateData } from "../actions/authActions";
 import { AuthState } from "../../@types/auth";
 
 const initialState: AuthState = {
@@ -82,6 +82,9 @@ const authReducer = createReducer(initialState, (builder) => {
       state.user = undefined;
       state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
       // todo : supprimer quand même token / utilisateur ?
+    })
+    .addCase(updateData.fulfilled, (state, action) => {
+      state.user = { ...state.user, ...action.payload };
     });
 });
 

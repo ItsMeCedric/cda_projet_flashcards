@@ -27,3 +27,7 @@ export const logoutUser = async () => {
   const response = await axiosInstance.get("/auth/logout");
   if (response.status === 200) localStorage.removeItem("userId");
 };
+
+export const updateAuthData = async (data: RegisterCredentials) => {
+  return data;
+};

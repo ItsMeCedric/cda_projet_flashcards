@@ -3,12 +3,13 @@ import { useAppSelector } from "../../hooks/redux";
 import axiosInstance from "../../utils/axios";
 import { useForm } from "react-hook-form";
 import styles from "./Account.module.css";
-import { FaUserEdit, FaRegSave } from "react-icons/fa";
+import { FaUserEdit, FaRegSave, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { setDataAccount } from "../../store/reducers/accountSlice";
 import { useDispatch } from "react-redux";
 import { updateAccountSchema } from "../../validators/accountSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { updateData } from "../../store/actions/authActions";
 
 const Account: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,12 +31,13 @@ const Account: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(updateAccountSchema),
     defaultValues: {
       email: email,
       username: username,
-      password: "",
+      password: undefined,
     },
   });
   const [isEditing, setIsEditing] = useState({
@@ -47,7 +49,12 @@ const Account: React.FC = () => {
   const navigate = useNavigate();
 
   const handleEditClick = (field: string) => {
-    setIsEditing((prev) => ({ ...prev, [field]: true }));
+    setIsEditing((prev) => ({ ...prev, [field]: !isEditing[field] }));
+    reset({
+      email: email,
+      username: username,
+      password: undefined,
+    });
   };
 
   const onSubmit = async (data: { email: string; username: string; password: string }) => {
@@ -60,15 +67,19 @@ const Account: React.FC = () => {
           password: data.password,
         };
 
-        axiosInstance.patch(`/users/${user?.id}`, updatedData).then((res) => {
-          if (res.status === 409) {
-            const ret = { email, username, password: "", profilePicture };
+        axiosInstance.patch(`/users/${user?.id}`, updatedData).then(async (res) => {
+          let ret;
+          if (res.status !== 409) {
+            ret = { email: res.data.email, username: res.data.username, password: "", profilePicture };
             dispatch(setDataAccount(ret));
-          } else {
-            const ret = { email: res.data.email, username: res.data.username, password: "", profilePicture };
-            dispatch(setDataAccount(ret));
+            dispatch(updateData(ret));
           }
           setIsEditing({ email: false, password: false, username: false });
+          reset({
+            email: ret?.email,
+            username: ret?.username,
+            password: undefined,
+          });
         });
       } catch (error) {
         console.error("Failed to update profile:", error);
@@ -116,8 +127,7 @@ const Account: React.FC = () => {
           }}
           className={styles.back}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
+          viewBox="0 0 448 512">
           <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
         </svg>
         <div className={styles.image_container}>
@@ -134,7 +144,10 @@ const Account: React.FC = () => {
             <label>Email:</label>
             {isEditing.email ? <input type="email" {...register("email")} /> : <span>{email}</span>}
             {isEditing.email ? (
-              <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
+              <>
+                <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
+                <FaTimes className={styles.icon} onClick={() => handleEditClick("email")} />
+              </>
             ) : (
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("email")} />
             )}
@@ -144,7 +157,10 @@ const Account: React.FC = () => {
             <label>Username:</label>
             {isEditing.username ? <input type="text" {...register("username")} /> : <span>{username}</span>}
             {isEditing.username ? (
-              <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
+              <>
+                <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
+                <FaTimes className={styles.icon} onClick={() => handleEditClick("username")} />
+              </>
             ) : (
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("username")} />
             )}
@@ -156,7 +172,10 @@ const Account: React.FC = () => {
               {isEditing.password ? <input type="password" {...register("password")} /> : <span>••••••••</span>}
             </div>
             {isEditing.password ? (
-              <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
+              <>
+                <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
+                <FaTimes className={styles.icon} onClick={() => handleEditClick("password")} />
+              </>
             ) : (
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("password")} />
             )}
