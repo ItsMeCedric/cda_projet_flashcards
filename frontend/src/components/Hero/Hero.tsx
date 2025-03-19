@@ -3,11 +3,21 @@ import { useAppSelector } from "../../hooks/redux";
 
 import { useDispatch } from "react-redux";
 import { setSearchContent, toggleTheme } from "../../store/reducers/searchSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Theme } from "../../@types/deck";
+import axiosInstance from "../../utils/axios";
 
 const Hero = () => {
   const [search, setSearch] = useState("");
-  const themes = ["Math", "Info", "Anglais"];
+  const [options, setOptions] = useState<Theme[]>([]);
+
+  useEffect(() => {
+    const fetchThemes = async () => {
+      const res = await axiosInstance.get("/theme");
+      setOptions(res.data);
+    };
+    fetchThemes();
+  }, []);
   const dispatch = useDispatch();
   const selectedThemes = useAppSelector((state) => state.search.selectedThemes);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,14 +44,14 @@ const Hero = () => {
           <label className={styles.hero_label} htmlFor="filter">
             Filtres
           </label>
-          {themes.map((theme) => (
+          {options.map((option) => (
             <div className={styles.checkbox}>
               <input
                 type="checkbox"
-                checked={selectedThemes.includes(theme)}
-                onChange={() => dispatch(toggleTheme(theme))}
+                checked={selectedThemes.includes(option.label)}
+                onChange={() => dispatch(toggleTheme(option.label))}
               />
-              <label key={theme}>{theme}</label>
+              <label key={option.id}>{option.label}</label>
             </div>
           ))}
         </div>

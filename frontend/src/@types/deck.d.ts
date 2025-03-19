@@ -2,7 +2,7 @@ export interface Deck {
   id: number;
   name: string;
   subject: string | null;
-  themes: string[];
+  Themes: Theme[];
   downloads: number;
   mark: number;
   playCount: number;
