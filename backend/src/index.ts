@@ -1,9 +1,11 @@
 import express, { json, Request, Response } from "express";
 import authRouter from "./routers/authRouter";
 import cardRouter from "./routers/cardRouter";
+import themeRouter from "./routers/themeRouter";
 import db from "../models/index";
 import deckRouter from "./routers/deckRouter";
 import userRouter from "./routers/userRouter";
+import deckThemeRouter from "./routers/deckThemeRouter";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import deckController from "./controllers/deckController";
@@ -70,8 +72,10 @@ app.use(json());
 deckRouter.use("/:deckId/cards", cardRouter);
 app.get("/decks/public", deckController.findPublic);
 userRouter.use("/:userId/decks", deckRouter);
+app.use("/deck-theme", deckThemeRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
+app.use("/theme", themeRouter);
 app.use(
   "/uploads",
   express.static("./uploads", {

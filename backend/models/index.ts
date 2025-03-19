@@ -4,6 +4,7 @@ import Deck from "./deck";
 import User from "./user";
 import Card from "./card";
 import Store from "./store";
+import Theme from "./theme";
 
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
@@ -16,6 +17,17 @@ User.initialize(db);
 Deck.initialize(db);
 Card.initialize(db);
 Store.initialize(db);
+Theme.initialize(db);
+
+Deck.belongsToMany(Theme, {
+  through: "DeckThemes",
+  foreignKey: "deckId",
+});
+
+Theme.belongsToMany(Deck, {
+  through: "DeckThemes",
+  foreignKey: "themeId",
+});
 
 User.hasMany(Deck, {
   foreignKey: "userId",

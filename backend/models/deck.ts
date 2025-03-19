@@ -7,10 +7,20 @@ import {
   InferCreationAttributes,
   Model,
   Sequelize,
+  HasManyGetAssociationsMixin,
+  HasManyAddAssociationMixin,
+  HasManyAddAssociationsMixin,
+  HasManySetAssociationsMixin,
+  HasManyRemoveAssociationMixin,
+  HasManyRemoveAssociationsMixin,
+  HasManyHasAssociationMixin,
+  HasManyHasAssociationsMixin,
+  HasManyCountAssociationsMixin,
 } from "sequelize";
 import Card from "./card";
 import User from "./user";
 import Store from "./store";
+import Theme from "./theme";
 
 class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
   declare id: CreationOptional<number>;
@@ -28,7 +38,15 @@ class Deck extends Model<InferAttributes<Deck>, InferCreationAttributes<Deck>> {
     cards: Association<Deck, Card>;
     store: Association<Deck, Store>;
   };
-
+  declare getThemes: HasManyGetAssociationsMixin<Theme>;
+  declare addTheme: HasManyAddAssociationMixin<Theme, number>;
+  declare addThemes: HasManyAddAssociationsMixin<Theme, number>;
+  declare setThemes: HasManySetAssociationsMixin<Theme, number>;
+  declare removeTheme: HasManyRemoveAssociationMixin<Theme, number>;
+  declare removeProjects: HasManyRemoveAssociationsMixin<Theme, number>;
+  declare hasTheme: HasManyHasAssociationMixin<Theme, number>;
+  declare hasThemes: HasManyHasAssociationsMixin<Theme, number>;
+  declare countThemes: HasManyCountAssociationsMixin;
   static initialize(sequelize: Sequelize) {
     Deck.init(
       {

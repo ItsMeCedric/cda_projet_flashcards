@@ -26,7 +26,6 @@ const Account: React.FC = () => {
       })
     );
   }
-  console.log(profilePicture);
   const {
     register,
     handleSubmit,
