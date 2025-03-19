@@ -23,6 +23,12 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
     decks: Association<User, Deck>;
   };
 
+  toJSON() {
+    const values = super.toJSON() as Partial<InferAttributes<User>>;
+    delete values.hash;
+    return values;
+  }
+
   static initialize(sequelize: Sequelize) {
     User.init(
       {
