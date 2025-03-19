@@ -46,13 +46,12 @@ const NewDeck = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    axiosInstance.post(`/users/${user?.id}/decks`, { name, subject }).then((res) => {
+    axiosInstance.post(`/users/${user?.id}/decks`, { name, subject }).then(async (res) => {
       const selectedThemes = options.filter((option) => selected[option.label]);
       const id = res.data.id;
-      selectedThemes.forEach(async (data) => {
-        const reponse = await axiosInstance.post("/deck-theme", { data, id });
-        console.log(reponse);
-      });
+      for (let index = 0; index < selectedThemes.length; index++) {
+        await axiosInstance.post("/deck-theme", { data: selectedThemes[index], id });
+      }
       navigate("/deck-details", { state: { deckId: res.data.id, ownerId: user?.id } });
     });
   };

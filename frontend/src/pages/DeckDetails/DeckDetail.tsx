@@ -34,7 +34,7 @@ const DeckDetail = () => {
   if (deck === undefined || cards === undefined || themes === undefined) {
     return <p>Loading...</p>;
   }
-
+  console.log(themes);
   const addCard = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     navigate("/new-card", { state: { deckId, ownerId: deck.userId } });

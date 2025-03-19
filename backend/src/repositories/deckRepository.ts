@@ -2,7 +2,7 @@ import { InferAttributes, InferCreationAttributes, Op } from "sequelize";
 import Deck from "../../models/deck";
 
 const findAll = async () => {
-  return await Deck.findAll();
+  return await Deck.findAll({ include: "Themes" });
 };
 
 const findById = async (id: number) => {
@@ -20,6 +20,7 @@ const findPublic = async () => {
         [Op.ne]: null,
       },
     },
+    include: "Themes",
   });
 };
 
