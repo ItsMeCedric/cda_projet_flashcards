@@ -50,7 +50,7 @@ Card.belongsTo(Deck, {
 });
 
 Store.hasOne(Deck, {
-  foreignKey: "deckId",
+  foreignKey: "storeId",
   as: "deck",
 });
 
