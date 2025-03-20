@@ -3,9 +3,11 @@ import { Deck as DeckType } from "../../@types/deck";
 import { useNavigate } from "react-router-dom";
 import { MouseEvent } from "react";
 import { FaPlay, FaAlignCenter } from "react-icons/fa";
+import { useAppSelector } from "../../hooks/redux";
 
 const Deck = ({ deck }: { deck: DeckType }) => {
   const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.auth);
   const openDeckDetails = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate("/deck-details", { state: { deckId: deck.id, ownerId: deck.userId } });
@@ -26,17 +28,16 @@ const Deck = ({ deck }: { deck: DeckType }) => {
       <img className={styles.thumbnail} src={deck.url} alt="vignette" />
       <div className={styles.infos}>
         <p className={styles.description}>{deck.subject}</p>
-        <div className={styles.buttons}>
-          {
-            //TODO: flex + center
-          }
-          <button className={styles.button} onClick={openDeckDetails}>
-            <FaAlignCenter /> Détails
-          </button>
-          <button className={styles.button} onClick={playDeck}>
-            Jouer <FaPlay />
-          </button>
-        </div>
+        {user != undefined && (
+          <div className={styles.buttons}>
+            <button className={styles.button} onClick={openDeckDetails}>
+              <FaAlignCenter /> Détails
+            </button>
+            <button className={styles.button} onClick={playDeck}>
+              Jouer <FaPlay />
+            </button>
+          </div>
+        )}
         <div className={styles.icons}>
           <span className={styles.playCount}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
