@@ -146,9 +146,7 @@ const Account: React.FC = () => {
           <img
             className={styles.round}
             src={
-              profilePicture.includes("https://")
-                ? profilePicture
-                : `https://${import.meta.env.VITE_API_URL}${profilePicture}`
+              profilePicture.includes("https://") ? profilePicture : `${import.meta.env.VITE_API_URL}${profilePicture}`
             }
             alt="user"
             onClick={() => document.getElementById("fileInput")?.click()}
