@@ -1,5 +1,5 @@
 .wrap {
-  width: 100rem;
+  min-height: 100vh;
   margin: 0 auto;
   background-color: var(--bg-main);
   color: var(--txt-main);
@@ -10,7 +10,7 @@
 }
 
 .container {
-  min-height: 75vh;
+  min-height: 5rem;
 }
 
 h2 {

@@ -1,5 +1,9 @@
 .wrap {
-  width: 100rem;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  
   margin: 0 auto;
   background-color: var(--bg-main);
   color: var(--txt-main);
