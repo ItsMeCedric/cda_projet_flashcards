@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   margin-top: 2rem;
   gap: 1rem;
+  justify-content: space-between;
 }
 
 .wrap {
@@ -28,6 +29,7 @@
   max-width: 800px;
   width: 700px;
   justify-content: center;
+  
   margin: 5rem auto;
 }
 
