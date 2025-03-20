@@ -15,13 +15,24 @@
 .card h3 {
   color: var(--txt-alt);
   max-width: 19rem;
-  height: 15rem;
-  padding: 1rem;
+}
+p {
+  align-self: center;
 }
 
-.card img {
-  margin-top: 6%;
-  margin-bottom: 10%;
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.6rem;
+  background-color: var(--btn);
+  color: var(--btn-txt);
+  border-style: none;
+  border-radius: 0.6rem;
+  width: 7rem;
+  height: 2rem;
+  box-shadow: 0 0.6rem 1.3rem rgba(0, 0, 0, 0.19), 0 0.2667rem 0.2667rem rgba(0, 0, 0, 0.23);
 }
 
 .infos {
@@ -30,16 +41,4 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center; /* Center the content horizontally */
-}
-
-.description {
-  height: 13rem;
-  width: 19rem;
-  margin: 0.5rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  text-align: justify;
-  display: flex;
-  align-items: center; /* Center the text vertically */
-  justify-content: center; /* Center the text horizontally */
 }

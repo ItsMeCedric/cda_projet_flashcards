@@ -31,11 +31,16 @@ const CardDetails = () => {
     <div className={styles.wrap}>
       <Header />
       <div className={styles.container}>
+        <div className={styles.back}>
+          <a className={styles.btn} onClick={() => navigate(-1)}>
+            Retour
+          </a>
+        </div>
         <div className={styles.header}>
           <div className={styles.spacer}></div>
           <div className={styles.title}>
-            <h2>{card.question}</h2>
-            <h3>{card.answer}</h3>
+            <h2>Question : {card.question}</h2>
+            <h3>Réponse : {card.answer}</h3>
           </div>
 
           <div className={styles.all_btn}>
