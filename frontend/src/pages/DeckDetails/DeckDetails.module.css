@@ -20,6 +20,9 @@
   min-height: 5rem;
 }
 
+.back {
+  flex: 1;
+}
 .auth_container {
   display: flex;
   gap: 20px;
@@ -30,12 +33,7 @@
   max-width: 800px;
   width: 700px;
   justify-content: center;
-  
   margin: 5rem auto;
-}
-
-.form_wrapper {
-  flex: 1;
 }
 
 h2 {
@@ -87,13 +85,11 @@ input:focus {
   width: 120px;
   height: 30px;
   text-align: center;
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.19),
-    0 4px 4px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
 }
 
 .title {
-  flex: 2; /* Prend plus d’espace pour centrer correctement */
+  flex: 1;
   text-align: center;
   flex-wrap: wrap;
 }
@@ -107,10 +103,6 @@ input:focus {
 .all_btn {
   display: flex;
   gap: 10px;
-  flex: 1; /* Garde les boutons alignés à droite */
+  flex: 1;
   justify-content: flex-end;
-}
-
-.spacer {
-  flex: 1; /* Prend autant d'espace que les boutons pour équilibrer */
 }

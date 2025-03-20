@@ -13,6 +13,23 @@
   min-height: 5rem;
 }
 
+.btn_back {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--btn);
+  color: var(--btn-txt);
+  border-style: none;
+  border-radius: 10px;
+  width: 120px;
+  height: 30px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+}
+
 .form_container {
   display: flex;
   gap: 20px;
