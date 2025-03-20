@@ -21,7 +21,7 @@ const AuthRoute = () => {
     );
   }, []);
 
-  return <Outlet />;
+  if (user != undefined) return <Outlet />;
 };
 
 export default AuthRoute;
