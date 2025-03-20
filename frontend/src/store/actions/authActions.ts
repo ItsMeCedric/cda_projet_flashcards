@@ -63,7 +63,15 @@ export const logout = createAsyncThunk("auth/LOGOUT", async (_, { rejectWithValu
 // action pcq louis casse les couilles
 export const updateData = createAsyncThunk(
   "auth/UPDATE_DATA",
-  async (data: RegisterCredentials, { rejectWithValue }) => {
+  async (
+    data: {
+      username: string | undefined;
+      password: string | undefined;
+      email: string | undefined;
+      profilePicture: string | undefined;
+    },
+    { rejectWithValue }
+  ) => {
     try {
       return await updateAuthData(data);
     } catch (error) {

@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import axiosInstance from "../../utils/axios";
 import { useForm } from "react-hook-form";
 import styles from "./Account.module.css";
 import { FaUserEdit, FaRegSave, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { setDataAccount } from "../../store/reducers/accountSlice";
-import { useDispatch } from "react-redux";
 import { updateAccountSchema } from "../../validators/accountSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateData } from "../../store/actions/authActions";
 
 const Account: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { email, username, password, profilePicture } = useAppSelector((state) => state.account.dataAccount);
   // si store pas initialisé alors on prend les valeurs de user
@@ -22,8 +21,9 @@ const Account: React.FC = () => {
         email: user?.email,
         username: user?.username,
         password,
-        profilePicture:
-          "https://media.istockphoto.com/id/535726735/fr/photo/flash-mcqueen-main-protagoniste-de-disney-pixar-avec-f.jpg?s=2048x2048&w=is&k=20&c=mOZCPinpnzw8UeB71JDHIQ_az2zbVSQOpnGKsPp71u8=",
+        profilePicture: user?.profilePicture
+          ? user.profilePicture
+          : "https://media.istockphoto.com/id/535726735/fr/photo/flash-mcqueen-main-protagoniste-de-disney-pixar-avec-f.jpg?s=2048x2048&w=is&k=20&c=mOZCPinpnzw8UeB71JDHIQ_az2zbVSQOpnGKsPp71u8=",
       })
     );
   }
@@ -37,7 +37,7 @@ const Account: React.FC = () => {
     defaultValues: {
       email: email,
       username: username,
-      password: undefined,
+      password: "",
     },
   });
   const [isEditing, setIsEditing] = useState({
@@ -48,12 +48,13 @@ const Account: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleEditClick = (field: string) => {
-    setIsEditing((prev) => ({ ...prev, [field]: !isEditing[field] }));
+  type EditingField = keyof typeof isEditing;
+  const handleEditClick = (field: EditingField) => {
+    setIsEditing((prev) => ({ ...prev, [field]: !prev[field] }));
     reset({
       email: email,
       username: username,
-      password: undefined,
+      password: "",
     });
   };
 
@@ -68,7 +69,17 @@ const Account: React.FC = () => {
         };
 
         axiosInstance.patch(`/users/${user?.id}`, updatedData).then(async (res) => {
-          let ret;
+          let ret: {
+            username: string | undefined;
+            password: string | undefined;
+            email: string | undefined;
+            profilePicture: string | undefined;
+          } = {
+            username: undefined,
+            password: undefined,
+            email: undefined,
+            profilePicture: undefined,
+          };
           if (res.status !== 409) {
             ret = { email: res.data.email, username: res.data.username, password: "", profilePicture };
             dispatch(setDataAccount(ret));
@@ -127,7 +138,8 @@ const Account: React.FC = () => {
           }}
           className={styles.back}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512">
+          viewBox="0 0 448 512"
+        >
           <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
         </svg>
         <div className={styles.image_container}>

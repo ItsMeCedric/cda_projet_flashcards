@@ -28,6 +28,11 @@ export const logoutUser = async () => {
   if (response.status === 200) localStorage.removeItem("userId");
 };
 
-export const updateAuthData = async (data: RegisterCredentials) => {
+export const updateAuthData = async (data: {
+  username: string | undefined;
+  password: string | undefined;
+  email: string | undefined;
+  profilePicture: string | undefined;
+}) => {
   return data;
 };

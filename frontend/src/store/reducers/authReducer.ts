@@ -84,7 +84,16 @@ const authReducer = createReducer(initialState, (builder) => {
       // todo : supprimer quand même token / utilisateur ?
     })
     .addCase(updateData.fulfilled, (state, action) => {
-      state.user = { ...state.user, ...action.payload };
+      if (state.user === undefined) {
+      } else {
+        state.user = {
+          ...state.user,
+          id: state.user.id,
+          username: action.payload.username ? action.payload.username : state.user.username,
+          email: action.payload.email ? action.payload.email : state.user.email,
+          profilePicture: action.payload.profilePicture ? action.payload.profilePicture : state.user.profilePicture,
+        };
+      }
     });
 });
 

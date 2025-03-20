@@ -1,7 +1,6 @@
 import styles from "./Hero.module.css";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
-import { useDispatch } from "react-redux";
 import { setSearchContent, toggleTheme } from "../../store/reducers/searchSlice";
 import { useEffect, useState } from "react";
 import { Theme } from "../../@types/deck";
@@ -18,7 +17,7 @@ const Hero = () => {
     };
     fetchThemes();
   }, []);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const selectedThemes = useAppSelector((state) => state.search.selectedThemes);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

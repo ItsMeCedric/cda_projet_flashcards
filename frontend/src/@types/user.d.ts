@@ -15,6 +15,6 @@ export interface User {
   role: "user" | "admin";
   username: string;
   email: string;
-  b64Url: string;
+  profilePicture: string;
   verified: boolean;
 }
