@@ -1,7 +1,7 @@
 .main-container {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 100rem;
   margin: 0 auto;
   background-color: var(--bg-main);
   color: var(--txt-main);
