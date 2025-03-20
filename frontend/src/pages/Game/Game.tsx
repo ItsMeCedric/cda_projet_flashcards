@@ -74,7 +74,7 @@ const Game = () => {
   const endGame = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axiosInstance.patch(`/users/${userId}/decks/${deckId}`, { id: deckId, playCount: deck.playCount + 1 });
-    navigate("/account", { replace: true });
+    navigate(-1);
   };
 
   return (
@@ -123,12 +123,14 @@ const Game = () => {
               Vous avez {correctAnswer} bonne(s) réponse(s) sur {cards.length} carte(s)!
             </p>
             <div className={styles["end-button-container"]}>
-              <button className={styles.button} onClick={endGame}>Terminer</button>
+              <button className={styles.button} onClick={endGame}>
+                Terminer
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
