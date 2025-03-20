@@ -29,6 +29,11 @@ const NewCard = () => {
     <div className={styles.wrap}>
       <Header />
       <div className={styles.container}>
+        <div className={styles.back}>
+          <a className={styles.btn_back} onClick={() => navigate(-1)}>
+            Retour
+          </a>
+        </div>
         <div className={styles.form_container}>
           <div className={styles.form_wrapper}>
             <h2>Nouvelle carte</h2>

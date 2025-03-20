@@ -67,7 +67,12 @@ const DeckDetail = () => {
       <Header />
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.spacer}></div>
+          <div className={styles.back}>
+            <a className={styles.btn} onClick={() => navigate(-1)}>
+              Retour
+            </a>
+          </div>
+
           <div className={styles.title}>
             <h2>{deck.name}</h2>
             <h3>{deck.subject}</h3>
@@ -78,7 +83,6 @@ const DeckDetail = () => {
               })}
             </div>
           </div>
-
           {(user?.id === deck.userId || user?.role === "admin") && (
             <div className={styles.all_btn}>
               <a className={styles.btn} onClick={addCard}>

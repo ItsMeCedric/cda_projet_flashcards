@@ -81,6 +81,11 @@ const Game = () => {
     <div className={styles["main-container"]}>
       <Header />
       <div className={styles.content}>
+        <div className={styles.back}>
+          <a className={styles.btn} onClick={() => navigate(-1)}>
+            Retour
+          </a>
+        </div>
         <div className={styles.container}>
           <div style={{ display: showGame ? "" : "none" }}>
             <div className={styles.card}>
