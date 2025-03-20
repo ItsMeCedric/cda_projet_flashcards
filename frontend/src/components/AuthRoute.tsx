@@ -13,12 +13,12 @@ const AuthRoute = () => {
       navigate("/", { replace: true });
       return;
     }
-   //dispatch(validateToken()).then(
-    //  () => {},
-    //  () => {
-    //    navigate("/", { replace: true });
-    //  }
-    //);
+  dispatch(validateToken()).then(
+    () => {},
+    () => {
+      navigate("/", { replace: true });
+    }
+  );
   }, []);
 
   return <Outlet />;
