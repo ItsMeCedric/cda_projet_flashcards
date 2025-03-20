@@ -12,23 +12,24 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert("Decks", [
-      {
-        name: "Javascript",
-        subject: "Apprendre le JS basique",
-        userId: 2,
-      },
-      {
-        name: "Maths",
-        subject: "Apprendre les maths basiques",
-        userId: 2,
-      },
-      {
-        name: "Anglais",
-        subject: "Apprendre l'anglais basique",
-        userId: 2,
-      },
-    ]);
+    await queryInterface.bulkInsert(
+      "DeckThemes",
+      [
+        {
+          deckId: 1,
+          themeId: 3,
+        },
+        {
+          deckId: 2,
+          themeId: 1,
+        },
+        {
+          deckId: 3,
+          label: 2,
+        },
+      ],
+      {}
+    );
   },
 
   async down(queryInterface, Sequelize) {

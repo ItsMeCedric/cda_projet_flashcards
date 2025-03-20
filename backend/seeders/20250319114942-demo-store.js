@@ -12,21 +12,15 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert("Decks", [
+    await queryInterface.bulkInsert("Stores", [
       {
-        name: "Javascript",
-        subject: "Apprendre le JS basique",
-        userId: 2,
+        deckId: 1,
       },
       {
-        name: "Maths",
-        subject: "Apprendre les maths basiques",
-        userId: 2,
+        deckId: 2,
       },
       {
-        name: "Anglais",
-        subject: "Apprendre l'anglais basique",
-        userId: 2,
+        deckId: 3,
       },
     ]);
   },
