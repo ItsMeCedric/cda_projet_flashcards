@@ -17,16 +17,19 @@ module.exports = {
         name: "Javascript",
         subject: "Apprendre le JS basique",
         userId: 2,
+        storeId: 1,
       },
       {
         name: "Maths",
         subject: "Apprendre les maths basiques",
         userId: 2,
+        storeId: 2,
       },
       {
         name: "Anglais",
         subject: "Apprendre l'anglais basique",
         userId: 2,
+        storeId: 3,
       },
     ]);
   },
