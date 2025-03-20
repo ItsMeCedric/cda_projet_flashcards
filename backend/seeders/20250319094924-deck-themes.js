@@ -25,7 +25,7 @@ module.exports = {
         },
         {
           deckId: 3,
-          label: 2,
+          themeId: 2,
         },
       ],
       {}
