@@ -7,8 +7,9 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
+    <footer>
     <div className={styles["footer-container"]}>
-      <div className={styles.footer}>
+      <div className={styles.footer2}>
         <div className={styles.legals}>
           <NavLink to={"/RGPD"}>Legals/GDPR</NavLink>
           <span>-</span>
@@ -16,6 +17,7 @@ const Footer = () => {
         </div>
       </div>
     </div>
+    </footer>
   );
 };
 

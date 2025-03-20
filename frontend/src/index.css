@@ -2,8 +2,6 @@ body, html {
   /* reset */
   margin: 0 3%;
   padding: 0;
-  justify-content: center;
-  display: flex;
 
   /* font */
   font-family: "Noto Sans JP", serif;
