@@ -50,7 +50,12 @@ const update = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.deckId);
   const userId = parseInt(req.params.userId);
-  if (userId === (req as RequestWithUser).user.id || (req as RequestWithUser).user.role === "admin") {
+  const keys = Object.keys(data);
+  if (
+    userId === (req as RequestWithUser).user.id ||
+    (req as RequestWithUser).user.role === "admin" ||
+    (keys.length === 1 && keys[0] === "playCount")
+  ) {
     const deck = await deckService.update({ ...data, id });
     res.status(200).json(deck);
   } else {
