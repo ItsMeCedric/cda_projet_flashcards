@@ -11,6 +11,8 @@ interface JWTToken {
 }
 
 const verifyAuth = (req: Request, res: Response, next: NextFunction): void => {
+  
+  
   const token = req.cookies["Authorization"] && req.cookies["Authorization"].split(" ")[1];
   if (!token) {
     res.sendStatus(401);

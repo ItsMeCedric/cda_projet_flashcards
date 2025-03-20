@@ -1,16 +1,15 @@
 .wrap {
-  max-width: 1500px;
+
   margin: 0 auto;
+  min-height: 100vh;
+
   background-color: var(--bg-main);
   color: var(--txt-main);
   text-align: justify;
   text-justify: inter-word;
+
   display: flex;
   flex-direction: column;
-}
-
-.container {
-  min-height: 75vh;
 }
 
 .auth_container {

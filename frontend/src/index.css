@@ -2,8 +2,7 @@ body, html {
   /* reset */
   margin: 0 3%;
   padding: 0;
-  justify-content: center;
-  display: flex;
+  max-width: 1550px;
 
   /* font */
   font-family: "Noto Sans JP", serif;

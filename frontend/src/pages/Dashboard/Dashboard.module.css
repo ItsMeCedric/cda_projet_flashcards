@@ -1,5 +1,5 @@
 .wrap {
-  max-width: 100rem;
+  min-height: 100vh;
   margin: 0 auto;
   background-color: var(--bg-main);
   color: var(--txt-main);
@@ -9,7 +9,6 @@
 .dashboard {
   display: flex;
   flex-direction: row;
-  margin-bottom: 4%;
 }
 
 .btn_option {
