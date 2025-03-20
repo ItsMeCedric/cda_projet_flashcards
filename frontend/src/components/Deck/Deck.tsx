@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MouseEvent } from "react";
 import { FaPlay, FaAlignCenter } from "react-icons/fa";
 import { useAppSelector } from "../../hooks/redux";
+import axiosInstance from "../../utils/axios";
 
 const Deck = ({ deck }: { deck: DeckType }) => {
   const navigate = useNavigate();
@@ -15,7 +16,13 @@ const Deck = ({ deck }: { deck: DeckType }) => {
 
   const playDeck = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    navigate("/play", { state: { deckId: deck.id, userId: deck.userId } });
+    axiosInstance.get(`/users/${deck.userId}/decks/${deck.id}/cards`).then((res) => {
+      if (res.data.length === 0) {
+        alert("Le deck n'a pas de cartes, impossible de le jouer!");
+      } else {
+        navigate("/play", { state: { deckId: deck.id, userId: deck.userId } });
+      }
+    });
   };
 
   return (
