@@ -12,7 +12,7 @@ const Card = ({ card, ownerId }: { card: Card; ownerId: number }) => {
   return (
     <div className={styles.card} onClick={openCardDetails}>
       <h3>{card.question}</h3>
-      <img src={card.questionImg} alt="vignette" />
+      <img src={"https://placehold.co/300x195"} alt="vignette" />
       <div className={styles.infos}>
         <p className={styles.description}>{card.answer}</p>
       </div>
