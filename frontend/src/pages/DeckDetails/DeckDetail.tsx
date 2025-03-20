@@ -82,7 +82,7 @@ const DeckDetail = () => {
           {(user?.id === deck.userId || user?.role === "admin") && (
             <div className={styles.all_btn}>
               <a className={styles.btn} onClick={addCard}>
-                Ajouter une carte au deck
+                Ajouter carte
               </a>
               <a className={styles.btn} onClick={makePublic}>
                 {deck.storeId ? "Rendre privé" : "Rendre public"}

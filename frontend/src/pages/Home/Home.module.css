@@ -1,5 +1,5 @@
 .wrap {
-  max-width: 1500px;
+  width: 100rem;
   margin: 0 auto;
   background-color: var(--bg-main);
   color: var(--txt-main);

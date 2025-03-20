@@ -1,7 +1,10 @@
-body {
+body, html {
   /* reset */
   margin: 0 3%;
   padding: 0;
+  justify-content: center;
+  display: flex;
+
   /* font */
   font-family: "Noto Sans JP", serif;
   font-optical-sizing: auto;
@@ -24,6 +27,7 @@ a {
   --fld: #f8f8f8;
   --brd: #d0d0d0;
   --btn: #d93b3a;
+  --btn2: #d93b3a;
   --hvr: #de0000;
   --btn-txt: #ffffff;
 }
@@ -36,6 +40,7 @@ a {
   --fld: #3e3d3c;
   --brd: #222222;
   --btn: #ff9f64;
+  --btn2: #d93b3a;
   --hvr: #ff9f64;
   --btn-txt: #201f1e;
 }
