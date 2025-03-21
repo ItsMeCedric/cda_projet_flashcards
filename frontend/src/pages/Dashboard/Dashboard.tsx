@@ -11,6 +11,7 @@ import { FaUserSlash, FaDownload } from "react-icons/fa";
 import { FaSheetPlastic } from "react-icons/fa6";
 import { MouseEvent } from "react";
 import { logout as logoutAction } from "../../store/actions/authActions";
+import { reset } from "../../store/reducers/accountSlice";
 import { Deck } from "../../@types/deck";
 import { User } from "../../@types/user";
 
@@ -25,6 +26,7 @@ const Dashboard = () => {
     if (user && result) {
       await axiosInstance.delete(`/users/${user.id}`);
       dispatch(logoutAction());
+      dispatch(reset());
       navigate("/");
     }
   };
