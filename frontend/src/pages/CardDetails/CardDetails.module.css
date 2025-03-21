@@ -3,7 +3,14 @@
   margin: 0 auto;
   background-color: var(--bg-main);
   color: var(--txt-main);
-  scrollbar-width: none;
+  scrollbar-width: none; /*firefox*/
+  min-height: 100vh;
+  margin: 0 auto;
+  align-items: center;
+  text-align: justify;
+  text-justify: inter-word;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
