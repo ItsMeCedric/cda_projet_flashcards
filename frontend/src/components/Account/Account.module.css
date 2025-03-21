@@ -27,7 +27,9 @@ h6 {
 .card_container {
   background-color: var(--bg-alt);
   border-radius: 5px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.19),
+    0 4px 4px rgba(0, 0, 0, 0.23);
   color: var(--btn);
   padding-top: 30px;
   position: relative;
@@ -73,34 +75,6 @@ button.primary {
 
 .primary:hover {
   background-color: var(--hvr);
-}
-
-.prefer {
-  background-color: var(--btn);
-  color: var(--btn-txt);
-  text-align: left;
-  padding: 15px;
-  margin-top: 30px;
-  border-top: var(--brd) dotted 1px;
-}
-
-.prefer ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.prefer ul li {
-  border: 1px solid #2d2747;
-  border-radius: 2px;
-  display: inline-block;
-  font-size: 12px;
-  margin: 0 7px 7px 0;
-  padding: 7px;
-}
-
-.prefer h6 {
-  color: var(--btn-txt);
 }
 
 .field {
