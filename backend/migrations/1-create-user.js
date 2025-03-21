@@ -28,7 +28,9 @@ module.exports = {
       },
       profilePicture: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
+        defaultValue:
+          "https://media.istockphoto.com/id/535726735/fr/photo/flash-mcqueen-main-protagoniste-de-disney-pixar-avec-f.jpg?s=2048x2048&w=is&k=20&c=mOZCPinpnzw8UeB71JDHIQ_az2zbVSQOpnGKsPp71u8%3D&quality=lossless",
       },
       hash: {
         type: Sequelize.STRING,
