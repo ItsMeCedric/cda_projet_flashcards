@@ -9,16 +9,13 @@ import { useAppSelector } from "../../hooks/redux";
 import { useNavigate } from "react-router-dom";
 import { FaUserSlash } from "react-icons/fa";
 import { FaSheetPlastic } from "react-icons/fa6";
-import { MouseEvent, useState } from "react";
+import { MouseEvent } from "react";
 import { Deck } from "../../@types/deck";
 import { User } from "../../@types/user";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
-  const [userData, setUser] = useState<User | undefined>(undefined);
-  const [decks, setDecks] = useState<Deck[]>([]);
-  const [cards, setCards] = useState<Card[]>([]);
 
   const deleteUser = async (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -29,9 +26,9 @@ const Dashboard = () => {
     }
   };
 
-  const downloadUserData = () => {
+  const downloadUserData = (data: { user: User; decks: Deck[]; cards: Card[] }) => {
     const element = document.createElement("a");
-    const file = new Blob([JSON.stringify(userData), JSON.stringify(decks), JSON.stringify(cards)], {
+    const file = new Blob([JSON.stringify(data.user), JSON.stringify(data.decks), JSON.stringify(data.cards)], {
       type: "application/json",
     });
     element.href = URL.createObjectURL(file);
@@ -45,16 +42,18 @@ const Dashboard = () => {
 
     try {
       const userResponse = await axiosInstance.get(`/users/${user?.id}`);
-      setUser(userResponse.data);
       const decksResponse = await axiosInstance.get(`/users/${user?.id}/decks`);
-      setDecks(decksResponse.data);
       const cardRequests = decksResponse.data.map(async (deck: Deck) => {
         const cardsResponse = await axiosInstance.get(`/users/${user?.id}/decks/${deck.id}/cards`);
         return cardsResponse.data;
       });
       const cardsData = await Promise.all(cardRequests);
-      setCards(cardsData);
-      downloadUserData();
+      const data = {
+        user: userResponse.data,
+        decks: decksResponse.data,
+        cards: cardsData,
+      };
+      downloadUserData(data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
