@@ -1,8 +1,8 @@
 .hero {
-  margin: 0.5rem;
+  width: 100%;
   text-align: center;
   background-color: var(--bg-alt);
-  padding: 0.5rem;
+  padding: 15px 0 15px 0;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
 }
@@ -11,8 +11,16 @@
   font-weight: bold;
 }
 .hero label {
-  margin-right: 10px;
+  margin-right: 1rem;
+  font-weight: bold;
   color: var(--txt-main);
+}
+
+.hero form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .search {
@@ -20,6 +28,9 @@
   border-style: solid;
   border-color: var(--brd);
   outline: none;
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: 40%;
 }
 
 .search_submit {
@@ -30,6 +41,8 @@
   outline: none;
   color: var(--txt-main);
   cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 10px;
 }
 
 .search_submit:hover {
@@ -54,25 +67,17 @@
   font-weight: 300;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    min-width: 320px;
-  }}
-
+@media (max-width:768px){
+  .hero{
+    transform: scale(0.9);
+  }
   .hero h1 {
     font-size: 22px;
-    font-weight: bold;
   }
-  .hero label {
-    margin-right: 0px;
-  }
-  
   .search {
-    width: 97%;
+    width: 90%;
   }
-  
-  .search_submit {
-    width: 10rem;
+  .search_submit{
+    width: 40%;
   }
-
-
+}

@@ -55,7 +55,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <input type="submit" className={styles.search_submit} />
+        <input type="submit" className={styles.search_submit} value="Envoyer"/>
       </form>
     </div>
   );
