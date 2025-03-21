@@ -42,19 +42,22 @@ const Dashboard = () => {
 
   const getAllUserData = async (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    axiosInstance.get(`/users/${user?.id}`).then((res) => setUser(res.data));
-    axiosInstance.get(`/users/${user?.id}/decks`).then((res) => {
-      setDecks(res.data);
-      res.data.forEach((deck: Deck) => {
-        axiosInstance.get(`/users/${user?.id}/decks/${deck.id}/cards`).then((res) => {
-          setCards((prev) => {
-            prev.push(res.data);
-            return prev;
-          });
-          downloadUserData();
-        });
+
+    try {
+      const userResponse = await axiosInstance.get(`/users/${user?.id}`);
+      setUser(userResponse.data);
+      const decksResponse = await axiosInstance.get(`/users/${user?.id}/decks`);
+      setDecks(decksResponse.data);
+      const cardRequests = decksResponse.data.map(async (deck: Deck) => {
+        const cardsResponse = await axiosInstance.get(`/users/${user?.id}/decks/${deck.id}/cards`);
+        return cardsResponse.data;
       });
-    });
+      const cardsData = await Promise.all(cardRequests);
+      setCards(cardsData);
+      downloadUserData();
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
   };
 
   return (
