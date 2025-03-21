@@ -30,6 +30,22 @@ const findPublic = async () => {
   });
 };
 
+const findPublicByDeckId = async (id: number) => {
+  return await Deck.findOne({
+    where: { id },
+    include: [
+      {
+        model: Theme,
+        as: "Themes",
+      },
+      {
+        model: Store,
+        required: true,
+      },
+    ],
+  });
+};
+
 const create = async (data: InferCreationAttributes<Deck>) => {
   return await Deck.create(data);
 };
@@ -43,4 +59,4 @@ const destroy = async (id: number) => {
   return await Deck.destroy({ where: { id } });
 };
 
-export default { findAll, findById, findByUserId, findPublic, create, update, destroy };
+export default { findAll, findById, findByUserId, findPublic, findPublicByDeckId, create, update, destroy };

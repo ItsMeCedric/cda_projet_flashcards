@@ -19,6 +19,10 @@ const findPublic = () => {
   return deckRepository.findPublic();
 };
 
+const findPublicByDeckId = (id: number) => {
+  return deckRepository.findPublicByDeckId(id);
+};
+
 const create = (data: InferCreationAttributes<Deck>) => {
   return deckRepository.create(data);
 };
@@ -40,4 +44,14 @@ const publish = async (id: number) => {
   }
 };
 
-export default { getAllDecks, getAllDecksByUserId, findById, findPublic, create, update, destroy, publish };
+export default {
+  getAllDecks,
+  getAllDecksByUserId,
+  findById,
+  findPublic,
+  findPublicByDeckId,
+  create,
+  update,
+  destroy,
+  publish,
+};

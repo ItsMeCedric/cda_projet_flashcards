@@ -32,6 +32,12 @@ const findPublic = async (req: Request, res: Response) => {
   res.status(200).json(decks);
 };
 
+const findPublicByDeckId = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.deckId);
+  const deck = await deckService.findPublicByDeckId(id);
+  res.status(200).json(deck);
+};
+
 //TODO: ajouter le middleware de vérification d'authentification
 const create = async (req: Request, res: Response) => {
   const data = req.body;
@@ -90,4 +96,14 @@ const publish = async (req: Request, res: Response) => {
   }
 };
 
-export default { getAllDecks, getAllDecksByUserId, findById, findPublic, create, update, destroy, publish };
+export default {
+  getAllDecks,
+  getAllDecksByUserId,
+  findById,
+  findPublic,
+  findPublicByDeckId,
+  create,
+  update,
+  destroy,
+  publish,
+};

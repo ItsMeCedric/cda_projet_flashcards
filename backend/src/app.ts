@@ -16,7 +16,8 @@ app.use(cookieParser());
 app.use(json());
 
 deckRouter.use("/:deckId/cards", cardRouter);
-app.get("/decks/public", deckController.findPublic);
+app.get("/decks/public/", deckController.findPublic);
+app.get("/decks/public/:deckId", deckController.findPublicByDeckId);
 userRouter.use("/:userId/decks", deckRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
