@@ -36,6 +36,9 @@ const Login = () => {
         <div className={styles.auth_container}>
           <div className={styles.form_wrapper}>
             <h2>Connexion</h2>
+            <h3>Compte de démo :</h3>
+            <p>demo@demo.com</p>
+            <p>{"]Z&o]I?'<agy|lYebxv7B+,;X$<)_,]OO;^aiN@k"}</p>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className={styles.form_group}>
                 <label htmlFor={styles.login_email}>Email</label>
