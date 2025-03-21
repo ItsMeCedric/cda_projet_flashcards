@@ -69,7 +69,7 @@ const DeckDetail = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.back}>
-            <a className={styles.btn} onClick={() => navigate(-1)}>
+            <a className={styles.btn} onClick={() => navigate("/account")}>
               <FaBackspace />
               Retour
             </a>
