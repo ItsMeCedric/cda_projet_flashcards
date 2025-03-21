@@ -39,15 +39,6 @@ module.exports = {
         },
         onDelete: "CASCADE",
       },
-      storeId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: null,
-        references: {
-          model: "Stores",
-          key: "id",
-        },
-      },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
     });

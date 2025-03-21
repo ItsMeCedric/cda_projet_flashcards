@@ -26,6 +26,10 @@ class Store extends Model<InferAttributes<Store>, InferCreationAttributes<Store>
         deckId: {
           type: DataTypes.INTEGER,
           allowNull: false,
+          references: {
+            model: "Decks",
+            key: "id",
+          },
         },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
@@ -40,4 +44,3 @@ class Store extends Model<InferAttributes<Store>, InferCreationAttributes<Store>
 }
 
 export default Store;
-

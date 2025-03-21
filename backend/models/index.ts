@@ -53,15 +53,13 @@ Card.belongsTo(Deck, {
   as: "deck",
 });
 
-Store.hasOne(Deck, {
-  foreignKey: "storeId",
-  as: "deck",
+Deck.hasOne(Store, {
+  foreignKey: "deckId",
   onDelete: "CASCADE",
 });
 
-Deck.belongsTo(Store, {
-  foreignKey: "storeId",
-  as: "store",
+Store.belongsTo(Deck, {
+  foreignKey: "deckId",
 });
 
 export default db;

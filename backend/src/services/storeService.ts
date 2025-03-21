@@ -10,6 +10,10 @@ const findById = (id: number) => {
   return storeRepository.findById(id);
 };
 
+const findByDeckId = (id: number) => {
+  return storeRepository.findByDeckId(id);
+};
+
 const create = (data: InferCreationAttributes<Store>) => {
   return storeRepository.create(data);
 };
@@ -22,4 +26,4 @@ const destroy = (id: number) => {
   return storeRepository.destroy(id);
 };
 
-export default { getAllStores, findById, create, update, destroy };
+export default { getAllStores, findById, findByDeckId, create, update, destroy };
