@@ -23,7 +23,10 @@ const DeckDetail = () => {
 
   useEffect(() => {
     axiosInstance.get(`/users/${ownerId}/decks/${deckId}`).then((res) => setDeck(res.data));
-    axiosInstance.get(`/decks/public/${deckId}`).then((res) => setPublic(res.data === undefined ? false : true));
+    axiosInstance.get(`/decks/public/${deckId}`).then((res) => {
+      console.log(res.data);
+      setPublic(res.data === undefined ? false : true);
+    });
   }, [navigate, user?.id, state.deckId]);
 
   useEffect(() => {
