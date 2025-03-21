@@ -108,7 +108,6 @@ button.primary {
 
 .field input,
 .field span {
-
   padding: 5px;
   font-size: 14px;
   font-weight: 100;
@@ -137,16 +136,12 @@ button.primary {
   flex-shrink: 0; /* Empêcher les icônes de rétrécir */
 }
 
-
-
 .field label {
   margin-right: 10px;
   flex-shrink: 0;
-  color: #FFF;
+  color: var(--txt-main);
   font-weight: bold;
 }
-
-
 
 .field .icon:hover {
   color: var(--hvr);
