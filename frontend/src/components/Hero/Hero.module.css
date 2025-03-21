@@ -11,7 +11,7 @@
   font-weight: bold;
 }
 .hero label {
-  margin-right: 1rem;
+  
   font-weight: bold;
   color: var(--txt-main);
 }
@@ -51,6 +51,7 @@
 }
 
 .filter {
+  gap: 0.5rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -73,6 +74,11 @@
   }
   .hero h1 {
     font-size: 22px;
+  }
+  .filter{
+    width: 92%;
+    display: flex;
+    flex-direction: column;
   }
   .search {
     width: 90%;
