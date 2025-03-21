@@ -29,6 +29,8 @@ h6 {
   border-radius: 5px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
   color: var(--btn);
+  padding-top: 30px;
+  padding-bottom: 1px;
   position: relative;
   width: 20rem;
   height: 28rem;
