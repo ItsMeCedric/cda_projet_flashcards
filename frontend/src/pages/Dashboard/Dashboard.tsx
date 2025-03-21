@@ -46,15 +46,15 @@ const Dashboard = () => {
     axiosInstance.get(`/users/${user?.id}/decks`).then((res) => {
       setDecks(res.data);
       res.data.forEach((deck: Deck) => {
-        axiosInstance.get(`/users/${user?.id}/decks/${deck.id}/cards`).then((res) =>
+        axiosInstance.get(`/users/${user?.id}/decks/${deck.id}/cards`).then((res) => {
           setCards((prev) => {
             prev.push(res.data);
             return prev;
-          })
-        );
+          });
+          downloadUserData();
+        });
       });
     });
-    downloadUserData();
   };
 
   return (
