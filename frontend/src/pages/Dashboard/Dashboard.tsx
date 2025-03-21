@@ -22,6 +22,7 @@ const Dashboard = () => {
     const result = confirm("Voulez-vous supprimer votre compte ?");
     if (user && result) {
       await axiosInstance.delete(`/users/${user.id}`);
+      await axiosInstance.get(`auth/logout`);
       navigate("/");
     }
   };
