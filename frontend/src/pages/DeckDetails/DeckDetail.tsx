@@ -37,7 +37,7 @@ const DeckDetail = () => {
   if (deck === undefined || cards === undefined || themes === undefined) {
     return <p>Loading...</p>;
   }
-  console.log(themes);
+
   const addCard = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     navigate("/new-card", { state: { deckId, ownerId: deck.userId } });
@@ -46,8 +46,8 @@ const DeckDetail = () => {
   const makePublic = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     axiosInstance.get(`/users/${ownerId}/decks/${deckId}/publish`).then((res) => {
-      setDeck(res.data);
-      axiosInstance.get(`/decks/public/${deckId}`).then((res) => setPublic(res.data === null ? false : true));
+      if (res.status === 200)
+        axiosInstance.get(`/decks/public/${deckId}`).then((res) => setPublic(res.data === null ? false : true));
     });
   };
 
