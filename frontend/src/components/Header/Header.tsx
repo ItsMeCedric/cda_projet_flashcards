@@ -9,19 +9,19 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { logout as logoutAction } from "../../store/actions/authActions";
 import { reset } from "../../store/reducers/accountSlice";
+import { ThemeContextType } from "../../@types/theme";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+  const { theme } = useContext(ThemeContext) as ThemeContextType;
 
   const logout = () => {
     dispatch(reset());
     dispatch(logoutAction());
     navigate("/", { replace: true });
   };
-
-  const { theme } = useContext(ThemeContext);
 
   return (
     <div className={styles.header}>
