@@ -1,50 +1,53 @@
 "use strict";
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Decks", {
+    await queryInterface.createTable("Cards", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      question: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      subject: {
+      answer: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      downloads: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
-      mark: {
-        type: Sequelize.FLOAT,
+      questionImg: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
-      playCount: {
+      answerImg: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      playedDate: {
+        type: Sequelize.DATE,
+        allowNull: true,
+        defaultValue: Date.now(),
+      },
+      boxNumber: {
         type: Sequelize.INTEGER,
         allowNull: true,
         defaultValue: 0,
       },
-      userId: {
+      deckId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: "CASCADE",
-      },
-      storeId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: null,
+        references: {
+          model: "Decks",
+          key: "id",
+        },
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Decks");
+    await queryInterface.dropTable("Cards");
   },
 };

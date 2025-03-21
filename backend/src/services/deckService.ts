@@ -19,6 +19,10 @@ const findPublic = () => {
   return deckRepository.findPublic();
 };
 
+const findPublicByDeckId = (id: number) => {
+  return deckRepository.findPublicByDeckId(id);
+};
+
 const create = (data: InferCreationAttributes<Deck>) => {
   return deckRepository.create(data);
 };
@@ -32,17 +36,22 @@ const destroy = (id: number) => {
 };
 
 const publish = async (id: number) => {
-  let deck = await findById(id);
-  if (deck === null) throw "Deck not found";
-  if (deck.storeId) {
-    await storeService.destroy(deck.storeId);
-    deck.storeId = null;
+  let store = await storeService.findByDeckId(id);
+  if (store) {
+    await storeService.destroy(store.id);
   } else {
-    const store = await storeService.create({ id: undefined, deckId: id, createdAt: undefined, updatedAt: undefined });
-    deck.storeId = store.id;
+    await storeService.create({ id: undefined, deckId: id, createdAt: undefined, updatedAt: undefined });
   }
-  deck = await deck.save();
-  return deck;
 };
 
-export default { getAllDecks, getAllDecksByUserId, findById, findPublic, create, update, destroy, publish };
+export default {
+  getAllDecks,
+  getAllDecksByUserId,
+  findById,
+  findPublic,
+  findPublicByDeckId,
+  create,
+  update,
+  destroy,
+  publish,
+};

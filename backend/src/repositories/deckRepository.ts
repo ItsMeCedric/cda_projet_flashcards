@@ -1,5 +1,7 @@
 import { InferAttributes, InferCreationAttributes, Op } from "sequelize";
 import Deck from "../../models/deck";
+import Store from "../../models/store";
+import Theme from "../../models/theme";
 
 const findAll = async () => {
   return await Deck.findAll({ include: "Themes" });
@@ -15,12 +17,32 @@ const findByUserId = async (id: number) => {
 
 const findPublic = async () => {
   return await Deck.findAll({
-    where: {
-      storeId: {
-        [Op.ne]: null,
+    include: [
+      {
+        model: Theme,
+        as: "Themes",
       },
-    },
-    include: "Themes",
+      {
+        model: Store,
+        required: true,
+      },
+    ],
+  });
+};
+
+const findPublicByDeckId = async (id: number) => {
+  return await Deck.findOne({
+    where: { id },
+    include: [
+      {
+        model: Theme,
+        as: "Themes",
+      },
+      {
+        model: Store,
+        required: true,
+      },
+    ],
   });
 };
 
@@ -37,4 +59,4 @@ const destroy = async (id: number) => {
   return await Deck.destroy({ where: { id } });
 };
 
-export default { findAll, findById, findByUserId, findPublic, create, update, destroy };
+export default { findAll, findById, findByUserId, findPublic, findPublicByDeckId, create, update, destroy };

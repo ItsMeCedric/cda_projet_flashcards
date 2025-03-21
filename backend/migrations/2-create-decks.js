@@ -1,42 +1,42 @@
 "use strict";
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Cards", {
+    await queryInterface.createTable("Decks", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      question: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      answer: {
+      subject: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      questionImg: {
-        type: Sequelize.STRING,
+      downloads: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      mark: {
+        type: Sequelize.FLOAT,
         allowNull: true,
       },
-      answerImg: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      playedDate: {
-        type: Sequelize.DATE,
-        allowNull: true,
-        defaultValue: Date.now(),
-      },
-      boxNumber: {
+      playCount: {
         type: Sequelize.INTEGER,
         allowNull: true,
         defaultValue: 0,
       },
-      deckId: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Users",
+          key: "id",
+        },
         onDelete: "CASCADE",
       },
       createdAt: Sequelize.DATE,
@@ -44,6 +44,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Cards");
+    await queryInterface.dropTable("Decks");
   },
 };

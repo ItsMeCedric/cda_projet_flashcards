@@ -15,6 +15,7 @@ const DeckDetail = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [deck, setDeck] = useState<Deck | undefined>(undefined);
+  const [publicDeck, setPublic] = useState<boolean>(false);
   const [cards, setCards] = useState<Card[] | undefined>(undefined);
   const [themes, setThemes] = useState<Theme[] | undefined>(undefined);
   const deckId = state.deckId;
@@ -22,6 +23,7 @@ const DeckDetail = () => {
 
   useEffect(() => {
     axiosInstance.get(`/users/${ownerId}/decks/${deckId}`).then((res) => setDeck(res.data));
+    axiosInstance.get(`/decks/public/${deckId}`).then((res) => setPublic(res.data === null ? false : true));
   }, [navigate, user?.id, state.deckId]);
 
   useEffect(() => {
@@ -44,10 +46,8 @@ const DeckDetail = () => {
   const makePublic = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     axiosInstance.get(`/users/${ownerId}/decks/${deckId}/publish`).then((res) => {
-      setDeck((deck) => {
-        if (deck === undefined) return undefined;
-        return { ...deck, storeId: res.data.storeId };
-      });
+      if (res.status === 200)
+        axiosInstance.get(`/decks/public/${deckId}`).then((res) => setPublic(res.data === null ? false : true));
     });
   };
 
@@ -92,8 +92,8 @@ const DeckDetail = () => {
                 <FaPlus />
               </a>
               <a className={styles.btn} onClick={makePublic}>
-                <span className={styles["full-text"]}>{deck.storeId ? "Rendre privé" : "Rendre public"}</span>
-                <span className={styles["icon-text"]}>{deck.storeId ? "Retirer" : "Publier"}</span>
+                <span className={styles["full-text"]}>{publicDeck ? "Rendre privé" : "Rendre public"}</span>
+                <span className={styles["icon-text"]}>{publicDeck ? "Retirer" : "Publier"}</span>
                 <FaGlobe />
               </a>
               <a className={styles.btn} onClick={deleteDeck}>

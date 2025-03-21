@@ -22,16 +22,19 @@ Theme.initialize(db);
 Deck.belongsToMany(Theme, {
   through: "DeckThemes",
   foreignKey: "deckId",
+  onDelete: "CASCADE",
 });
 
 Theme.belongsToMany(Deck, {
   through: "DeckThemes",
   foreignKey: "themeId",
+  onDelete: "CASCADE",
 });
 
 User.hasMany(Deck, {
   foreignKey: "userId",
   as: "decks",
+  onDelete: "CASCADE",
 });
 
 Deck.belongsTo(User, {
@@ -42,6 +45,7 @@ Deck.belongsTo(User, {
 Deck.hasMany(Card, {
   foreignKey: "deckId",
   as: "cards",
+  onDelete: "CASCADE",
 });
 
 Card.belongsTo(Deck, {
@@ -49,14 +53,13 @@ Card.belongsTo(Deck, {
   as: "deck",
 });
 
-Store.hasOne(Deck, {
-  foreignKey: "storeId",
-  as: "deck",
+Deck.hasOne(Store, {
+  foreignKey: "deckId",
+  onDelete: "CASCADE",
 });
 
-Deck.belongsTo(Store, {
-  foreignKey: "storeId",
-  as: "store",
+Store.belongsTo(Deck, {
+  foreignKey: "deckId",
 });
 
 export default db;
