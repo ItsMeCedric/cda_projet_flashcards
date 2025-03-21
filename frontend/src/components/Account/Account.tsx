@@ -66,7 +66,11 @@ const Account: React.FC = () => {
         username: user?.username === data.username ? undefined : data.username,
         password: data.password,
       };
-
+      const emailRegex = /[^@]+@[^@]+\.[^@]+/;
+      if (!emailRegex.test(data.email)) {
+        alert("E-mail non valide");
+        setIsEditing({ email: false, password: false, username: false });
+      }
       axiosInstance
         .patch(`/users/${user?.id}`, updatedData)
         .then(async (res) => {
@@ -142,8 +146,7 @@ const Account: React.FC = () => {
           }}
           className={styles.back}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
+          viewBox="0 0 448 512">
           <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
         </svg>
         <div className={styles.image_container}>
@@ -160,7 +163,19 @@ const Account: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.field}>
             <label>Email:</label>
-            {isEditing.email ? <input type="email" {...register("email")} /> : <span>{email}</span>}
+            {isEditing.email ? (
+              <input
+                type="text"
+                {...register("email", {
+                  pattern: {
+                    value: /.+@.+\..+/,
+                    message: "Format d'email invalide",
+                  },
+                })}
+              />
+            ) : (
+              <span>{email}</span>
+            )}
             {isEditing.email ? (
               <>
                 <FaRegSave className={styles.icon} onClick={handleSubmit(onSubmit)} />
@@ -170,7 +185,7 @@ const Account: React.FC = () => {
               <FaUserEdit className={styles.icon} onClick={() => handleEditClick("email")} />
             )}
           </div>
-
+          {errors.email && <p className={styles.error}>{errors.email.message}</p>}
           <div className={styles.field}>
             <label>Username:</label>
             {isEditing.username ? <input type="text" {...register("username")} /> : <span>{username}</span>}
