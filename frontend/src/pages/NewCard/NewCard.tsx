@@ -5,6 +5,7 @@ import axiosInstance from "../../utils/axios";
 import { useAppSelector } from "../../hooks/redux";
 import styles from "./NewCard.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaBackspace } from "react-icons/fa";
 
 const NewCard = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const NewCard = () => {
       <div className={styles.container}>
         <div className={styles.back}>
           <a className={styles.btn_back} onClick={() => navigate(-1)}>
+            <FaBackspace />
             Retour
           </a>
         </div>

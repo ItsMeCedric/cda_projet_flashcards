@@ -4,6 +4,8 @@ import Footer from "../../components/Footer/Footer";
 import { useEffect, useState, MouseEvent } from "react";
 import axiosInstance from "../../utils/axios";
 import styles from "./CardDetails.module.css";
+import { FaBackspace } from "react-icons/fa";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 const CardDetails = () => {
   const navigate = useNavigate();
@@ -33,6 +35,7 @@ const CardDetails = () => {
       <div className={styles.container}>
         <div className={styles.back}>
           <a className={styles.btn} onClick={() => navigate(-1)}>
+            <FaBackspace />
             Retour
           </a>
         </div>
@@ -46,6 +49,7 @@ const CardDetails = () => {
           <div className={styles.all_btn}>
             <a className={styles.btn} onClick={deleteCard}>
               Supprimer
+              <FaRegTrashCan />
             </a>
           </div>
         </div>

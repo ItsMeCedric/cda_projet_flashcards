@@ -6,6 +6,7 @@ import { useAppSelector } from "../../hooks/redux";
 import styles from "./NewDeck.module.css";
 import { useNavigate } from "react-router-dom";
 import { Theme } from "../../@types/deck";
+import { FaBackspace } from "react-icons/fa";
 
 const NewDeck = () => {
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ const NewDeck = () => {
       <div className={styles.container}>
         <div className={styles.back}>
           <a className={styles.btn_back} onClick={() => navigate(-1)}>
+            <FaBackspace />
             Retour
           </a>
         </div>

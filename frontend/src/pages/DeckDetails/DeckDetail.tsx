@@ -8,7 +8,8 @@ import styles from "./DeckDetails.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/Card";
-
+import { FaBackspace } from "react-icons/fa";
+import { FaLock, FaLockOpen, FaRegSquarePlus, FaRegTrashCan } from "react-icons/fa6";
 const DeckDetail = () => {
   const { user } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ const DeckDetail = () => {
         <div className={styles.header}>
           <div className={styles.back}>
             <a className={styles.btn} onClick={() => navigate(-1)}>
+              <FaBackspace />
               Retour
             </a>
           </div>
@@ -87,12 +89,22 @@ const DeckDetail = () => {
             <div className={styles.all_btn}>
               <a className={styles.btn} onClick={addCard}>
                 Ajouter carte
+                <FaRegSquarePlus />
               </a>
               <a className={styles.btn} onClick={makePublic}>
-                {deck.storeId ? "Rendre privé" : "Rendre public"}
+                {deck.storeId ? (
+                  <>
+                    Rendre privé <FaLock />
+                  </>
+                ) : (
+                  <>
+                    Rendre public <FaLockOpen />
+                  </>
+                )}
               </a>
               <a className={styles.btn} onClick={deleteDeck}>
                 Supprimer
+                <FaRegTrashCan />
               </a>
             </div>
           )}
