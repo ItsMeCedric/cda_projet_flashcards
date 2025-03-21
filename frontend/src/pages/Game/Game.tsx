@@ -94,6 +94,7 @@ const Game = () => {
         <div className={styles.container}>
           <div style={{ display: showGame ? "" : "none" }}>
             <div className={styles.card}>
+              <h2>Question n°{cards.indexOf(card) + 1}</h2>
               <h3>{card?.question}</h3>
               <div className={`${styles.description} ${styles[answerDisplay]}`}>
                 <p>{card?.answer}</p>

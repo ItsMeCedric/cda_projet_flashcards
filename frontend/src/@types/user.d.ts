@@ -1,6 +1,3 @@
-// todo : verif types si ok
-// todo : distinguer le type User en base de données du type User utilisé dans le front
-
 export interface UserMock {
   id: number;
   username: string;

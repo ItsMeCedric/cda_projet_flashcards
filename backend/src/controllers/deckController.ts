@@ -38,7 +38,6 @@ const findPublicByDeckId = async (req: Request, res: Response) => {
   res.status(200).json(deck);
 };
 
-//TODO: ajouter le middleware de vérification d'authentification
 const create = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.userId);
@@ -51,7 +50,6 @@ const create = async (req: Request, res: Response) => {
   }
 };
 
-//TODO: ajouter le middleware de vérification d'authentification
 const update = async (req: Request, res: Response) => {
   const data = req.body;
   const id = parseInt(req.params.deckId);
@@ -69,7 +67,6 @@ const update = async (req: Request, res: Response) => {
   }
 };
 
-//TODO: ajouter le middleware de vérification d'authentification
 const destroy = async (req: Request, res: Response) => {
   const id = parseInt(req.params.deckId);
   const userId = parseInt(req.params.userId);

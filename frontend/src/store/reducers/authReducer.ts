@@ -13,7 +13,6 @@ const initialState: AuthState = {
 const UNKNOWN_ERROR = "Unknown error";
 
 const authReducer = createReducer(initialState, (builder) => {
-  // todo : A compléter
   builder
     .addCase(resetError, (state) => {
       state.error = null;
@@ -75,13 +74,11 @@ const authReducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
       state.user = undefined;
       state.success = "Logout successful.";
-      // todo : supprimer token / utilisateur
     })
     .addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
       state.user = undefined;
       state.error = action.payload ? (action.payload as string) : UNKNOWN_ERROR;
-      // todo : supprimer quand même token / utilisateur ?
     })
     .addCase(updateData.fulfilled, (state, action) => {
       if (state.user === undefined) {

@@ -25,7 +25,7 @@ const Dashboard = () => {
     if (user && result) {
       await axiosInstance.delete(`/users/${user.id}`);
       dispatch(logoutAction());
-      navigate("/");
+      navigate("/", { replace: true });
     }
   };
 

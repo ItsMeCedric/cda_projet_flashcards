@@ -16,16 +16,17 @@ const Login = () => {
   const dispatch = useAppDispatch();
   let { user, isLoading, error } = useAppSelector((state) => state.auth);
 
-  const onSubmit: SubmitHandler<LoginCredentials> = (data) => dispatch(login(data));
+  const onSubmit: SubmitHandler<LoginCredentials> = (data) => {
+    dispatch(login(data));
+  };
 
   useEffect(() => {
     dispatch(resetError());
   }, [pathname]);
 
-  // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
     if (user != undefined) {
-      navigate("/account", { replace: true }); // todo : LS/ à remplacer par la redirection vers le dashboard
+      navigate("/account", { replace: true });
     }
   }, [navigate, user]);
 
@@ -36,6 +37,9 @@ const Login = () => {
         <div className={styles.auth_container}>
           <div className={styles.form_wrapper}>
             <h2>Connexion</h2>
+            <h3>Compte de démo :</h3>
+            <p>demo@demo.com</p>
+            <p>{"]Z&o]I?'<agy|lYebxv7B+,;X$<)_,]OO;^aiN@k"}</p>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className={styles.form_group}>
                 <label htmlFor={styles.login_email}>Email</label>
@@ -49,9 +53,7 @@ const Login = () => {
                   placeholder="Entrez votre mot de passe"
                 />
               </div>
-              {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
               {error && <div className={styles.error}>{error}</div>}
-              {/* // todo : LS/ Afficher un loader ? */}
               <button type="submit" className={styles.btn} disabled={isLoading}>
                 {isLoading ? "Connexion" : "Se connecter"}
               </button>

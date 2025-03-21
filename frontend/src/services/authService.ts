@@ -1,11 +1,8 @@
-// todo : LS/ Appel à l'API (verif endpoint) + return des données
-
 import { LoginCredentials, RegisterCredentials } from "../@types/auth";
 import { User } from "../@types/user";
 import axiosInstance from "../utils/axios";
 
 export const registerUser = async (credentials: RegisterCredentials) => {
-  // todo : LS/ Appel à l'API json-server à effacer + verifier si mail ou username deja existant (côté server)
   const response = await axiosInstance.post("/auth/register", credentials);
   if (response.status === 201) return response.data;
   else throw response.data.message;
