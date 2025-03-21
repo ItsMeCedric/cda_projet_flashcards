@@ -1,6 +1,5 @@
 .hero {
   margin: 0.5rem;
-  max-width: 600px;
   text-align: center;
   background-color: var(--bg-alt);
   padding: 0.5rem;
