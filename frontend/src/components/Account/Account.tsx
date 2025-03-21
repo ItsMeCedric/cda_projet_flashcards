@@ -66,11 +66,6 @@ const Account: React.FC = () => {
         username: user?.username === data.username ? undefined : data.username,
         password: data.password,
       };
-      const emailRegex = /[^@]+@[^@]+\.[^@]+/;
-      if (!emailRegex.test(data.email)) {
-        alert("E-mail non valide");
-        setIsEditing({ email: false, password: false, username: false });
-      }
       axiosInstance
         .patch(`/users/${user?.id}`, updatedData)
         .then(async (res) => {
