@@ -51,7 +51,7 @@ const CardDetails = () => {
             <a className={styles.btn} onClick={deleteCard}>
               <FaTrash />
               <span className={styles["full-text"]}>Supprimer</span>
-              <span className={styles["icon-text"]}>Suppr.</span>
+              <span className={styles["icon-text"]}>Supprimer</span>
             </a>
           </div>
         </div>

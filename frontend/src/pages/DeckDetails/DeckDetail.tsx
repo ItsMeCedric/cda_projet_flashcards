@@ -87,19 +87,19 @@ const DeckDetail = () => {
           {(user?.id === deck.userId || user?.role === "admin") && (
             <div className={styles.all_btn}>
               <a className={styles.btn} onClick={addCard}>
-                <FaPlus />
                 <span className={styles["full-text"]}>Ajouter une carte</span>
                 <span className={styles["icon-text"]}>Carte</span>
+                <FaPlus />
               </a>
               <a className={styles.btn} onClick={makePublic}>
-                <FaGlobe />
                 <span className={styles["full-text"]}>{deck.storeId ? "Rendre privé" : "Rendre public"}</span>
-                <span className={styles["icon-text"]}>{deck.storeId ? "Privé" : "Public"}</span>
+                <span className={styles["icon-text"]}>{deck.storeId ? "Retirer" : "Publier"}</span>
+                <FaGlobe />
               </a>
               <a className={styles.btn} onClick={deleteDeck}>
-                <FaTrash />
                 <span className={styles["full-text"]}>Supprimer deck</span>
                 <span className={styles["icon-text"]}>Sup. Deck</span>
+                <FaTrash />
               </a>
             </div>
           )}
