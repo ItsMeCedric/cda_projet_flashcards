@@ -1,8 +1,9 @@
 .hero {
-  width: 100%;
+  margin: 0.5rem;
+  max-width: 600px;
   text-align: center;
   background-color: var(--bg-alt);
-  padding: 15px 0 15px 0;
+  padding: 0.5rem;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
 }
@@ -20,7 +21,6 @@
   border-style: solid;
   border-color: var(--brd);
   outline: none;
-  width: 30%;
 }
 
 .search_submit {
@@ -54,3 +54,26 @@
 .checkbox label {
   font-weight: 300;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    min-width: 320px;
+  }}
+
+  .hero h1 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .hero label {
+    margin-right: 0px;
+  }
+  
+  .search {
+    width: 97%;
+  }
+  
+  .search_submit {
+    width: 10rem;
+  }
+
+

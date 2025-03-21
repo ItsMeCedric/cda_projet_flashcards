@@ -1,8 +1,8 @@
 .profile_page {
   font-family: Montserrat, sans-serif;
-  margin: 2rem;
+  margin: 1rem;
   color: var(--btn-txt);
-  min-height: 67.8vh;
+  min-height: 5rem;
 }
 .back {
   width: 20px;
@@ -32,16 +32,18 @@ h6 {
   padding-top: 30px;
   padding-bottom: 1px;
   position: relative;
-  width: 350px;
+  width: 20rem;
+  height: 28rem;
   text-align: center;
+  padding-top: 0.5rem;
 }
 
 .card_container .round {
   border: 1px solid var(--btn);
   border-radius: 50%;
-  padding: 7px;
-  width: 150px;
-  height: 150px;
+  padding: 0.5rem;
+  width: 12rem;
+  height: 12rem;
 }
 
 .image_container {
@@ -56,8 +58,8 @@ h6 {
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 button.primary {
@@ -76,9 +78,37 @@ button.primary {
   background-color: var(--hvr);
 }
 
+.prefer {
+  background-color: var(--btn);
+  color: var(--btn-txt);
+  text-align: left;
+  padding: 15px;
+  margin-top: 3rem;
+  border-top: var(--brd) dotted 1px;
+}
+
+.prefer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.prefer ul li {
+  border: 1px solid #2d2747;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0 7px 7px 0;
+  padding: 7px;
+}
+
+.prefer h6 {
+  color: var(--btn-txt);
+}
+
 .field {
   position: relative;
-  margin: 15px;
+  margin: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,12 +1,13 @@
 footer {
+  width: 100%;
   text-align: center;
-  padding: 1rem;
   margin-top: auto;
 }
 
 .footer-container {
   width: 100%;
-  margin-top: auto;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .footer2 {
@@ -30,4 +31,9 @@ footer {
   gap: 10px;
 }
 
+@media (max-width:768px){
+  .footer-container{
+    transform: scale(0.9);
+  }
+}
 

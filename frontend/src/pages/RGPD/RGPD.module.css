@@ -1,6 +1,10 @@
 .wrap {
   min-height: 100vh;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   background-color: var(--bg-main);
   color: var(--txt-main);
   text-align: justify;
@@ -8,8 +12,8 @@
 }
 
 .text-wrap {
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 1200px;
+
 }
 
 .text-wrap h1,
@@ -19,4 +23,11 @@ h4,
 h5,
 h6 {
   color: var(--txt-alt);
+}
+
+@media (max-width: 768px) {
+  .text-wrap{
+    transform: scale(0.9);
+  
+  }
 }

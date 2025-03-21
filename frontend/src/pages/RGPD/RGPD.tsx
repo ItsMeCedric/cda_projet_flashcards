@@ -8,189 +8,60 @@ const RGPD = () => {
     <div className={styles.wrap}>
       <Header />
       <div className={styles["text-wrap"]}>
-        <h2>
-          GDPR Privacy Policy for <span>FlashMcCard</span>
-        </h2>
+      <h2>Conditions d'Utilisation et Politique de Confidentialité de FlashMcCards</h2>
 
-        <p>
-          At <span>FlashMcCard website</span>, accessible at <span>Website.com</span>, one of our main priorities is the
-          privacy of our visitors. This Privacy Policy document contains types of information that is collected and
-          recorded by <span>FlashMcCard website</span> and how we use it.
-        </p>
+<h2>1. Introduction</h2>
+<p>FlashMcCards (ci-après dénommée "l'Application") est une plateforme en ligne permettant aux utilisateurs de créer, partager et apprendre des cartes éducatives. En utilisant l'Application, vous acceptez les présentes Conditions d'Utilisation et notre Politique de Confidentialité.</p>
 
-        <p>
-          If you have additional questions or require more information about our Privacy Policy, do not hesitate to
-          contact us through email at{" "}
-          <span>
-            <a href="/cdn-cgi/l/email-protection">[email&#160;protected]</a>
-          </span>
-        </p>
+<h2>2. Collecte des Données Personnelles</h2>
+<p>Lors de votre inscription sur FlashMcCards, nous collectons les informations suivantes :</p>
+<ul>
+    <li>Votre adresse e-mail</li>
+    <li>Toute autre information que vous choisissez de fournir dans votre profil utilisateur</li>
+</ul>
 
-        <h2>General Data Protection Regulation (GDPR)</h2>
-        <p>We are a Data Controller of your information.</p>
+<h2>3. Utilisation des Données Personnelles</h2>
+<p>Les données personnelles collectées sont utilisées pour :</p>
+<ul>
+    <li>Créer et gérer votre compte utilisateur</li>
+    <li>Vous envoyer des communications relatives à l'Application, y compris des mises à jour et des notifications importantes</li>
+    <li>Personnaliser votre expérience utilisateur et améliorer nos services</li>
+</ul>
 
-        <p>
-          <span>FlashMcCard</span> legal basis for collecting and using the personal information described in this
-          Privacy Policy depends on the Personal Information we collect and the specific context in which we collect the
-          information:
-        </p>
-        <ul>
-          <li>
-            <span>FlashMcCard</span> needs to perform a contract with you
-          </li>
-          <li>
-            You have given <span>FlashMcCard</span> permission to do so
-          </li>
-          <li>
-            Processing your personal information is in <span>FlashMcCard</span> legitimate interests
-          </li>
-          <li>
-            <span>FlashMcCard</span> needs to comply with the law
-          </li>
-        </ul>
+<h2>4. Base Légale</h2>
+<p>Nous traitons vos données personnelles sur la base de votre consentement et de notre intérêt légitime à fournir et améliorer nos services. Vous pouvez retirer votre consentement à tout moment en nous contactant.</p>
 
-        <p>
-          <span>FlashMcCard</span> will retain your personal information only for as long as is necessary for the
-          purposes set out in this Privacy Policy. We will retain and use your information to the extent necessary to
-          comply with our legal obligations, resolve disputes, and enforce our policies.
-        </p>
+<h2>5. Partage des Données</h2>
+<p>Nous ne partageons pas vos données personnelles avec des tiers, sauf dans les cas suivants :</p>
+<ul>
+    <li>Avec votre consentement explicite</li>
+    <li>Pour se conformer à des obligations légales</li>
+    <li>Pour protéger nos droits ou ceux de tiers</li>
+</ul>
 
-        <p>
-          If you are a resident of the European Economic Area (EEA), you have certain data protection rights. If you
-          wish to be informed what Personal Information we hold about you and if you want it to be removed from our
-          systems, please contact us.
-        </p>
-        <p>In certain circumstances, you have the following data protection rights:</p>
-        <ul>
-          <li>The right to access, update or to delete the information we have on you.</li>
-          <li>The right of rectification.</li>
-          <li>The right to object.</li>
-          <li>The right of restriction.</li>
-          <li>The right to data portability</li>
-          <li>The right to withdraw consent</li>
-        </ul>
+<h2>6. Conservation des Données</h2>
+<p>Vos données personnelles sont conservées aussi longtemps que nécessaire pour les finalités décrites dans cette politique, sauf si une période de conservation plus longue est requise ou permise par la loi.</p>
 
-        <h4>Log Files</h4>
+<h2>7. Vos Droits</h2>
+<p>Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :</p>
+<ul>
+    <li><strong>Droit d'accès :</strong> Vous pouvez demander une copie de vos données personnelles.</li>
+    <li><strong>Droit de rectification :</strong> Vous pouvez demander la correction de vos données personnelles si elles sont inexactes.</li>
+    <li><strong>Droit à l'effacement :</strong> Vous pouvez demander la suppression de vos données personnelles.</li>
+    <li><strong>Droit à la portabilité :</strong> Vous pouvez demander le transfert de vos données personnelles à un autre responsable de traitement.</li>
+    <li><strong>Droit d'opposition :</strong> Vous pouvez vous opposer au traitement de vos données personnelles.</li>
+    <li><strong>Droit de retirer votre consentement :</strong> Vous pouvez retirer votre consentement au traitement de vos données personnelles à tout moment.</li>
+</ul>
 
-        <p>
-          <span>FlashMcCard website</span> follows a standard procedure of using log files. These files log visitors
-          when they visit websites. All hosting companies do this and a part of hosting services' analytics. The
-          information collected by log files include internet protocol (IP) addresses, browser type, Internet Service
-          Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not
-          linked to any information that is personally identifiable. The purpose of the information is for analyzing
-          trends, administering the site, tracking users' movement on the website, and gathering demographic
-          information.
-        </p>
+<h2>8. Sécurité des Données</h2>
+<p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, divulgation, altération ou destruction.</p>
 
-        <h3>Cookies and Web Beacons</h3>
-        <p>
-          Like any other website, <span>FlashMcCard website</span> uses ‘cookies'. These cookies are used to store
-          information including visitors' preferences, and the pages on the website that the visitor accessed or
-          visited. The information is used to optimize the users' experience by customizing our web page content based
-          on visitors' browser type and/or other information.
-        </p>
+<h2>9. Modifications de la Politique de Confidentialité</h2>
+<p>Nous nous réservons le droit de modifier cette Politique de Confidentialité à tout moment. Les modifications seront publiées sur cette page et, si elles sont significatives, nous vous en informerons par e-mail.</p>
 
-        <h3>DoubleClick DART Cookie</h3>
-
-        <p>
-          Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads
-          to our site visitors based upon their visit to www.website.com and other sites on the internet. However,
-          visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy
-          Policy at the following URL –{" "}
-          <a href="https://policies.google.com/technologies/ads" rel="noopener noreferrer nofollow" target="_blank">
-            https://policies.google.com/technologies/ads
-          </a>
-          .
-        </p>
-
-        <p>
-          Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below.
-          Each of our advertising partners has their own Privacy Policy for their policies on user data. For easier
-          access, we hyperlinked to their Privacy Policies below.
-        </p>
-
-        <ul>
-          <li>
-            <p>Google</p>
-            <p>
-              <a href="https://policies.google.com/technologies/ads" rel="noopener noreferrer nofollow">
-                https://policies.google.com/technologies/ads
-              </a>
-            </p>
-          </li>
-        </ul>
-
-        <p>
-          <h4>Privacy Policies</h4>
-        </p>
-
-        <p>
-          You may consult this list to find the Privacy Policy for each of the advertising partners of{" "}
-          <span>FlashMcCard website</span>.
-        </p>
-
-        <p>
-          Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used
-          in their respective advertisements and links that appear on <span>FlashMcCard website</span>, which are sent
-          directly to users' browser. They automatically receive your IP address when this occurs. These technologies
-          are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising
-          content that you see on websites that you visit.
-        </p>
-
-        <p>
-          Note that <span>FlashMcCard website</span> has no access to or control over these cookies that are used by
-          third-party advertisers.
-        </p>
-
-        <p>
-          <h4>Third Part Privacy Policies</h4>
-        </p>
-
-        <p>
-          <span>FlashMcCard website</span>'s Privacy Policy does not apply to other advertisers or websites. Thus, we
-          are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed
-          information. It may include their practices and instructions about how to opt-out of certain options. You may
-          find a complete list of these Privacy Policies and their links here: Privacy Policy Links.
-        </p>
-
-        <p>
-          You can choose to disable cookies through your individual browser options. To know more detailed information
-          about cookie management with specific web browsers, it can be found at the browsers' respective websites. What
-          Are Cookies?
-        </p>
-
-        <p>
-          <h4>Children's Information</h4>
-        </p>
-
-        <p>
-          Another part of our priority is adding protection for children while using the internet. We encourage parents
-          and guardians to observe, participate in, and/or monitor and guide their online activity.
-        </p>
-
-        <p>
-          <span>FlashMcCard website</span> does not knowingly collect any Personal Identifiable Information from
-          children under the age of 13. If you think that your child provided this kind of information on our website,
-          we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such
-          information from our records.
-        </p>
-
-        <p>
-          <h4>Online Privacy Policy Only</h4>
-        </p>
-
-        <p>
-          This privacy policy applies only to our online activities and is valid for visitors to our website with
-          regards to the information that they shared and/or collect in <span>FlashMcCard website</span>. This policy is
-          not applicable to any information collected offline or via channels other than this website.
-        </p>
-
-        <p>
-          <h4>Consent</h4>
-        </p>
-
-        <p>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
-      </div>
+<h2>10. Contact</h2>
+<p>Pour toute question ou demande concernant vos données personnelles, veuillez nous contacter à <a href="mailto:contact@flashmccards.com">contact@flashmccards.com</a>.</p>
+</div>
       <Footer />
     </div>
   );

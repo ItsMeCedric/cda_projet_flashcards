@@ -1,7 +1,7 @@
 .card {
   /* div setup */
   width: 20rem;
-  height: 35rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -35,7 +35,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 6%;
+  height: 7%;
 }
 
 /* deck's picture */
@@ -96,7 +96,7 @@
 }
 
 .description {
-  height: 13rem;
+  height: 8rem;
   margin: 0.5rem;
   overflow-y: auto;
   overflow-x: hidden;

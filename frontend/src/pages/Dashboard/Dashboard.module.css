@@ -1,6 +1,7 @@
 .wrap {
   min-height: 100vh;
-  margin: 0 auto;
+  margin: auto;
+  align-items: center;
   background-color: var(--bg-main);
   color: var(--txt-main);
   scrollbar-width: none; /*firefox*/
@@ -11,27 +12,68 @@
   flex-direction: row;
 }
 
+.btn_grp{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap:1rem;
+}
+
 .btn_option {
   cursor: pointer;
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
   background-color: var(--btn);
   color: var(--btn-txt);
   border-style: none;
   border-radius: 10px;
-  width: 200px;
-  height: 30px;
+  width: 15rem;
+  height: 2rem;
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+  transition: transform 0.3s;
 }
 
-.btn_grp {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+.btn_option .icon-text {
+  display: none;
 }
+
+.btn_option .full-text {
+  display: inline;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn_option {
+    transform: scale(0.9); /* Reduce size by 10% */
+    width: auto;
+    height: auto;
+    padding: 10px;
+    gap: 0.3rem;
+  }
+
+  .btn_grp{
+    gap:0.5rem;
+  }
+
+  .btn_option .full-text {
+    display: none;
+  }
+
+  .btn_option .icon-text {
+    display: inline;
+  }
+}
+
 /*chrome...*/
 body::-webkit-scrollbar {
   display: none;

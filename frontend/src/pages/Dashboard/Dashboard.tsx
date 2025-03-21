@@ -7,7 +7,7 @@ import axiosInstance from "../../utils/axios";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import { useNavigate } from "react-router-dom";
-import { FaUserSlash } from "react-icons/fa";
+import { FaUserSlash, FaDownload } from "react-icons/fa";
 import { FaSheetPlastic } from "react-icons/fa6";
 import { MouseEvent } from "react";
 import { Deck } from "../../@types/deck";
@@ -64,16 +64,21 @@ const Dashboard = () => {
       <Header />
       <div className={styles.btn_grp}>
         <NavLink className={styles.btn_option} to={"/new-deck"}>
-          Créer un deck <FaSheetPlastic />
+          <span className={styles["full-text"]}>Créer un deck</span>
+          <span className={styles["icon-text"]}>Nouveau</span>
+          <FaSheetPlastic />
         </NavLink>
         <a onClick={getAllUserData} className={styles.btn_option}>
-          Récupérer toutes mes données
+          <span className={styles["full-text"]}>Récupérer mes données</span>
+          <span className={styles["icon-text"]}>Données</span>
+          <FaDownload />
         </a>
         <a onClick={deleteUser} className={styles.btn_option}>
-          Supprimer le profil <FaUserSlash />
+          <span className={styles["full-text"]}>Supprimer le profil</span>
+          <span className={styles["icon-text"]}>Supprimer</span>
+          <FaUserSlash />
         </a>
       </div>
-
       <div className={styles.dashboard}>
         <Account />
         <UserDecks />
@@ -82,4 +87,5 @@ const Dashboard = () => {
     </div>
   );
 };
+
 export default Dashboard;
