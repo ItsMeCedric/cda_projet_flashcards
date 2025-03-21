@@ -64,7 +64,7 @@ const DeckDetail = () => {
   return (
     <div className={styles.wrap}>
       <Header />
-      <div className={styles.container}>
+
         <div className={styles.header}>
           <div className={styles.back}>
             <a className={styles.btn} onClick={() => navigate(-1)}>
@@ -109,7 +109,7 @@ const DeckDetail = () => {
             <Card key={card.id} card={card} ownerId={deck?.userId} />
           ))}
         </div>
-      </div>
+
       <Footer />
     </div>
   );

@@ -8,17 +8,23 @@
 }
 
 .logo {
-  width: 10rem;
+  width: 12rem;
   cursor: pointer;
 }
 
+.logoc {
+  flex: 45%;
+}
+
 .navbar {
+  flex: 30%;
   display: flex;
   gap: 10px;
 }
 
 /* button div */
 .auth_btn {
+  flex: 25%;
   display: flex;
   gap: 1rem;
   margin-right: 1.5rem;

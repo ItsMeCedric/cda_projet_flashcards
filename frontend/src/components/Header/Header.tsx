@@ -25,9 +25,11 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
+      <div className={styles.logoc}>
       <NavLink to={"/"}>
         <img src={theme === "light" ? logo_light : logo_dark} alt="logo" className={styles.logo} />
       </NavLink>
+      </div>
       <div className={styles.navbar}>
         <NavLink to={"/"} className={styles.icon_link}>
           <FaHome /> <span className={styles.link_text}>Home</span>

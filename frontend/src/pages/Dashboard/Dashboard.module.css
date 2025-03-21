@@ -3,7 +3,6 @@
   flex-direction: column;
   min-height: 100vh;
   margin: auto;
-  align-items: center;
   background-color: var(--bg-main);
   color: var(--txt-main);
   scrollbar-width: none; /*firefox*/
@@ -12,6 +11,7 @@
 .dashboard {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 .btn_grp{

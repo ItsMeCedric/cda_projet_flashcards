@@ -111,9 +111,9 @@ button.primary {
 
   padding: 5px;
   font-size: 14px;
+  font-weight: 100;
   width: 100%; /* Utiliser toute la largeur disponible */
   max-width: 200px;
-  height: 22px;
   box-sizing: border-box;
   overflow: hidden; /* Cacher le débordement */
   text-overflow: ellipsis; /* Ajouter des points de suspension pour le texte trop long */
@@ -142,6 +142,8 @@ button.primary {
 .field label {
   margin-right: 10px;
   flex-shrink: 0;
+  color: #FFF;
+  font-weight: bold;
 }
 
 
