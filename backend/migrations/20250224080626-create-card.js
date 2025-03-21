@@ -38,6 +38,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: "CASCADE",
+        references: {
+          model: "Decks",
+          key: "id",
+        },
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
