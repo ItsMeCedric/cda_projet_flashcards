@@ -1,53 +1,47 @@
 .wrap {
   min-height: 100vh;
-  margin: 0 auto;
-  background-color: var(--bg-main);
-  color: var(--txt-main);
-  text-align: justify;
-  text-justify: inter-word;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-main);
+  color: var(--txt-main);
 }
 
 .container {
-  min-height: 5rem;
+  margin: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  align-items: center;
 }
 
 .btn_back {
-  cursor: pointer;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
+  margin: 1rem;
+  gap: 5px;
   background-color: var(--btn);
   color: var(--btn-txt);
-  border-style: none;
-  border-radius: 10px;
-  width: 120px;
-  height: 30px;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .form_container {
-  display: flex;
-  gap: 20px;
-  background-color: var(--bg-alt); /*bg alt*/
-  padding: 20px;
+  margin: 0.5rem;
+  padding: 1rem;
+  background-color: var(--bg-alt);
   border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
-  max-width: 800px;
-  width: 700px;
-  justify-content: center;
-  margin: 5rem auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form_wrapper {
   flex: 1;
 }
 
-h2 {
+.form_container h2 {
   color: var(--txt-alt); /* txt alt */
   font-size: 1.5rem;
   margin-bottom: 10px;
@@ -57,22 +51,22 @@ h2 {
   margin-bottom: 15px;
 }
 
-label {
+.form_container label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
   color: var(--txt-main); /*txt main*/
 }
 
-input {
-  width: 97%;
+.form_container input {
+  width: 96%;
   padding: 10px;
   border: 1px solid var(--brd); /* brd */
   border-radius: 8px;
   font-size: 14px;
 }
 
-input:focus {
+.form_container input:focus {
   border-color: var(--btn); /* btn */
   outline: none;
 }
@@ -86,10 +80,27 @@ input:focus {
   background-color: var(--btn); /* btn */
   color: var(--btn-txt); /* txt main */
   border: none;
-  padding: 10px 15px;
+  padding: 10px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s ease;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container{
+    width: 340px;
+  }
+  .form_container {
+    padding: 0.5rem;
+    max-width: 340px;
+  }
+  .form_container input {
+    width: 93%;
+    font-size: 14px;
+  }
+  .btn_back {
+    font-size: 14px;
+  }
 }

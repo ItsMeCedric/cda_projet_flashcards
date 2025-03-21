@@ -21,18 +21,18 @@ const Dashboard = () => {
       navigate("/");
     }
   };
+
   return (
     <div className={styles.wrap}>
       <Header />
       <div className={styles.btn_grp}>
         <NavLink className={styles.btn_option} to={"/new-deck"}>
-          Créer un deck <FaSheetPlastic />
+          <span>Créer un deck</span> <FaSheetPlastic />
         </NavLink>
         <a onClick={deleteUser} className={styles.btn_option}>
-          Supprimer le profil <FaUserSlash />
+          <span>Supprimer le profil</span> <FaUserSlash />
         </a>
       </div>
-
       <div className={styles.dashboard}>
         <Account />
         <UserDecks />
@@ -41,4 +41,5 @@ const Dashboard = () => {
     </div>
   );
 };
+
 export default Dashboard;

@@ -8,6 +8,7 @@ import styles from "./DeckDetails.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/Card";
+import { FaArrowLeft, FaPlus, FaGlobe, FaTrash } from "react-icons/fa";
 
 const DeckDetail = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -34,7 +35,7 @@ const DeckDetail = () => {
   if (deck === undefined || cards === undefined || themes === undefined) {
     return <p>Loading...</p>;
   }
-  console.log(themes);
+
   const addCard = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     navigate("/new-card", { state: { deckId, ownerId: deck.userId } });
@@ -52,15 +53,13 @@ const DeckDetail = () => {
 
   const deleteDeck = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const result = confirm("�tes-vous sur de vouloir supprimer le deck ?");
+    const result = confirm("Êtes-vous sûr de vouloir supprimer le deck ?");
     if (result) {
       axiosInstance.delete(`/users/${ownerId}/decks/${deckId}`).then(() => {
         navigate("/account", { replace: true });
       });
     }
   };
-
-  console.log(user?.id);
 
   return (
     <div className={styles.wrap}>
@@ -69,7 +68,9 @@ const DeckDetail = () => {
         <div className={styles.header}>
           <div className={styles.back}>
             <a className={styles.btn} onClick={() => navigate(-1)}>
-              Retour
+              <FaArrowLeft />
+              <span className={styles["full-text"]}>Retour</span>
+              <span className={styles["icon-text"]}>Retour</span>
             </a>
           </div>
 
@@ -78,28 +79,34 @@ const DeckDetail = () => {
             <h3>{deck.subject}</h3>
             <div>
               <h4>Thèmes</h4>
-              {themes.map((theme) => {
-                return <p>{theme.label}</p>;
-              })}
+              {themes.map((theme) => (
+                <p key={theme.label}>{theme.label}</p>
+              ))}
             </div>
           </div>
           {(user?.id === deck.userId || user?.role === "admin") && (
             <div className={styles.all_btn}>
               <a className={styles.btn} onClick={addCard}>
-                Ajouter carte
+                <FaPlus />
+                <span className={styles["full-text"]}>Ajouter une carte</span>
+                <span className={styles["icon-text"]}>Carte</span>
               </a>
               <a className={styles.btn} onClick={makePublic}>
-                {deck.storeId ? "Rendre privé" : "Rendre public"}
+                <FaGlobe />
+                <span className={styles["full-text"]}>{deck.storeId ? "Rendre privé" : "Rendre public"}</span>
+                <span className={styles["icon-text"]}>{deck.storeId ? "Privé" : "Public"}</span>
               </a>
               <a className={styles.btn} onClick={deleteDeck}>
-                Supprimer
+                <FaTrash />
+                <span className={styles["full-text"]}>Supprimer deck</span>
+                <span className={styles["icon-text"]}>Sup. Deck</span>
               </a>
             </div>
           )}
         </div>
         <div className={styles.cards_container}>
           {cards.map((card) => (
-            <Card card={card} ownerId={deck?.userId} />
+            <Card key={card.id} card={card} ownerId={deck?.userId} />
           ))}
         </div>
       </div>

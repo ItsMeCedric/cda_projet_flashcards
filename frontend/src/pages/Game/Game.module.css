@@ -32,6 +32,10 @@ body::-webkit-scrollbar {
 
 .content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1rem;
 }
 
 .container {
@@ -43,7 +47,7 @@ body::-webkit-scrollbar {
 
 .card {
   width: 20rem;
-  height: 35rem;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -63,7 +67,7 @@ body::-webkit-scrollbar {
 }
 
 .description {
-  height: 13rem;
+  height: 8rem;
   margin: 0.5rem;
   overflow-y: auto;
   overflow-x: hidden;

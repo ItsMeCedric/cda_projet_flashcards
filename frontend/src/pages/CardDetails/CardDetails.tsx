@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import { useEffect, useState, MouseEvent } from "react";
 import axiosInstance from "../../utils/axios";
 import styles from "./CardDetails.module.css";
+import { FaArrowLeft, FaTrash } from "react-icons/fa";
 
 const CardDetails = () => {
   const navigate = useNavigate();
@@ -27,30 +28,32 @@ const CardDetails = () => {
 
   if (card == undefined) return <p>Loading...</p>;
 
+ 
   return (
     <div className={styles.wrap}>
       <Header />
       <div className={styles.container}>
-        <div className={styles.back}>
-          <a className={styles.btn} onClick={() => navigate(-1)}>
-            Retour
-          </a>
-        </div>
         <div className={styles.header}>
-          <div className={styles.spacer}></div>
+          <div className={styles.back}>
+            <a className={styles.btn} onClick={() => navigate(-1)}>
+              <FaArrowLeft />
+              <span className={styles["full-text"]}>Retour</span>
+              <span className={styles["icon-text"]}>Retour</span>
+            </a>
+          </div>
           <div className={styles.title}>
             <h2>Question : {card.question}</h2>
             <h3>Réponse : {card.answer}</h3>
           </div>
-
           <div className={styles.all_btn}>
             <a className={styles.btn} onClick={deleteCard}>
-              Supprimer
+              <FaTrash />
+              <span className={styles["full-text"]}>Supprimer</span>
+              <span className={styles["icon-text"]}>Suppr.</span>
             </a>
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

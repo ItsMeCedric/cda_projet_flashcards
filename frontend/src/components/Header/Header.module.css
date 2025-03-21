@@ -8,38 +8,70 @@
 }
 
 .logo {
-  width: 150px;
+  width: 10rem;
   cursor: pointer;
 }
 
 .navbar {
   display: flex;
   gap: 10px;
-  margin-left: 5rem;
 }
 
-/* buton div */
+/* button div */
 .auth_btn {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
+  margin-right: 1.5rem;
 }
 
-/* butons */
+/* buttons */
 .login {
   cursor: pointer;
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   background-color: var(--btn);
   color: var(--btn-txt);
   border-style: none;
   border-radius: 10px;
-  width: 120px;
-  height: 30px;
+  width: 8rem;
+  height: 2rem;
   text-align: center;
   box-shadow:
     0 10px 20px rgba(0, 0, 0, 0.19),
     0 4px 4px rgba(0, 0, 0, 0.23);
+}
+
+/* Icon link */
+.icon_link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.link_text, .theme_text {
+  display: inline;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .link_text, .theme_text {
+    display: none;
+  }
+
+  .logo {
+    width: 7rem;
+  }
+
+  .login {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .icon_link {
+    gap: 0;
+  }
 }
