@@ -22,10 +22,9 @@ const Login = () => {
     dispatch(resetError());
   }, [pathname]);
 
-  // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
     if (user != undefined) {
-      navigate("/account", { replace: true }); // todo : LS/ à remplacer par la redirection vers le dashboard
+      navigate("/account", { replace: true });
     }
   }, [navigate, user]);
 
@@ -52,9 +51,7 @@ const Login = () => {
                   placeholder="Entrez votre mot de passe"
                 />
               </div>
-              {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
               {error && <div className={styles.error}>{error}</div>}
-              {/* // todo : LS/ Afficher un loader ? */}
               <button type="submit" className={styles.btn} disabled={isLoading}>
                 {isLoading ? "Connexion" : "Se connecter"}
               </button>

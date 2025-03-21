@@ -28,10 +28,9 @@ const SignIn = () => {
     dispatch(registerAction(data));
   };
 
-  // todo : LS/ useEffect à supprimer (remplacer par des protectedRoute)
   useEffect(() => {
     if (user != undefined) {
-      navigate("/account", { replace: true }); // todo : LS/à remplacer par la redirection vers le dashboard
+      navigate("/account", { replace: true });
     }
   }, [navigate, user]);
 
@@ -81,10 +80,8 @@ const SignIn = () => {
                 />
                 {errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword.message}</p>}
               </div>
-              {/* // todo : LS/ Style à définir - msg d'erreur destiné à l'utilisateur à personnaliser (voir reducer) */}
               {error && <div className={styles.error}>{error}</div>}
               {success && <div className={styles.success}>{success}</div>}
-              {/* // todo : LS/ Afficher un loader ? */}
               <button type="submit" className={styles.btn} disabled={isLoading}>
                 {isLoading ? "Inscription..." : "S'inscrire"}
               </button>
