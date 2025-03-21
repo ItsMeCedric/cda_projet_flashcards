@@ -16,7 +16,6 @@
   align-items: center;
 }
 
-
 .btn_back {
   align-items: center;
   margin: 1rem;
@@ -40,11 +39,20 @@
 .form_group {
   margin-bottom: 15px;
   text-align: left;
-  width:100%;
+  width: 100%;
 }
 
+.one_check {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
-.form_container input {
+.all_checkbox {
+  margin-bottom: 2%;
+}
+
+.form_group input {
   width: 97%;
   padding: 0.5rem;
   border: 1px solid var(--brd); /* brd */
@@ -52,11 +60,10 @@
   font-size: 14px;
 }
 
-.form_container input:focus {
+.form_group input:focus {
   border-color: var(--btn); /* btn */
   outline: none;
 }
-
 
 .btn {
   width: 100%;
@@ -92,4 +99,3 @@
     font-size: 14px;
   }
 }
-
