@@ -19,9 +19,9 @@ const App = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
 
-  // useEffect(() => {
-  //   if (user === undefined) dispatch(validateToken());
-  // }, [user]);
+  useEffect(() => {
+    if (user === undefined) dispatch(validateToken());
+  }, [user]);
 
   return (
     <Routes>

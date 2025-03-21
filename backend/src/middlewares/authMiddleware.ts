@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
-const env = process.env.NODE_ENV || "development";
+import jwt from "jsonwebtoken";
 
 interface RequestWithUser extends Request {
   user: JWTToken;
@@ -12,11 +11,6 @@ interface JWTToken {
 }
 
 const verifyAuth = (req: Request, res: Response, next: NextFunction): void => {
-  if (env == "development") {
-    (req as RequestWithUser).user = { id: 2, role: "user" };
-    next();
-    return;
-  }
   const token = req.cookies["Authorization"] && req.cookies["Authorization"].split(" ")[1];
   if (!token) {
     res.sendStatus(401);
