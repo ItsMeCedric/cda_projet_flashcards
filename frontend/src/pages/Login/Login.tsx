@@ -16,7 +16,9 @@ const Login = () => {
   const dispatch = useAppDispatch();
   let { user, isLoading, error } = useAppSelector((state) => state.auth);
 
-  const onSubmit: SubmitHandler<LoginCredentials> = (data) => dispatch(login(data));
+  const onSubmit: SubmitHandler<LoginCredentials> = (data) => {
+    dispatch(login(data));
+  };
 
   useEffect(() => {
     dispatch(resetError());
