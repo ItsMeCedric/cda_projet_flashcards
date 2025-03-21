@@ -4,8 +4,6 @@ import Footer from "../../components/Footer/Footer";
 import { useEffect, useState, MouseEvent } from "react";
 import axiosInstance from "../../utils/axios";
 import styles from "./CardDetails.module.css";
-import { FaBackspace } from "react-icons/fa";
-import { FaRegTrashCan } from "react-icons/fa6";
 import { FaArrowLeft, FaTrash } from "react-icons/fa";
 
 const CardDetails = () => {
@@ -30,7 +28,6 @@ const CardDetails = () => {
 
   if (card == undefined) return <p>Loading...</p>;
 
- 
   return (
     <div className={styles.wrap}>
       <Header />
@@ -62,3 +59,4 @@ const CardDetails = () => {
 };
 
 export default CardDetails;
+
