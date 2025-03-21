@@ -279,14 +279,14 @@ module.exports = {
         },
         {
           question: "Comment dit-on 'où est la gare' en allemand ?",
-          answer: "Wo ist der Bahnhof?",
+          answer: "Wo ist das Bahnhof?",
           deckId: decks[5].id,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           question: "Comment dit-on 'j'ai faim' en allemand ?",
-          answer: "Ich habe Hunger",
+          answer: "Ich bin hungrig",
           deckId: decks[5].id,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -320,7 +320,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          question: "Quel type de données est 'true' en JavaScript ?",
+          question: "De quel type est 'true' en JavaScript ?",
           answer: "Boolean",
           deckId: decks[6].id,
           createdAt: new Date(),
@@ -334,7 +334,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          question: "Quel est l'opérateur pour ajouter des variables en JavaScript ?",
+          question: "Quel est l'opérateur pour additionner des variables en JavaScript ?",
           answer: "+",
           deckId: decks[6].id,
           createdAt: new Date(),
@@ -356,7 +356,7 @@ module.exports = {
         },
         {
           question: "Que fait une boucle 'for' en JavaScript ?",
-          answer: "Répète un bloc de code un certain nombre de fois",
+          answer: "Répète un bloc de code tant qu'une condition est respectée",
           deckId: decks[6].id,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -376,7 +376,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          question: "Que signifie '=='' en JavaScript ?",
+          question: "Que signifie '==' en JavaScript ?",
           answer: "Comparaison de valeurs, sans vérifier le type",
           deckId: decks[6].id,
           createdAt: new Date(),
@@ -608,7 +608,7 @@ module.exports = {
       [
         {
           question: "Qu'est-ce que Node.js ?",
-          answer: "Un environnement d'exécution JavaScript côté serveur",
+          answer: "Un environnement d'exécution JavaScript",
           deckId: decks[9].id,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -663,15 +663,9 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          question: "Comment créer une API REST avec Node.js ?",
-          answer: "En utilisant Express.js",
-          deckId: decks[9].id,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
           question: "Qu'est-ce qu'un callback en Node.js ?",
-          answer: "Une fonction passée comme argument à une autre fonction",
+          answer:
+            "Une fonction passée comme argument à une autre fonction, qui est appelée à la fin du traitement de cette première fonction",
           deckId: decks[9].id,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -679,20 +673,6 @@ module.exports = {
         {
           question: "Que fait 'process.env' en Node.js ?",
           answer: "Accède aux variables d'environnement",
-          deckId: decks[9].id,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          question: "Comment installer Express.js ?",
-          answer: "npm install express",
-          deckId: decks[9].id,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          question: "Comment définir des variables d'environnement dans Node.js ?",
-          answer: "process.env.VAR_NAME = 'value'",
           deckId: decks[9].id,
           createdAt: new Date(),
           updatedAt: new Date(),
