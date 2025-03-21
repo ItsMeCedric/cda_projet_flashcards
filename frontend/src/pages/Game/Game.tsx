@@ -5,6 +5,7 @@ import styles from "./Game.module.css";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { Deck } from "../../@types/deck";
+import { FaBackspace } from "react-icons/fa";
 
 type CheckDisplay = "check_hidden" | "check_shown";
 type AnswerDisplay = "answer_hidden" | "answer_shown";
@@ -24,6 +25,7 @@ const Game = () => {
   const [nextDisplay, setNextDisplay] = useState<NextDisplay>("next_hidden");
   const [showButton, setShowButton] = useState<"inline" | "none">("inline");
   const [showGame, setShowGame] = useState<boolean>(true);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
   const [showResult, setShowResult] = useState<boolean>(false);
   const [correctAnswer, setCorrectAnswer] = useState<number>(0);
 
@@ -53,6 +55,7 @@ const Game = () => {
   const setAnswer = (e: MouseEvent<HTMLButtonElement>, answer: boolean) => {
     e.preventDefault();
     if (answer) setCorrectAnswer((prev) => prev + 1);
+    answer ? setFeedbackMessage("Bien joué :)") : setFeedbackMessage("Dommage :(");
     setCheckDisplay("check_hidden");
     setNextDisplay("next_shown");
   };
@@ -69,11 +72,12 @@ const Game = () => {
     setCheckDisplay("check_hidden");
     setNextDisplay("next_hidden");
     setShowButton("inline");
+    setFeedbackMessage("");
   };
 
   const endGame = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    axiosInstance.patch(`/users/${userId}/decks/${deckId}`, { id: deckId, playCount: deck.playCount + 1 });
+    axiosInstance.patch(`/users/${userId}/decks/${deckId}`, { playCount: deck.playCount + 1 });
     navigate(-1);
   };
 
@@ -83,6 +87,7 @@ const Game = () => {
       <div className={styles.content}>
         <div className={styles.back}>
           <a className={styles.btn} onClick={() => navigate(-1)}>
+            <FaBackspace />
             Retour
           </a>
         </div>
@@ -93,6 +98,7 @@ const Game = () => {
               <div className={`${styles.description} ${styles[answerDisplay]}`}>
                 <p>{card?.answer}</p>
               </div>
+              <p>{feedbackMessage}</p>
               <div className={styles["button-container"]}>
                 {nextDisplay === "next_shown" && (
                   <button className={styles.button} onClick={nextCard}>
@@ -118,7 +124,7 @@ const Game = () => {
             </div>
             <div className={styles["result-container"]}>
               <p>
-                {correctAnswer}/{cards.length}
+                Bonnes réponses : {correctAnswer}/{cards.length}
               </p>
             </div>
           </div>
@@ -127,6 +133,24 @@ const Game = () => {
             <p>
               Vous avez {correctAnswer} bonne(s) réponse(s) sur {cards.length} carte(s)!
             </p>
+            {(correctAnswer / cards.length) * 100 <= 33.4 && (
+              <div className={styles.result}>
+                <p>Entraîne-toi encore !</p>
+                <img src="https://storage.needpix.com/rsynced_images/smiley-1635454_1280.png" alt="good" />
+              </div>
+            )}
+            {(correctAnswer / cards.length) * 100 <= 66.7 && (correctAnswer / cards.length) * 100 > 33.4 && (
+              <div className={styles.result}>
+                <p>Tu peux encore mieux faire !</p>
+                <img src="https://storage.needpix.com/rsynced_images/smiley-1635455_1280.png" alt="good" />
+              </div>
+            )}
+            {(correctAnswer / cards.length) * 100 > 66.7 && (
+              <div className={styles.result}>
+                <p>Tu gères !</p>
+                <img src="https://live.staticflickr.com/5605/14982108564_dbe35270f9_c.jpg" alt="good" />
+              </div>
+            )}
             <div className={styles["end-button-container"]}>
               <button className={styles.button} onClick={endGame}>
                 Terminer

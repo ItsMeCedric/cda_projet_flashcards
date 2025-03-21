@@ -45,6 +45,15 @@ body::-webkit-scrollbar {
   color: var(--txt-main);
 }
 
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result img {
+  width: 200px;
+}
 .card {
   width: 20rem;
   height: 30rem;
