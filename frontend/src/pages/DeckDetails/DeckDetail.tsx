@@ -15,7 +15,7 @@ const DeckDetail = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [deck, setDeck] = useState<Deck | undefined>(undefined);
-  const [public, setPublic] = useState<boolean>(false);
+  const [publicDeck, setPublic] = useState<boolean>(false);
   const [cards, setCards] = useState<Card[] | undefined>(undefined);
   const [themes, setThemes] = useState<Theme[] | undefined>(undefined);
   const deckId = state.deckId;
@@ -94,7 +94,7 @@ const DeckDetail = () => {
                 <FaRegSquarePlus />
               </a>
               <a className={styles.btn} onClick={makePublic}>
-                {deck.storeId ? (
+                {publicDeck ? (
                   <>
                     Rendre privé <FaLock />
                   </>
