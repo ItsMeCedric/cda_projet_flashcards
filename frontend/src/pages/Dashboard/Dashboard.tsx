@@ -5,16 +5,18 @@ import Footer from "../../components/Footer/Footer";
 import UserDecks from "../../components/UserDecks/UserDecks";
 import axiosInstance from "../../utils/axios";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { useNavigate } from "react-router-dom";
 import { FaUserSlash } from "react-icons/fa";
 import { FaSheetPlastic } from "react-icons/fa6";
 import { MouseEvent } from "react";
+import { logout as logoutAction } from "../../store/actions/authActions";
 import { Deck } from "../../@types/deck";
 import { User } from "../../@types/user";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
 
   const deleteUser = async (e: MouseEvent<HTMLAnchorElement>) => {
@@ -22,7 +24,7 @@ const Dashboard = () => {
     const result = confirm("Voulez-vous supprimer votre compte ?");
     if (user && result) {
       await axiosInstance.delete(`/users/${user.id}`);
-      await axiosInstance.get(`/auth/logout`);
+      dispatch(logoutAction());
       navigate("/");
     }
   };
